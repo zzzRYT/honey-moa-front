@@ -3,14 +3,14 @@ import Image from '../Image';
 import { ModalProps, RegisterInfo } from './type';
 import { useEffect, useState } from 'react';
 import { Svg } from '../Svg';
-import { AuthQueries } from '../../apis/auth';
+import { AuthQueries } from '@/apis/auth';
 import {
   onChangeTextInfo,
   toggleCheckBox,
   validationRegisterInfo,
 } from './utils';
 import { useStore } from 'zustand';
-import { useUserInfoStore } from '../../store/authStore/userInfoStore';
+import { useUserInfoStore } from '@store/authStore/userInfoStore';
 import { Loading } from '..';
 
 export default function RegisterModal({ setStep }: ModalProps) {
