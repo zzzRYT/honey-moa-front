@@ -8,12 +8,7 @@
     "skipLibCheck": true,
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"],
-      "@components/*": ["components/*"],
-      "@apis/*": ["apis/*"],
-      "@hook/*": ["hook/*"],
-      "@provider/*": ["utils/*"],
-      "@store/*": ["store/*"]
+      "@/*": ["*"]
     },
 
     /* Bundler mode */

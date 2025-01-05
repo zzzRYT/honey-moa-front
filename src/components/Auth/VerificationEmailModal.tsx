@@ -1,7 +1,7 @@
 import { useStore } from 'zustand';
 import { Svg } from '../Svg';
 import * as S from './style';
-import { useUserInfoStore } from '@store/authStore/userInfoStore';
+import { useUserInfoStore } from '@/store/authStore/userInfoStore';
 import { useNavigate } from 'react-router-dom';
 
 export default function VerificationEmailModal() {

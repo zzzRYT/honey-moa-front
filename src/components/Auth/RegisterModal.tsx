@@ -10,7 +10,7 @@ import {
   validationRegisterInfo,
 } from './utils';
 import { useStore } from 'zustand';
-import { useUserInfoStore } from '@store/authStore/userInfoStore';
+import { useUserInfoStore } from '@/store/authStore/userInfoStore';
 import { Loading } from '..';
 
 export default function RegisterModal({ setStep }: ModalProps) {
