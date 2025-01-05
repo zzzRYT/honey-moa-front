@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react-swc';
+import path from 'path';
 
 // https://vite.dev/config/
 export default {
@@ -9,5 +10,8 @@ export default {
       enabled: true,
       name: 'chrome',
     },
+  },
+  resolve: {
+    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
 };
