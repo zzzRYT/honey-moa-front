@@ -17,3 +17,7 @@ export interface LoginRequest {
 export interface LoginReturn {
   accessToken: string;
 }
+
+interface ErrorResponse {
+  code: number;
+}

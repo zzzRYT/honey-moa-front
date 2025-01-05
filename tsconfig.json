@@ -3,5 +3,14 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@/*":["./src/*"],
+      "@components/*":["./src/components/*"],
+      "@apis/*":["./src/apis/*"],
+      "@hook/*":["./src/hook/*"],
+      "@provider/*":["./src/utils/*"],
+    }
+  }
 }

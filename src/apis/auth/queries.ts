@@ -1,34 +1,37 @@
-import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { LoginRequest, RegisterRequest } from './type';
 import { AuthEndPoint } from '.';
+import { AxiosError } from 'axios';
+import { LoginErrorHandler, RegisterErrorHandler } from './error';
 
 export const LoginQuery = () => {
-  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (loginInfo: LoginRequest) => AuthEndPoint.postToken(loginInfo),
     onSuccess: data => {
-      console.log('로그인 성공:', data);
-      navigate('/honeyJar');
+      queryClient.invalidateQueries({
+        queryKey: ['tokens'],
+      });
+      localStorage.setItem('accessToken', data.accessToken);
     },
-    onError: (error: unknown) => {
-      console.error('로그인 실패:', error);
-      alert('로그인 실패 아이디 비번을 확인');
+    onError: (error: AxiosError) => {
+      alert(LoginErrorHandler(error));
     },
   });
 };
 
 export const RegisterQuery = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (registerInfo: RegisterRequest) =>
       AuthEndPoint.postUserRegister(registerInfo),
-    onSuccess: data => {
-      console.log('회원가입 성공:', data);
-      alert('회원가입 성공!');
+    onSuccess: () => {
+      return queryClient.invalidateQueries({
+        queryKey: ['users'],
+      });
     },
-    onError: (error: unknown) => {
-      console.error('회원가입 실패:', error);
-      alert('회원가입 실패. 다시 시도해주세요.');
+    onError: (error: AxiosError) => {
+      alert(RegisterErrorHandler(error));
     },
   });
 };
