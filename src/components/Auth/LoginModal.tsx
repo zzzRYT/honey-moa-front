@@ -89,7 +89,12 @@ export default function LoginModal({ setStep }: ModalProps) {
             />
             <label>로그인 상태 유지</label>
           </div>
-          <S.LinkedInButton>비밀번호 찾기</S.LinkedInButton>
+          <S.LinkedInButton
+            type="button"
+            onClick={() => setStep('비밀번호 찾기')}
+          >
+            비밀번호 찾기
+          </S.LinkedInButton>
         </S.LoginBottom>
         <S.SubmitButton type="submit">
           {mutation.isPending ? <Loading.Spinner /> : <>로그인</>}

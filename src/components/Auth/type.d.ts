@@ -28,3 +28,7 @@ export type LoginInfo = {
   password: string;
   isAutoLogin: boolean;
 };
+
+export type EmailForChangePwType = {
+  email: string;
+};
