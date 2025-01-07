@@ -1,14 +1,17 @@
 import * as S from './style';
 import Image from '../Image';
 import { ModalProps, RegisterInfo } from './type';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Svg } from '../Svg';
-import { AuthQueries } from '../../apis/auth';
+import { AuthQueries } from '@/apis/auth';
 import {
   onChangeTextInfo,
   toggleCheckBox,
   validationRegisterInfo,
 } from './utils';
+import { useStore } from 'zustand';
+import { useUserInfoStore } from '@/store/authStore/userInfoStore';
+import { Loading } from '..';
 
 export default function RegisterModal({ setStep }: ModalProps) {
   const [registerInfo, setRegisterInfo] = useState<RegisterInfo>({
@@ -19,6 +22,8 @@ export default function RegisterModal({ setStep }: ModalProps) {
     conditions: false,
   });
 
+  const userInfo = useStore(useUserInfoStore);
+
   const onChangeRegisterInfo = onChangeTextInfo<RegisterInfo>({
     setState: setRegisterInfo,
   });
@@ -28,7 +33,8 @@ export default function RegisterModal({ setStep }: ModalProps) {
     key: 'conditions',
   });
 
-  const mutation = AuthQueries.RegisterQuery();
+  const mutationRegister = AuthQueries.RegisterQuery();
+  const mutationLogin = AuthQueries.LoginQuery();
 
   const onSubmitRegister: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
@@ -36,9 +42,21 @@ export default function RegisterModal({ setStep }: ModalProps) {
     const isValid = validationRegisterInfo(registerInfo);
     if (isValid.result) {
       //api호출
-      mutation.mutate({ email, password, nickname , mbti: null});
+      mutationRegister.mutate(
+        { email, password, nickname, mbti: null },
+        {
+          onSuccess: () => {
+            setStep('이메일 인증');
+            mutationLogin.mutate({ email, password });
+          },
+        }
+      );
     }
   };
+
+  useEffect(() => {
+    userInfo.setEmail(registerInfo.email);
+  }, [registerInfo.email]);
 
   return (
     <>
@@ -111,7 +129,9 @@ export default function RegisterModal({ setStep }: ModalProps) {
               <label>이용약관과 개인정보처리방침에 동의합니다.</label>
             </div>
           </S.LoginBottom>
-          <S.SubmitButton type="submit">회원가입</S.SubmitButton>
+          <S.SubmitButton type="submit">
+            {mutationRegister.isPending ? <Loading.Spinner /> : <>회원가입</>}
+          </S.SubmitButton>
         </S.AuthForm>
         <S.ModalBottom>
           <span>이미 계정이 있으신가요?</span>

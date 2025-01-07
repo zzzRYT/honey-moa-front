@@ -5,7 +5,7 @@ export const BeforeAuthInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 3000,
+  timeout: 5000,
 });
 
 // 요청 인터셉터 추가하기

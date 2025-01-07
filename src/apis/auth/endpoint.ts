@@ -1,5 +1,7 @@
+import { EmailForChangePwType } from '@/components/Auth/type';
 import { BeforeAuthInstance } from '../axiosInstance';
 import {
+  ChangePasswordRequest,
   LoginRequest,
   LoginReturn,
   RegisterRequest,
@@ -12,7 +14,7 @@ export async function postToken(loginInfo: LoginRequest): Promise<LoginReturn> {
   const combined = `${loginInfo.email}:${loginInfo.password}`;
   const encodeCombined = btoa(combined);
   const response = await BeforeAuthInstance.post(
-    '/tokens',
+    '/auth/sign-in',
     {},
     {
       headers: {
@@ -27,6 +29,39 @@ export async function postToken(loginInfo: LoginRequest): Promise<LoginReturn> {
 export async function postUserRegister(
   registerInfo: RegisterRequest
 ): Promise<RegisterReturn> {
-  const response = await BeforeAuthInstance.post('/users', registerInfo);
+  const response = await BeforeAuthInstance.post('/auth/sign-up', registerInfo);
+  return response.data;
+}
+
+//비밀번호 변경을 위한 Email전송 api
+export async function postEmailForChangePw({
+  email,
+}: EmailForChangePwType): Promise<void> {
+  const response = await BeforeAuthInstance.post(
+    `/users/${email}/user-verify-tokens/password-change`,
+    {
+      connectUrl: `${import.meta.env.VITE_CHANGE_PW_URL}`,
+    }
+  );
+  return response.data;
+}
+
+//비밀번호 변경 api
+export async function putChangePassword({
+  id,
+  token,
+  newPassword,
+}: ChangePasswordRequest): Promise<void> {
+  const response = await BeforeAuthInstance.put(
+    `/users/${id}/password`,
+    {
+      newPassword,
+    },
+    {
+      params: {
+        token,
+      },
+    }
+  );
   return response.data;
 }

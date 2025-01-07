@@ -73,3 +73,26 @@ export const SettingContainer = styled.div`
     }
   }
 `;
+
+export const SettingHeaderContents = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-left: 24px;
+`;
+
+export const PrevIconContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  &:hover {
+    background-color: ${({ theme }) => theme.button.quaternary.hover};
+  }
+`;

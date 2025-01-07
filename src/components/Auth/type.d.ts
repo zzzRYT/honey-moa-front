@@ -1,11 +1,17 @@
-//보달 버튼 클릭 시 함수
+export type AuthFunnelStep =
+  | '로그인'
+  | '회원가입'
+  | '비밀번호 찾기'
+  | '이메일 인증';
+
+//모달 버튼 클릭 시 함수
 export interface SelectModalButton {
-  location: '로그인' | '회원가입';
+  location: AuthFunnelStep;
 }
 
 //모달 Props
 export interface ModalProps {
-  setStep: (step: '로그인' | '회원가입') => void;
+  setStep: (step: AuthFunnelStep) => void;
 }
 
 //회원가입 status
@@ -21,4 +27,8 @@ export type LoginInfo = {
   email: string;
   password: string;
   isAutoLogin: boolean;
+};
+
+export type EmailForChangePwType = {
+  email: string;
 };

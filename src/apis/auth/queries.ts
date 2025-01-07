@@ -1,34 +1,74 @@
-import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import { LoginRequest, RegisterRequest } from './type';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AuthEndPoint } from '.';
+import { AxiosError } from 'axios';
+import {
+  ChangePasswordErrorHandler,
+  LoginErrorHandler,
+  RegisterErrorHandler,
+  SendEmailForChangePwErrorHandler,
+} from './error';
 
+/** 로그인 쿼리 */
 export const LoginQuery = () => {
-  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (loginInfo: LoginRequest) => AuthEndPoint.postToken(loginInfo),
+    mutationFn: AuthEndPoint.postToken,
     onSuccess: data => {
-      console.log('로그인 성공:', data);
-      navigate('/honeyJar');
+      queryClient.invalidateQueries({
+        queryKey: ['tokens'],
+      });
+      localStorage.setItem('accessToken', data.accessToken);
     },
-    onError: (error: unknown) => {
-      console.error('로그인 실패:', error);
-      alert('로그인 실패 아이디 비번을 확인');
+    onError: (error: AxiosError) => {
+      alert(LoginErrorHandler(error));
     },
   });
 };
 
+/** 회원가입 쿼리 */
 export const RegisterQuery = () => {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (registerInfo: RegisterRequest) =>
-      AuthEndPoint.postUserRegister(registerInfo),
-    onSuccess: data => {
-      console.log('회원가입 성공:', data);
-      alert('회원가입 성공!');
+    mutationFn: AuthEndPoint.postUserRegister,
+    onSuccess: () => {
+      return queryClient.invalidateQueries({
+        queryKey: ['users'],
+      });
     },
-    onError: (error: unknown) => {
-      console.error('회원가입 실패:', error);
-      alert('회원가입 실패. 다시 시도해주세요.');
+    onError: (error: AxiosError) => {
+      alert(RegisterErrorHandler(error));
+    },
+  });
+};
+
+/**비밀번호 변경을 위한 이메일 인증 쿼리 */
+export const SendEmailForChangePwQuery = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: AuthEndPoint.postEmailForChangePw,
+    onSuccess: () => {
+      return queryClient.invalidateQueries({
+        queryKey: ['users', 'user-verify-tokens', 'password-change'],
+      });
+    },
+    onError(error: AxiosError) {
+      alert(SendEmailForChangePwErrorHandler(error));
+    },
+  });
+};
+
+/**비밀번호 변경을 위한 쿼리 */
+export const ChangePasswordQuery = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: AuthEndPoint.putChangePassword,
+    onSuccess: () => {
+      return queryClient.invalidateQueries({
+        queryKey: ['users', 'password'],
+      });
+    },
+    onError(error: AxiosError) {
+      alert(ChangePasswordErrorHandler(error));
     },
   });
 };

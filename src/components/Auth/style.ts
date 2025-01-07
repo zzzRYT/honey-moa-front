@@ -113,3 +113,149 @@ export const ModalBottom = styled.div`
     color: ${({ theme }) => theme.text.tertiary};
   }
 `;
+
+export const EmailAuthHeader = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+`;
+
+export const EmailIconContainer = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.bg.secondary};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > svg {
+    stroke: ${({ theme }) => theme.button.primary.base};
+  }
+`;
+
+export const SendToEmailP = styled.p`
+  font-size: 16px;
+  span {
+    font-weight: 700;
+  }
+  text-align: center;
+`;
+
+export const ExtraInfoDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 16px;
+  gap: 8px;
+  background-color: ${({ theme }) => theme.bg.secondary};
+  border-radius: 8px;
+  margin-top: 16px;
+  svg {
+    stroke: ${({ theme }) => theme.button.primary.base};
+  }
+  p {
+    font-size: 12px;
+    color: ${({ theme }) => theme.text.quaternary};
+  }
+`;
+
+export const EmailAuthBottom = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+  button {
+    margin-top: 8px;
+    width: 100%;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: ${({ theme }) => theme.text.secondary};
+    background-color: ${({ theme }) => theme.button.primary.base};
+    &:hover {
+      background-color: ${({ theme }) => theme.button.primary.hover};
+    }
+  }
+  p {
+    width: 70%;
+    font-size: 12px;
+    color: ${({ theme }) => theme.text.tertiary};
+    text-align: center;
+    margin-top: 12px;
+  }
+`;
+
+export const ChangePasswordHeader = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+`;
+
+export const KeyIconContainer = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.bg.secondary};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > svg {
+    stroke: ${({ theme }) => theme.button.primary.base};
+  }
+`;
+
+export const EmailInputForChangePasswordContainer = styled.div`
+  width: 100%;
+  margin-top: 16px;
+  label {
+    font-size: 12px;
+    color: ${({ theme }) => theme.text.primary};
+  }
+  input {
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid ${({ theme }) => theme.border.primary};
+    border-radius: 5px;
+    outline: none;
+    padding: 8px 0px 8px 5px;
+  }
+`;
+
+export const SendEmailBottom = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+  gap: 8px;
+  button:nth-child(1) {
+    width: 100%;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: ${({ theme }) => theme.text.secondary};
+    background-color: ${({ theme }) => theme.button.primary.base};
+    &:hover {
+      background-color: ${({ theme }) => theme.button.primary.hover};
+    }
+  }
+  button:nth-child(2) {
+    width: 100%;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: ${({ theme }) => theme.text.primary};
+    background-color: ${({ theme }) => theme.button.tertiary};
+    &:hover {
+      background-color: ${({ theme }) => theme.button.tertiary.hover};
+    }
+  }
+`;
