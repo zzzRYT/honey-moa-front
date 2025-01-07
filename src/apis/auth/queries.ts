@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ChangePasswordRequest, LoginRequest, RegisterRequest } from './type';
 import { AuthEndPoint } from '.';
 import { AxiosError } from 'axios';
 import {
@@ -8,13 +7,12 @@ import {
   RegisterErrorHandler,
   SendEmailForChangePwErrorHandler,
 } from './error';
-import { EmailForChangePwType } from '@/components/Auth/type';
 
 /** 로그인 쿼리 */
 export const LoginQuery = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (loginInfo: LoginRequest) => AuthEndPoint.postToken(loginInfo),
+    mutationFn: AuthEndPoint.postToken,
     onSuccess: data => {
       queryClient.invalidateQueries({
         queryKey: ['tokens'],
@@ -31,8 +29,7 @@ export const LoginQuery = () => {
 export const RegisterQuery = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (registerInfo: RegisterRequest) =>
-      AuthEndPoint.postUserRegister(registerInfo),
+    mutationFn: AuthEndPoint.postUserRegister,
     onSuccess: () => {
       return queryClient.invalidateQueries({
         queryKey: ['users'],
@@ -48,8 +45,7 @@ export const RegisterQuery = () => {
 export const SendEmailForChangePwQuery = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ email }: EmailForChangePwType) =>
-      AuthEndPoint.postEmailForChangePw({ email }),
+    mutationFn: AuthEndPoint.postEmailForChangePw,
     onSuccess: () => {
       return queryClient.invalidateQueries({
         queryKey: ['users', 'user-verify-tokens', 'password-change'],
@@ -65,8 +61,7 @@ export const SendEmailForChangePwQuery = () => {
 export const ChangePasswordQuery = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, token, newPassword }: ChangePasswordRequest) =>
-      AuthEndPoint.putChangePassword({ id, token, newPassword }),
+    mutationFn: AuthEndPoint.putChangePassword,
     onSuccess: () => {
       return queryClient.invalidateQueries({
         queryKey: ['users', 'password'],

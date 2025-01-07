@@ -14,7 +14,7 @@ export async function postToken(loginInfo: LoginRequest): Promise<LoginReturn> {
   const combined = `${loginInfo.email}:${loginInfo.password}`;
   const encodeCombined = btoa(combined);
   const response = await BeforeAuthInstance.post(
-    '/tokens',
+    '/auth/sign-in',
     {},
     {
       headers: {
@@ -29,7 +29,7 @@ export async function postToken(loginInfo: LoginRequest): Promise<LoginReturn> {
 export async function postUserRegister(
   registerInfo: RegisterRequest
 ): Promise<RegisterReturn> {
-  const response = await BeforeAuthInstance.post('/users', registerInfo);
+  const response = await BeforeAuthInstance.post('/auth/sign-up', registerInfo);
   return response.data;
 }
 

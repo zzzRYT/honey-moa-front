@@ -4,6 +4,7 @@ import * as S from './style';
 import { onChangeTextInfo } from './utils';
 import { EmailForChangePwType, ModalProps } from './type';
 import { AuthQueries } from '@/apis/auth';
+import { Loading } from '..';
 
 export default function SendEmailForChangePasswordModal({
   setStep,
@@ -26,7 +27,12 @@ export default function SendEmailForChangePasswordModal({
         {
           email: forChangePw.email,
         },
-        { onSuccess: () => alert('이메일을 확인해주세요.') }
+        {
+          onSuccess: () =>
+            alert(
+              `${forChangePw.email}해당 이메일로 메일을 보내드렸습니다.\n만약 메일이 오지 않았다면 스팸함을 확인해 주세요😊`
+            ),
+        }
       );
     }
   };
@@ -55,7 +61,13 @@ export default function SendEmailForChangePasswordModal({
           />
         </S.EmailInputForChangePasswordContainer>
         <S.SendEmailBottom>
-          <button type="submit">비밀번호 변경 이메일 받기</button>
+          <button type="submit">
+            {mutationSendEmail.isPending ? (
+              <Loading.Spinner />
+            ) : (
+              <>비밀번호 변경 이메일 받기</>
+            )}
+          </button>
           <button type="button" onClick={() => setStep('로그인')}>
             취소
           </button>

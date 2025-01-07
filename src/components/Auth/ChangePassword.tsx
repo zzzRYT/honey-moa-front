@@ -37,7 +37,10 @@ export default function ChangePassword() {
         id: params.id as string,
       },
       {
-        onSuccess: () => navigate('/root'),
+        onSuccess: () => {
+          alert('비밀번호가 성공적으로 변경되었습니다.');
+          navigate('/root');
+        },
       }
     );
   };
