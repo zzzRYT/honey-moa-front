@@ -17,3 +17,13 @@ export interface LoginRequest {
 export interface LoginReturn {
   accessToken: string;
 }
+
+export interface ErrorResponse {
+  code: number;
+}
+
+export interface ChangePasswordRequest {
+  id: string;
+  token: string;
+  newPassword: string;
+}

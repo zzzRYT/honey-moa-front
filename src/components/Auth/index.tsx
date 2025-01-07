@@ -4,11 +4,13 @@ import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
 import Modal from '../Modal';
 import useFunnel from '../../hook/useFunnel';
-import { SelectModalButton } from './type';
+import { AuthFunnelStep, SelectModalButton } from './type';
+import VerificationEmailModal from './VerificationEmailModal';
+import SendEmailForChangePasswordModal from './SendEmailForChnagePasswordModal';
 
 export default function Auth() {
   const [authOpen, setAuthOpen] = useState<boolean>(false);
-  const { Funnel, setStep } = useFunnel<'로그인' | '회원가입'>('로그인');
+  const { Funnel, setStep } = useFunnel<AuthFunnelStep>('로그인');
 
   const onClickModalButton = ({ location }: SelectModalButton) => {
     if (location === '로그인') setStep('로그인');
@@ -33,6 +35,12 @@ export default function Auth() {
           </Funnel.Step>
           <Funnel.Step name="회원가입">
             <RegisterModal setStep={setStep} />
+          </Funnel.Step>
+          <Funnel.Step name="비밀번호 찾기">
+            <SendEmailForChangePasswordModal setStep={setStep} />
+          </Funnel.Step>
+          <Funnel.Step name="이메일 인증">
+            <VerificationEmailModal />
           </Funnel.Step>
         </Funnel>
       </Modal>

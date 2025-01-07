@@ -91,3 +91,66 @@ export function InfoIcon({ size = '24' }: SvgProps) {
     </svg>
   );
 }
+
+export function EmailIcon({ size = '24' }: SvgProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-mail w-6 h-6 text-rose-500"
+      data-id="element-8"
+    >
+      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+    </svg>
+  );
+}
+
+export function KeyIcon({ size = '24' }: SvgProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-key w-6 h-6 text-rose-500"
+      data-id="element-9"
+    >
+      <path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path>
+      <path d="m21 2-9.6 9.6"></path>
+      <circle cx="7.5" cy="15.5" r="5.5"></circle>
+    </svg>
+  );
+}
+
+export function PrevIcon({ size = '24' }: SvgProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-chevron-left w-6 h-6 text-gray-600"
+      data-id="element-4"
+    >
+      <path d="m15 18-6-6 6-6"></path>
+    </svg>
+  );
+}

@@ -36,6 +36,7 @@ export const mainThemeColor: DefaultTheme = {
     primary: '#212121',
     secondary: '#FFFFFF',
     tertiary: '#757575',
+    quaternary: '#b45309',
   },
   shadow: {
     primary: '#D3D3D3',

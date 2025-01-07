@@ -2,8 +2,10 @@ import * as S from './style';
 import Image from '../Image';
 import { LoginInfo, ModalProps } from './type';
 import { useState } from 'react';
-import { AuthQueries } from '../../apis/auth';
+import { AuthQueries } from '@/apis/auth';
 import { onChangeTextInfo, toggleCheckBox } from './utils';
+import { useNavigate } from 'react-router-dom';
+import { Loading } from '..';
 
 export default function LoginModal({ setStep }: ModalProps) {
   const [loginInfo, setLoginInfo] = useState<LoginInfo>({
@@ -11,6 +13,8 @@ export default function LoginModal({ setStep }: ModalProps) {
     password: '',
     isAutoLogin: false,
   });
+
+  const navigate = useNavigate();
 
   //로그인 정보 변경 핸들러
   const onChangeLoginInfo = onChangeTextInfo<LoginInfo>({
@@ -37,7 +41,10 @@ export default function LoginModal({ setStep }: ModalProps) {
     e.preventDefault();
     const { email, password } = loginInfo;
     if (validationInfo()) {
-      mutation.mutate({ email, password });
+      mutation.mutate(
+        { email, password },
+        { onSuccess: () => navigate('/honeyJar') }
+      );
     }
   };
 
@@ -82,9 +89,16 @@ export default function LoginModal({ setStep }: ModalProps) {
             />
             <label>로그인 상태 유지</label>
           </div>
-          <S.LinkedInButton>비밀번호 찾기</S.LinkedInButton>
+          <S.LinkedInButton
+            type="button"
+            onClick={() => setStep('비밀번호 찾기')}
+          >
+            비밀번호 찾기
+          </S.LinkedInButton>
         </S.LoginBottom>
-        <S.SubmitButton type="submit">로그인</S.SubmitButton>
+        <S.SubmitButton type="submit">
+          {mutation.isPending ? <Loading.Spinner /> : <>로그인</>}
+        </S.SubmitButton>
       </S.AuthForm>
       <S.ModalBottom>
         <span>계정이 없으신가요?</span>
