@@ -154,3 +154,23 @@ export function PrevIcon({ size = '24' }: SvgProps) {
     </svg>
   );
 }
+export function SearchIcon({ size = '24' }: SvgProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-search absolute left-3 top-2.5 text-gray-400"
+      data-id="element-8"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </svg>
+  );
+}

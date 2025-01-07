@@ -5,6 +5,7 @@ import Root from './components/Root';
 import Main from './components/Main';
 import ChangePassword from './components/Auth/ChangePassword';
 import { useState } from 'react';
+import ConnectionModal from './components/Connection';
 
 function App() {
   const [isTestOpen, setIsTestOpen] = useState<boolean>(false);
@@ -18,8 +19,11 @@ function App() {
             path="/account/change-password/:token/:id"
             element={<ChangePassword />}
           />
-          <button>연결 모달 test</button>
         </AppProvider>
+        <button onClick={() => setIsTestOpen(prev => !prev)}>
+          연결 모달 test
+        </button>
+        <ConnectionModal isOpen={isTestOpen} />
       </ThemeColorProvider>
     </>
   );
