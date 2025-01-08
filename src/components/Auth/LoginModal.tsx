@@ -66,6 +66,7 @@ export default function LoginModal({ setStep }: ModalProps) {
           <input
             type="email"
             id="email"
+            data-testid="email"
             value={loginInfo.email}
             onChange={onChangeLoginInfo}
           />
@@ -75,6 +76,7 @@ export default function LoginModal({ setStep }: ModalProps) {
           <input
             type="password"
             id="password"
+            data-testid="password"
             value={loginInfo.password}
             onChange={onChangeLoginInfo}
           />
