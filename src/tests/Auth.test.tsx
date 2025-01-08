@@ -5,9 +5,8 @@ import { AuthFunnelStep } from '@/components/Auth/type';
 import useFunnel from '@/hook/useFunnel';
 import { render } from '@/provider/TestProvider';
 import { fireEvent, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { BeforeAuthInstance } from '@/apis/axiosInstance';
 
 const TestComponent = () => {
   const { Funnel, setStep } = useFunnel<AuthFunnelStep>('로그인');
