@@ -1,12 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AuthEndPoint } from '.';
 import { AxiosError } from 'axios';
-import {
-  ChangePasswordErrorHandler,
-  LoginErrorHandler,
-  RegisterErrorHandler,
-  SendEmailForChangePwErrorHandler,
-} from './error';
 
 /** 로그인 쿼리 */
 export const LoginQuery = () => {
@@ -19,9 +13,7 @@ export const LoginQuery = () => {
       });
       localStorage.setItem('accessToken', data.accessToken);
     },
-    onError: (error: AxiosError) => {
-      alert(LoginErrorHandler(error));
-    },
+    onError: (error: AxiosError) => error,
   });
 };
 
@@ -35,9 +27,7 @@ export const RegisterQuery = () => {
         queryKey: ['users'],
       });
     },
-    onError: (error: AxiosError) => {
-      alert(RegisterErrorHandler(error));
-    },
+    onError: (error: AxiosError) => error,
   });
 };
 
@@ -51,9 +41,7 @@ export const SendEmailForChangePwQuery = () => {
         queryKey: ['users', 'user-verify-tokens', 'password-change'],
       });
     },
-    onError(error: AxiosError) {
-      alert(SendEmailForChangePwErrorHandler(error));
-    },
+    onError: (error: AxiosError) => error,
   });
 };
 
@@ -67,8 +55,6 @@ export const ChangePasswordQuery = () => {
         queryKey: ['users', 'password'],
       });
     },
-    onError(error: AxiosError) {
-      alert(ChangePasswordErrorHandler(error));
-    },
+    onError: (error: AxiosError) => error,
   });
 };

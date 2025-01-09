@@ -6,6 +6,8 @@ import { onChangeTextInfo } from './utils';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthQueries } from '@/apis/auth';
 import { Loading } from '..';
+import { ChangePasswordErrorHandler } from '@/apis/auth/error';
+import { useToastStore } from '@/store/toastStore/useToastStore';
 
 interface ChangeInfo {
   password: string;
@@ -20,6 +22,7 @@ export default function ChangePassword() {
   });
   const params = useParams();
   const navigate = useNavigate();
+  const showToast = useToastStore(state => state.showToast);
 
   const onChangeNewPasswordInfo = onChangeTextInfo({ setState: setChangeInfo });
   const mutationChangePassword = AuthQueries.ChangePasswordQuery();
@@ -40,6 +43,9 @@ export default function ChangePassword() {
         onSuccess: () => {
           alert('비밀번호가 성공적으로 변경되었습니다.');
           navigate('/root');
+        },
+        onError: error => {
+          showToast(ChangePasswordErrorHandler(error) as string);
         },
       }
     );

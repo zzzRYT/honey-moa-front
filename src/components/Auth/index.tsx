@@ -20,7 +20,10 @@ export default function Auth() {
 
   return (
     <>
-      <S.LoginButton onClick={() => onClickModalButton({ location: '로그인' })}>
+      <S.LoginButton
+        data-testid="open-login-modal"
+        onClick={() => onClickModalButton({ location: '로그인' })}
+      >
         로그인
       </S.LoginButton>
       <S.RegisterButton
