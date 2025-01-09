@@ -58,6 +58,8 @@ export const ToastWrapper = styled.div`
   position: fixed;
   width: 300px;
   height: 75px;
+  display: flex;
+  justify-content: end;
   z-index: 9999;
   bottom: 0px;
   right: 5px;

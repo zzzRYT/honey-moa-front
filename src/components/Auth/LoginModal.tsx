@@ -3,7 +3,7 @@ import Image from '../Image';
 import { LoginInfo, ModalProps } from './type';
 import { useState } from 'react';
 import { AuthQueries } from '@/apis/auth';
-import { onChangeTextInfo, toggleCheckBox } from './utils';
+import { onChangeTextInfo, toggleCheckBox, validationLoginInfo } from './utils';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '..';
 import { useToastStore } from '@/store/toastStore/useToastStore';
@@ -30,20 +30,13 @@ export default function LoginModal({ setStep }: ModalProps) {
     key: 'isAutoLogin',
   });
 
-  const validationInfo = () => {
-    if (!loginInfo.email || !loginInfo.password) {
-      alert('모든 항목을 입력해주세요.');
-      return false;
-    }
-    return true;
-  };
-
   const mutation = AuthQueries.LoginQuery();
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
     const { email, password } = loginInfo;
-    if (validationInfo()) {
+    const isValid = validationLoginInfo(loginInfo);
+    if (isValid.result) {
       mutation.mutate(
         { email, password },
         {
@@ -53,6 +46,8 @@ export default function LoginModal({ setStep }: ModalProps) {
           },
         }
       );
+    } else {
+      showToast(isValid.message);
     }
   };
 
