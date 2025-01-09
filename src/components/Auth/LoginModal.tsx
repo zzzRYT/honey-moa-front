@@ -6,6 +6,8 @@ import { AuthQueries } from '@/apis/auth';
 import { onChangeTextInfo, toggleCheckBox } from './utils';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '..';
+import { useToastStore } from '@/store/toastStore/useToastStore';
+import { LoginErrorHandler } from '@/apis/auth/error';
 
 export default function LoginModal({ setStep }: ModalProps) {
   const [loginInfo, setLoginInfo] = useState<LoginInfo>({
@@ -15,6 +17,7 @@ export default function LoginModal({ setStep }: ModalProps) {
   });
 
   const navigate = useNavigate();
+  const showToast = useToastStore(state => state.showToast);
 
   //로그인 정보 변경 핸들러
   const onChangeLoginInfo = onChangeTextInfo<LoginInfo>({
@@ -43,7 +46,12 @@ export default function LoginModal({ setStep }: ModalProps) {
     if (validationInfo()) {
       mutation.mutate(
         { email, password },
-        { onSuccess: () => navigate('/honeyJar') }
+        {
+          onSuccess: () => navigate('/honeyJar'),
+          onError: error => {
+            showToast(LoginErrorHandler(error) as string);
+          },
+        }
       );
     }
   };

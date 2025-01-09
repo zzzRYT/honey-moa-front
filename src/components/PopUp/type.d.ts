@@ -14,3 +14,8 @@ export interface ToastProps {
   message: string;
   direction?: Direction;
 }
+
+export interface ToastInvisibleProps {
+  $isVisible: boolean;
+  $isAnimating: boolean;
+}

@@ -15,13 +15,14 @@ import { useToastStore } from '@/store/toastStore/useToastStore';
  *
  */
 export default function Toast() {
-  const { message, isVisible, hideToast } = useStore(useToastStore);
+  const { message, isVisible, isAnimating, hideToast } =
+    useStore(useToastStore);
 
   useEffect(() => {
     if (isVisible) {
       const timer = setTimeout(() => {
         hideToast();
-      }, 2000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [isVisible, hideToast]);
@@ -29,9 +30,9 @@ export default function Toast() {
   return (
     <>
       <S.ToastWrapper>
-        {isVisible && (
-          <S.ToastTextDiv className="toastText">{message}</S.ToastTextDiv>
-        )}
+        <S.ToastTextDiv $isVisible={isVisible} $isAnimating={isAnimating}>
+          {message}
+        </S.ToastTextDiv>
       </S.ToastWrapper>
     </>
   );

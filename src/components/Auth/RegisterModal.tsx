@@ -13,6 +13,7 @@ import { useStore } from 'zustand';
 import { useUserInfoStore } from '@/store/authStore/userInfoStore';
 import { Loading, PopUp } from '@/components';
 import { useToastStore } from '@/store/toastStore/useToastStore';
+import { RegisterErrorHandler } from '@/apis/auth/error';
 
 export default function RegisterModal({ setStep }: ModalProps) {
   const [registerInfo, setRegisterInfo] = useState<RegisterInfo>({
@@ -50,6 +51,9 @@ export default function RegisterModal({ setStep }: ModalProps) {
           onSuccess: () => {
             setStep('이메일 인증');
             mutationLogin.mutate({ email, password });
+          },
+          onError: error => {
+            showToast(RegisterErrorHandler(error) as string);
           },
         }
       );
