@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Routes } from 'react-router-dom';
 import { AppProviderProps } from './type';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Toast } from '@/components/PopUp';
 
 const queryClient = new QueryClient();
 
@@ -12,6 +13,7 @@ export default function AppProvider({ children }: AppProviderProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <Toast />
         <Routes>{children}</Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />

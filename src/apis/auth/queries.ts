@@ -7,10 +7,12 @@ import {
   RegisterErrorHandler,
   SendEmailForChangePwErrorHandler,
 } from './error';
+import { useToastStore } from '@/store/toastStore/useToastStore';
 
 /** 로그인 쿼리 */
 export const LoginQuery = () => {
   const queryClient = useQueryClient();
+  const showToast = useToastStore(state => state.showToast);
   return useMutation({
     mutationFn: AuthEndPoint.postToken,
     onSuccess: data => {
@@ -20,7 +22,7 @@ export const LoginQuery = () => {
       localStorage.setItem('accessToken', data.accessToken);
     },
     onError: (error: AxiosError) => {
-      alert(LoginErrorHandler(error));
+      showToast(LoginErrorHandler(error) as string);
     },
   });
 };
@@ -28,6 +30,7 @@ export const LoginQuery = () => {
 /** 회원가입 쿼리 */
 export const RegisterQuery = () => {
   const queryClient = useQueryClient();
+  const showToast = useToastStore(state => state.showToast); // showToast 함수 사용
   return useMutation({
     mutationFn: AuthEndPoint.postUserRegister,
     onSuccess: () => {
@@ -36,7 +39,7 @@ export const RegisterQuery = () => {
       });
     },
     onError: (error: AxiosError) => {
-      alert(RegisterErrorHandler(error));
+      showToast(RegisterErrorHandler(error) as string);
     },
   });
 };
@@ -44,6 +47,8 @@ export const RegisterQuery = () => {
 /**비밀번호 변경을 위한 이메일 인증 쿼리 */
 export const SendEmailForChangePwQuery = () => {
   const queryClient = useQueryClient();
+  const showToast = useToastStore(state => state.showToast); // showToast 함수 사용
+
   return useMutation({
     mutationFn: AuthEndPoint.postEmailForChangePw,
     onSuccess: () => {
@@ -52,7 +57,7 @@ export const SendEmailForChangePwQuery = () => {
       });
     },
     onError(error: AxiosError) {
-      alert(SendEmailForChangePwErrorHandler(error));
+      showToast(SendEmailForChangePwErrorHandler(error) as string);
     },
   });
 };
@@ -60,6 +65,8 @@ export const SendEmailForChangePwQuery = () => {
 /**비밀번호 변경을 위한 쿼리 */
 export const ChangePasswordQuery = () => {
   const queryClient = useQueryClient();
+  const showToast = useToastStore(state => state.showToast); // showToast 함수 사용
+
   return useMutation({
     mutationFn: AuthEndPoint.putChangePassword,
     onSuccess: () => {
@@ -68,7 +75,7 @@ export const ChangePasswordQuery = () => {
       });
     },
     onError(error: AxiosError) {
-      alert(ChangePasswordErrorHandler(error));
+      showToast(ChangePasswordErrorHandler(error) as string);
     },
   });
 };
