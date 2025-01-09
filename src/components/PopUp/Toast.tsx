@@ -30,9 +30,9 @@ export default function Toast() {
   return (
     <>
       <S.ToastWrapper>
-        <S.ToastTextDiv $isVisible={isVisible} $isAnimating={isAnimating}>
-          {message}
-        </S.ToastTextDiv>
+        {isVisible && (
+          <S.ToastTextDiv $isAnimating={isAnimating}>{message}</S.ToastTextDiv>
+        )}
       </S.ToastWrapper>
     </>
   );

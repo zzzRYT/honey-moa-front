@@ -59,19 +59,17 @@ export const ToastWrapper = styled.div`
   width: 300px;
   height: 75px;
   z-index: 9999;
-  bottom: 3px;
-  right: 3px;
+  bottom: 0px;
+  right: 5px;
 `;
 
 export const ToastTextDiv = styled.div<ToastInvisibleProps>`
   position: absolute;
-  display: ${({ $isVisible }) => ($isVisible ? 'block' : 'none')};
   padding: 10px;
   background-color: ${({ theme }) => theme.accent};
   color: ${({ theme }) => theme.text.secondary};
   border-radius: 5px;
   font-size: 12px;
-  white-space: nowrap;
   animation: ${({ $isAnimating }) =>
       $isAnimating ? ToastVisibleFrame : ToastInvisibleFrame}
     0.5s ease-in-out;

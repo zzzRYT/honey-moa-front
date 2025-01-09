@@ -16,6 +16,5 @@ export interface ToastProps {
 }
 
 export interface ToastInvisibleProps {
-  $isVisible: boolean;
   $isAnimating: boolean;
 }
