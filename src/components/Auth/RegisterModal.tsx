@@ -12,6 +12,7 @@ import {
 import { useStore } from 'zustand';
 import { useUserInfoStore } from '@/store/authStore/userInfoStore';
 import { Loading } from '..';
+import Tooltip from '../Tooltip';
 
 export default function RegisterModal({ setStep }: ModalProps) {
   const [registerInfo, setRegisterInfo] = useState<RegisterInfo>({
@@ -75,7 +76,12 @@ export default function RegisterModal({ setStep }: ModalProps) {
           <S.ContentInputContainer>
             <div>
               <label htmlFor="email">이메일</label>
-              <Svg.InfoIcon size={15} />
+              <Tooltip
+                message="이메일 형식에 맞게 입력해주세요. (ex abc@gmail.com)"
+                direction="top"
+              >
+                <Svg.InfoIcon size={15} />
+              </Tooltip>
             </div>
             <input
               type="email"
@@ -88,7 +94,12 @@ export default function RegisterModal({ setStep }: ModalProps) {
           <S.ContentInputContainer>
             <div>
               <label htmlFor="password">비밀번호</label>
-              <Svg.InfoIcon size={15} />
+              <Tooltip
+                message="비밀번호는 8자 이상 15자 이하, 영문(대/소), 숫자, 특수문자를 포함해야 합니다."
+                direction="top"
+              >
+                <Svg.InfoIcon size={15} />
+              </Tooltip>
             </div>
             <input
               type="password"
