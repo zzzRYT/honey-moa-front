@@ -33,6 +33,29 @@ export const TitleContainer = styled.div`
   }
 `;
 
+export const UnConnectedTitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 16px;
+  //커플 연결하러 가기
+  & > :nth-child(2) {
+    margin: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    align-content: center;
+    color: ${({ theme }) => theme.text.primary};
+    transition: all 0.2s ease-in-out;
+    padding: 8px;
+    border-radius: 16px;
+    &:hover {
+      background-color: ${({ theme }) => theme.button.quaternary.hover};
+    }
+  }
+`;
+
 export const AuthContainer = styled.div`
   display: flex;
   flex-direction: row;

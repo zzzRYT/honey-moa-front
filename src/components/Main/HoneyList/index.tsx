@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as S from './style';
 import HoneyCard from './HoneyCard';
+import { Svg } from '@/components/Svg';
 
 export default function HoneyList() {
   const [nowMonth, setNowMonth] = useState<number>(new Date().getMonth() + 1);
@@ -20,9 +21,13 @@ export default function HoneyList() {
           <option>공개 글</option>
         </select>
         <div>
-          <span>이전</span>
+          <button>
+            <Svg.PrevIcon />
+          </button>
           <span>{2024}년의 달콤한 기록</span>
-          <span>다음</span>
+          <button>
+            <Svg.NextIcon />
+          </button>
         </div>
       </S.HoneyListHeader>
       <S.HoneyListMonthsContainer>

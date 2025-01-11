@@ -1,18 +1,23 @@
 import { Header } from '../Layouts';
-import CoupleProfile from './CoupleProfile';
+import { CoupleProfile, UnConnectedProfile } from './Profile';
 import HoneyList from './HoneyList';
 import SideNavigate from './SideNavigate';
 import * as S from './style';
 
+const connected = false;
 export default function Main() {
   return (
     <>
-      <Header.MainHeader />
+      {connected ? <Header.MainHeader /> : <Header.UnConnectedHeader />}
       <S.ContentsWrapper>
         <SideNavigate />
         <div>
-          <CoupleProfile />
-          <HoneyList />
+          {connected ? <CoupleProfile /> : <UnConnectedProfile />}
+          {connected ? (
+            <HoneyList />
+          ) : (
+            <div>블로그를 이용하려면 연결이 필요합니다.</div>
+          )}
         </div>
       </S.ContentsWrapper>
     </>

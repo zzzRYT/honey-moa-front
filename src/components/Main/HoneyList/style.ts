@@ -28,8 +28,24 @@ export const HoneyListHeader = styled.div`
     gap: 16px;
     & > span {
       font-size: 24px;
+      font-weight: 700;
       color: ${({ theme }) => theme.text_01};
-      cursor: pointer;
+    }
+  }
+  //prev, next 버튼
+  button {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+      background-color: ${({ theme }) => theme.button.primary.hover};
     }
   }
 `;
