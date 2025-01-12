@@ -44,15 +44,8 @@ export const UnConnectedTitleContainer = styled.div`
     margin: 16px;
     font-size: 28px;
     font-weight: bold;
-    cursor: pointer;
     align-content: center;
     color: ${({ theme }) => theme.text.primary};
-    transition: all 0.2s ease-in-out;
-    padding: 8px;
-    border-radius: 16px;
-    &:hover {
-      background-color: ${({ theme }) => theme.button.quaternary.hover};
-    }
   }
 `;
 
@@ -92,7 +85,7 @@ export const SettingContainer = styled.div`
     margin: 0px 12px;
     cursor: pointer;
     &:hover {
-      background-color: ${({ theme }) => theme.button.quaternary.hover};
+      background-color: ${({ theme }) => theme.button.tertiary.hover};
     }
   }
 `;
@@ -116,6 +109,6 @@ export const PrevIconContainer = styled.div`
   cursor: pointer;
   border-radius: 50%;
   &:hover {
-    background-color: ${({ theme }) => theme.button.quaternary.hover};
+    background-color: ${({ theme }) => theme.button.tertiary.hover};
   }
 `;

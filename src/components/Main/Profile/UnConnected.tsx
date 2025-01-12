@@ -1,3 +1,4 @@
+import { Svg } from '@/components/Svg';
 import * as S from './style';
 
 export default function UnConnectedProfile() {
@@ -7,23 +8,29 @@ export default function UnConnectedProfile() {
   };
   return (
     <>
-      <S.ProfileWrapper>
-        <S.ProfileBgImage src="images/introImage.jpg" />
-        <S.CoupleInfoWrapper>
-          <S.EachImageContainer>
-            <div>
-              <img src={user.profileImage} alt="profile" />
-            </div>
-          </S.EachImageContainer>
-          <S.CoupleShortIntroduction>
-            <h2>{user.name}</h2>
-            <p>
-              블로그를 사용하려면 연결이 필요합니다.
-              <br /> <button>연결하러 가기</button>
-            </p>
-          </S.CoupleShortIntroduction>
-        </S.CoupleInfoWrapper>
-      </S.ProfileWrapper>
+      <>
+        <S.UnConnectedProfileBgDiv>
+          <S.UnConnectedInfoWrapper>
+            <S.EachImageContainer>
+              <div>
+                <img src={user.profileImage} alt="profile" />
+              </div>
+              <div>
+                <Svg.LockIcon />
+              </div>
+            </S.EachImageContainer>
+            <S.CoupleShortIntroduction>
+              <h4>{user.name}</h4>
+              <p>
+                소중한 추억을 함께 기록하기 위해 파트너와 연결해주세요.
+                <br /> 연결 후에는 다이어리 작성, 사진 공유 등 더 많은 기능을
+                이용할 수 있어요.
+              </p>
+              <S.ConnectedCoupleButton>커플 연결하기</S.ConnectedCoupleButton>
+            </S.CoupleShortIntroduction>
+          </S.UnConnectedInfoWrapper>
+        </S.UnConnectedProfileBgDiv>
+      </>
     </>
   );
 }

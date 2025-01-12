@@ -1,8 +1,7 @@
 import { Header } from '../Layouts';
-import { CoupleProfile, UnConnectedProfile } from './Profile';
-import HoneyList from './HoneyList';
 import SideNavigate from './SideNavigate';
 import * as S from './style';
+import { Contents, Profile } from '.';
 
 const connected = false;
 export default function Main() {
@@ -12,12 +11,12 @@ export default function Main() {
       <S.ContentsWrapper>
         <SideNavigate />
         <div>
-          {connected ? <CoupleProfile /> : <UnConnectedProfile />}
           {connected ? (
-            <HoneyList />
+            <Profile.CoupleProfile />
           ) : (
-            <div>블로그를 이용하려면 연결이 필요합니다.</div>
+            <Profile.UnConnectedProfile />
           )}
+          {connected ? <Contents.HoneyList /> : <Contents.UnConnectedList />}
         </div>
       </S.ContentsWrapper>
     </>

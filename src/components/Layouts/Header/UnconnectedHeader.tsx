@@ -6,7 +6,7 @@ export default function UnConnectedHeader() {
     <S.HeaderWrapper>
       <S.UnConnectedTitleContainer>
         <Svg.UnConnectedIcon size={24} />
-        <h1>커플 연결하러 가기</h1>
+        <h1>커플 연결이 필요합니다</h1>
       </S.UnConnectedTitleContainer>
       <S.SettingContainer>
         <button>공개글 보기</button>

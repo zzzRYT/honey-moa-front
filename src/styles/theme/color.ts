@@ -7,6 +7,7 @@ export const mainThemeColor: DefaultTheme = {
   bg: {
     primary: '#FFFFFF',
     secondary: '#FFF3E0',
+    tertiary: '#f3f4f6',
   },
   button: {
     primary: {
@@ -20,11 +21,6 @@ export const mainThemeColor: DefaultTheme = {
     //흰 바탕 버튼
     tertiary: {
       base: '#FFFFFF',
-      hover: '#D3D3D3',
-    },
-    //svg 버튼
-    quaternary: {
-      base: '#000000',
       hover: '#f3f4f6',
     },
   },

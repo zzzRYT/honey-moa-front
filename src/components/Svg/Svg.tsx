@@ -217,3 +217,57 @@ export function UnConnectedIcon({ size = '24' }: SvgProps) {
     </svg>
   );
 }
+
+export function LockIcon({ size = '24' }: SvgProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 14 16"
+      fill="none"
+    >
+      <path
+        d="M11.6667 7H2.33333C1.59695 7 1 7.59695 1 8.33333V13C1 13.7364 1.59695 14.3333 2.33333 14.3333H11.6667C12.403 14.3333 13 13.7364 13 13V8.33333C13 7.59695 12.403 7 11.6667 7Z"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 7V4.33333C4 3.44928 4.31607 2.60143 4.87868 1.97631C5.44129 1.35119 6.20435 1 7 1C7.79565 1 8.55871 1.35119 9.12132 1.97631C9.68393 2.60143 10 3.44928 10 4.33333V7"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function UnLockIcon({ size = '24' }: SvgProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 14 16"
+      fill="none"
+    >
+      <path
+        d="M11.6667 7H2.33333C1.59695 7 1 7.59695 1 8.33333V13C1 13.7364 1.59695 14.3333 2.33333 14.3333H11.6667C12.403 14.3333 13 13.7364 13 13V8.33333C13 7.59695 12.403 7 11.6667 7Z"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 7V4.33333C4 3.44928 4.31607 2.60143 4.87868 1.97631C5.44129 1.35119 6.20435 1 7 1C7.79565 1 8.55871 1.35119 9.12132 1.97631"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
