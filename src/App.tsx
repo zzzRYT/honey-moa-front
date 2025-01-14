@@ -4,8 +4,11 @@ import ThemeColorProvider from './provider/ThemeColorProvider';
 import Root from './components/Root';
 import ChangePassword from './components/Auth/ChangePassword';
 import { Main } from './components/Main';
+import { useState } from 'react';
+import ConnectionModal from './components/Connection';
 
 function App() {
+  const [isTestOpen, setIsTestOpen] = useState<boolean>(false);
   return (
     <>
       <ThemeColorProvider>
@@ -17,6 +20,10 @@ function App() {
             element={<ChangePassword />}
           />
         </AppProvider>
+        <button onClick={() => setIsTestOpen(prev => !prev)}>
+          연결 모달 test
+        </button>
+        <ConnectionModal isOpen={isTestOpen} />
       </ThemeColorProvider>
     </>
   );

@@ -11,7 +11,9 @@ import {
 } from './utils';
 import { useStore } from 'zustand';
 import { useUserInfoStore } from '@/store/authStore/userInfoStore';
-import { Loading } from '..';
+import { Loading, PopUp } from '@/components';
+import { useToastStore } from '@/store/toastStore/useToastStore';
+import { RegisterErrorHandler } from '@/apis/auth/error';
 
 export default function RegisterModal({ setStep }: ModalProps) {
   const [registerInfo, setRegisterInfo] = useState<RegisterInfo>({
@@ -21,6 +23,7 @@ export default function RegisterModal({ setStep }: ModalProps) {
     nickname: '',
     conditions: false,
   });
+  const showToast = useToastStore(state => state.showToast);
 
   const userInfo = useStore(useUserInfoStore);
 
@@ -49,8 +52,13 @@ export default function RegisterModal({ setStep }: ModalProps) {
             setStep('이메일 인증');
             mutationLogin.mutate({ email, password });
           },
+          onError: error => {
+            showToast(RegisterErrorHandler(error) as string);
+          },
         }
       );
+    } else {
+      showToast(isValid.message as string);
     }
   };
 
@@ -75,7 +83,12 @@ export default function RegisterModal({ setStep }: ModalProps) {
           <S.ContentInputContainer>
             <div>
               <label htmlFor="email">이메일</label>
-              <Svg.InfoIcon size={15} />
+              <PopUp.Tooltip
+                message="이메일 형식에 맞게 입력해주세요. (ex abc@gmail.com)"
+                direction="top"
+              >
+                <Svg.InfoIcon size={15} />
+              </PopUp.Tooltip>
             </div>
             <input
               type="email"
@@ -88,7 +101,12 @@ export default function RegisterModal({ setStep }: ModalProps) {
           <S.ContentInputContainer>
             <div>
               <label htmlFor="password">비밀번호</label>
-              <Svg.InfoIcon size={15} />
+              <PopUp.Tooltip
+                message="비밀번호는 8자 이상 15자 이하, 영문(대/소), 숫자, 특수문자를 포함해야 합니다."
+                direction="top"
+              >
+                <Svg.InfoIcon size={15} />
+              </PopUp.Tooltip>
             </div>
             <input
               type="password"

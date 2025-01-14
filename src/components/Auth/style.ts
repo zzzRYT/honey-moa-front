@@ -54,9 +54,11 @@ export const AuthForm = styled.form`
 export const ContentInputContainer = styled.div`
   width: 100%;
   margin-top: 16px;
-  label {
+  & > :nth-child(1) {
     font-size: 12px;
     color: ${({ theme }) => theme.text.primary};
+    display: flex;
+    gap: 5px;
   }
   input {
     margin-top: 5px;

@@ -5,6 +5,8 @@ import { onChangeTextInfo } from './utils';
 import { EmailForChangePwType, ModalProps } from './type';
 import { AuthQueries } from '@/apis/auth';
 import { Loading } from '..';
+import { AxiosError } from 'axios';
+import { SendEmailForChangePwErrorHandler } from '@/apis/auth/error';
 
 export default function SendEmailForChangePasswordModal({
   setStep,
@@ -32,6 +34,9 @@ export default function SendEmailForChangePasswordModal({
             alert(
               `${forChangePw.email}해당 이메일로 메일을 보내드렸습니다.\n만약 메일이 오지 않았다면 스팸함을 확인해 주세요😊`
             ),
+          onError: (error: AxiosError) => {
+            SendEmailForChangePwErrorHandler(error);
+          },
         }
       );
     }
