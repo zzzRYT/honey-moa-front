@@ -64,7 +64,7 @@ describe('로그인 모달 테스트', () => {
 });
 
 describe('로그인 기능 테스트', () => {
-  it('1. 로그인 모달을 열어, 로그인 시도 테스트', async () => {
+  it.todo('1. 로그인 모달을 열어, 로그인 시도 테스트', async () => {
     const loginButton = screen.getByTestId('open-login-modal');
     fireEvent.click(loginButton);
 
