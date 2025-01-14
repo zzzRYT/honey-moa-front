@@ -33,6 +33,22 @@ export const TitleContainer = styled.div`
   }
 `;
 
+export const UnConnectedTitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 16px;
+  //커플 연결하러 가기
+  & > :nth-child(2) {
+    margin: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    align-content: center;
+    color: ${({ theme }) => theme.text.primary};
+  }
+`;
+
 export const AuthContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -69,7 +85,7 @@ export const SettingContainer = styled.div`
     margin: 0px 12px;
     cursor: pointer;
     &:hover {
-      background-color: ${({ theme }) => theme.button.quaternary.hover};
+      background-color: ${({ theme }) => theme.button.tertiary.hover};
     }
   }
 `;
@@ -93,6 +109,6 @@ export const PrevIconContainer = styled.div`
   cursor: pointer;
   border-radius: 50%;
   &:hover {
-    background-color: ${({ theme }) => theme.button.quaternary.hover};
+    background-color: ${({ theme }) => theme.button.tertiary.hover};
   }
 `;

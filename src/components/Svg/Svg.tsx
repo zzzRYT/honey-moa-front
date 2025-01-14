@@ -154,6 +154,27 @@ export function PrevIcon({ size = '24' }: SvgProps) {
     </svg>
   );
 }
+
+export function NextIcon({ size = '24' }: SvgProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-chevron-right w-5 h-5"
+      data-id="element-38"
+    >
+      <path d="m9 18 6-6-6-6"></path>
+    </svg>
+  );
+}
+
 export function SearchIcon({ color, size = '24' }: SvgProps) {
   return (
     <svg
@@ -170,6 +191,107 @@ export function SearchIcon({ color, size = '24' }: SvgProps) {
       data-id="element-8"
       style={{ color: color }}
     >
+      <circle cx="11" cy="11" r="8"></circle>
+
+      <path d="m21 21-4.3-4.3"></path>
+    </svg>
+  );
+}
+
+export function UnConnectedIcon({ size = '24' }: SvgProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+    >
+      <path
+        d="M6.2959 8.28904C6.5822 8.67179 6.94747 8.98849 7.36693 9.21767C7.78639 9.44684 8.25024 9.58312 8.727 9.61726C9.20376 9.65141 9.68229 9.58262 10.1301 9.41556C10.578 9.2485 10.9846 8.98709 11.3226 8.64904L13.3226 6.64904C13.9298 6.02037 14.2657 5.17836 14.2581 4.30437C14.2506 3.43038 13.9 2.59434 13.282 1.97631C12.6639 1.35828 11.8279 1.00772 10.9539 1.00013C10.0799 0.992531 9.23791 1.32851 8.60923 1.93571L7.46257 3.07571"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.96237 6.95588C8.67607 6.57313 8.3108 6.25642 7.89134 6.02725C7.47188 5.79808 7.00803 5.6618 6.53127 5.62766C6.05451 5.59351 5.57598 5.6623 5.12814 5.82936C4.6803 5.99642 4.27363 6.25783 3.93571 6.59588L1.93571 8.59588C1.32851 9.22455 0.992531 10.0666 1.00013 10.9406C1.00772 11.8145 1.35828 12.6506 1.97631 13.2686C2.59434 13.8866 3.43038 14.2372 4.30437 14.2448C5.17836 14.2524 6.02037 13.9164 6.64904 13.3092L7.78904 12.1692"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect
+        x="3.70703"
+        y="2"
+        width="14"
+        height="1"
+        transform="rotate(45 3.70703 2)"
+        fill="black"
+      />
+      <rect
+        x="2.72485"
+        y="1.98242"
+        width="14.7073"
+        height="1.05052"
+        transform="rotate(45 2.72485 1.98242)"
+        fill="white"
+      />
+    </svg>
+  );
+}
+
+export function LockIcon({ size = '24' }: SvgProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 14 16"
+      fill="none"
+    >
+      <path
+        d="M11.6667 7H2.33333C1.59695 7 1 7.59695 1 8.33333V13C1 13.7364 1.59695 14.3333 2.33333 14.3333H11.6667C12.403 14.3333 13 13.7364 13 13V8.33333C13 7.59695 12.403 7 11.6667 7Z"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 7V4.33333C4 3.44928 4.31607 2.60143 4.87868 1.97631C5.44129 1.35119 6.20435 1 7 1C7.79565 1 8.55871 1.35119 9.12132 1.97631C9.68393 2.60143 10 3.44928 10 4.33333V7"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function UnLockIcon({ size = '24' }: SvgProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 14 16"
+      fill="none"
+    >
+      <path
+        d="M11.6667 7H2.33333C1.59695 7 1 7.59695 1 8.33333V13C1 13.7364 1.59695 14.3333 2.33333 14.3333H11.6667C12.403 14.3333 13 13.7364 13 13V8.33333C13 7.59695 12.403 7 11.6667 7Z"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 7V4.33333C4 3.44928 4.31607 2.60143 4.87868 1.97631C5.44129 1.35119 6.20435 1 7 1C7.79565 1 8.55871 1.35119 9.12132 1.97631"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
       <circle cx="11" cy="11" r="8"></circle>
 
       <path d="m21 21-4.3-4.3"></path>

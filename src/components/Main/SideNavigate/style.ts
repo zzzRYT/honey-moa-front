@@ -25,6 +25,6 @@ export const ItemButton = styled.button`
   justify-content: center;
   align-items: center;
   &:hover {
-    background-color: ${({ theme }) => theme.button.quaternary.hover};
+    background-color: ${({ theme }) => theme.button.tertiary.hover};
   }
 `;

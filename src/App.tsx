@@ -2,8 +2,8 @@ import AppProvider from './provider/AppProvider';
 import { Route } from 'react-router-dom';
 import ThemeColorProvider from './provider/ThemeColorProvider';
 import Root from './components/Root';
-import Main from './components/Main';
 import ChangePassword from './components/Auth/ChangePassword';
+import { Main } from './components/Main';
 import { useState } from 'react';
 import ConnectionModal from './components/Connection';
 
