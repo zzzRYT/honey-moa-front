@@ -3,5 +3,4 @@ export interface PostContentsType {
   tags: string[];
   date: Date;
   location: string;
-  contents: string;
 }

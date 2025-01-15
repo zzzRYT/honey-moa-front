@@ -2,12 +2,61 @@ import styled, { keyframes } from 'styled-components';
 
 export const PostWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 20px 20%;
 `;
 
+export const PostHeaderWrapper = styled.div`
+  position: fixed;
+  width: 100%;
+  background-color: ${({ theme }) => theme.bg.primary};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  padding: 12px;
+`;
+
+export const PostHeader = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  & > :nth-child(2) {
+    display: flex;
+    gap: 12px;
+  }
+`;
+
+interface ButtonProps {
+  color?: string;
+  bgColor?: string;
+  hoverColor?: string;
+}
+
+export const ActionButton = styled.button<ButtonProps>`
+  color: ${({ color }) => color};
+  background-color: ${({ bgColor }) => bgColor};
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: ${({ hoverColor }) => hoverColor};
+  }
+`;
+
 export const PostContainer = styled.div`
   width: 100%;
+  margin-top: 46px;
 `;
 
 export const PostTitleWrapper = styled.div`
@@ -90,19 +139,9 @@ export const LocationInput = styled.input`
   outline: none;
 `;
 
-export const PostContents = styled.textarea`
-  width: 100%;
-  font-size: 1.25rem;
-  height: 400px;
-  line-height: 1.5;
-  padding: 0px;
-  outline: none;
-  border: none;
-  background-color: inherit;
-  resize: none;
-  overflow: hidden;
-  font-weight: bold;
-  margin: 20px 0;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-weight: 400;
+export const PostContents = styled.div`
+  .bn-editor {
+    height: 100%;
+    padding-inline: 0px;
+  }
 `;
