@@ -69,10 +69,12 @@ export const HoneyMonthItem = styled.li<HoneyListMonthsProps>`
   cursor: pointer;
   padding: 12px 24px;
   border-radius: 25px;
-  ${({ theme, isNowMonth }) => {
+  ${({ theme, $isNowMonth }) => {
     return css`
-      color: ${isNowMonth ? theme.text_02 : theme.text_01};
-      background-color: ${isNowMonth ? theme.btn_02 : theme.btn_01};
+      color: ${$isNowMonth ? theme.text.primary : theme.text.primary};
+      background-color: ${$isNowMonth
+        ? theme.button.primary.base
+        : theme.button.tertiary.base};
     `;
   }};
 `;
@@ -91,11 +93,11 @@ export const HoneyCardContainer = styled.div`
   max-height: 550px;
   overflow: hidden;
   border-radius: 16px;
-  border: 1px solid ${({ theme }) => theme.border_01};
+  border: 1px solid ${({ theme }) => theme.border.primary};
   cursor: pointer;
   transition: all 0.2s;
   &:hover {
-    box-shadow: 0px 5px 15px 5px ${({ theme }) => theme.hover_03};
+    box-shadow: 0px 5px 15px 5px ${({ theme }) => theme.shadow.primary};
   }
 `;
 export const HoneyCardHeader = styled.div`
@@ -118,7 +120,7 @@ export const HoneyCardHeader = styled.div`
   & > :nth-child(2) {
     font-size: 20px;
     font-weight: 700;
-    color: ${({ theme }) => theme.text_01};
+    color: ${({ theme }) => theme.text.primary};
   }
 `;
 export const HoneyCardImageContainer = styled.div`
@@ -143,21 +145,38 @@ export const HoneyCardTitleAndDateContainer = styled.div`
   & > :nth-child(1) {
     font-size: 27px;
     font-weight: 700;
-    color: ${({ theme }) => theme.text_01};
+    color: ${({ theme }) => theme.text.primary};
   }
   //날짜
   & > :nth-child(2) {
     font-size: 18px;
-    color: ${({ theme }) => theme.text_03};
+    color: ${({ theme }) => theme.text.tertiary};
   }
 `;
 
-export const HoneyCardSummary = styled.p`
+export const HoneyCardSummary = styled.div`
   margin-top: 12px;
   font-size: 18px;
   margin: 8px 0px;
+  width: 100%;
+  height: 50px;
   overflow: hidden;
-  color: ${({ theme }) => theme.text_01};
+  color: ${({ theme }) => theme.text.primary};
+  .bn-editor {
+    padding-inline: 0px;
+  }
+`;
+
+export const TagWrapper = styled.div`
+  display: flex;
+  justify-content: start;
+  gap: 8px;
+  & > :nth-child(n) {
+    border-radius: 25px;
+    padding: 4px 12px;
+    color: ${({ theme }) => theme.text.primary};
+    background-color: ${({ theme }) => theme.bg.secondary};
+  }
 `;
 
 export const UnConnectedWrapper = styled.div`

@@ -7,6 +7,11 @@ export const PostWrapper = styled.div`
   padding: 20px 20%;
 `;
 
+export const PostContainer = styled.div`
+  width: 100%;
+  margin-top: 46px;
+`;
+
 export const PostHeaderWrapper = styled.div`
   position: fixed;
   width: 100%;
@@ -16,7 +21,7 @@ export const PostHeaderWrapper = styled.div`
   align-items: center;
   top: 0;
   left: 0;
-  z-index: 998;
+  z-index: 1000;
   padding: 12px;
 `;
 
@@ -32,14 +37,14 @@ export const PostHeader = styled.div`
 `;
 
 interface ButtonProps {
-  color?: string;
-  bgColor?: string;
-  hoverColor?: string;
+  $color?: string;
+  $bgColor?: string;
+  $hoverColor?: string;
 }
 
 export const ActionButton = styled.button<ButtonProps>`
-  color: ${({ color }) => color};
-  background-color: ${({ bgColor }) => bgColor};
+  color: ${({ $color }) => $color};
+  background-color: ${({ $bgColor }) => $bgColor};
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -50,13 +55,8 @@ export const ActionButton = styled.button<ButtonProps>`
   justify-content: center;
   align-items: center;
   &:hover {
-    background-color: ${({ hoverColor }) => hoverColor};
+    background-color: ${({ $hoverColor }) => $hoverColor};
   }
-`;
-
-export const PostContainer = styled.div`
-  width: 100%;
-  margin-top: 46px;
 `;
 
 export const PostTitleWrapper = styled.div`
@@ -143,5 +143,6 @@ export const PostContents = styled.div`
   .bn-editor {
     height: 100%;
     padding-inline: 0px;
+    padding-bottom: 65%;
   }
 `;

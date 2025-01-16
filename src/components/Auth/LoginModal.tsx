@@ -3,11 +3,12 @@ import Image from '../Image';
 import { LoginInfo, ModalProps } from './type';
 import { useState } from 'react';
 import { AuthQueries } from '@/apis/auth';
-import { onChangeTextInfo, toggleCheckBox, validationLoginInfo } from './utils';
+import { validationLoginInfo } from './utils';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '..';
 import { useToastStore } from '@/store/toastStore/useToastStore';
 import { LoginErrorHandler } from '@/apis/auth/error';
+import { changeInfo } from '@/utils';
 
 export default function LoginModal({ setStep }: ModalProps) {
   const [loginInfo, setLoginInfo] = useState<LoginInfo>({
@@ -20,12 +21,12 @@ export default function LoginModal({ setStep }: ModalProps) {
   const showToast = useToastStore(state => state.showToast);
 
   //로그인 정보 변경 핸들러
-  const onChangeLoginInfo = onChangeTextInfo<LoginInfo>({
+  const onChangeLoginInfo = changeInfo.text<LoginInfo>({
     setState: setLoginInfo,
   });
 
   //로그인 상태 저장 토글
-  const toggleAutoLogin = toggleCheckBox<LoginInfo>({
+  const toggleAutoLogin = changeInfo.toggle<LoginInfo>({
     setState: setLoginInfo,
     key: 'isAutoLogin',
   });

@@ -2,7 +2,7 @@ import * as S from './changePwStyle';
 import { Header } from '../Layouts';
 import { Svg } from '../Svg';
 import { useState } from 'react';
-import { onChangeTextInfo } from './utils';
+import { changeInfo as passwordChange } from '@/utils';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthQueries } from '@/apis/auth';
 import { Loading } from '..';
@@ -24,7 +24,9 @@ export default function ChangePassword() {
   const navigate = useNavigate();
   const showToast = useToastStore(state => state.showToast);
 
-  const onChangeNewPasswordInfo = onChangeTextInfo({ setState: setChangeInfo });
+  const onChangeNewPasswordInfo = passwordChange.text({
+    setState: setChangeInfo,
+  });
   const mutationChangePassword = AuthQueries.ChangePasswordQuery();
 
   const onSubmitChangePassword: React.FormEventHandler<HTMLFormElement> = e => {

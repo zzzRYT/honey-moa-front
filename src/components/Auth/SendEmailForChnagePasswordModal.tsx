@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Svg } from '../Svg';
 import * as S from './style';
-import { onChangeTextInfo } from './utils';
+import { changeInfo } from '@/utils';
 import { EmailForChangePwType, ModalProps } from './type';
 import { AuthQueries } from '@/apis/auth';
 import { Loading } from '..';
@@ -17,7 +17,7 @@ export default function SendEmailForChangePasswordModal({
 
   const mutationSendEmail = AuthQueries.SendEmailForChangePwQuery();
 
-  const onChangeEmailForChangePw = onChangeTextInfo<EmailForChangePwType>({
+  const onChangeEmailForChangePw = changeInfo.text<EmailForChangePwType>({
     setState: setForChangePw,
   });
   const onSubmitEmailForChangePw: React.FormEventHandler<

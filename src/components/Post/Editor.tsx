@@ -6,6 +6,7 @@ import { BlockNoteView } from '@blocknote/mantine';
 import { useCreateBlockNote } from '@blocknote/react';
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
+import { EditorProps } from './type';
 
 const schema = BlockNoteSchema.create({
   blockSpecs: {
@@ -13,13 +14,23 @@ const schema = BlockNoteSchema.create({
   },
 });
 
-export const Editor = () => {
+export const Editor = ({ setContents }: EditorProps) => {
   const editor = useCreateBlockNote({
     schema,
   });
+
+  const onChangeBlockNoteHandler = () => {
+    setContents(prev => {
+      return {
+        ...prev,
+        contents: editor.document,
+      };
+    });
+  };
+
   return (
     <>
-      <BlockNoteView editor={editor} />
+      <BlockNoteView editor={editor} onChange={onChangeBlockNoteHandler} />
     </>
   );
 };
