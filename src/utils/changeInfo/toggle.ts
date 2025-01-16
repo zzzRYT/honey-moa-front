@@ -12,7 +12,7 @@ interface toggleCheckBoxParams<T> {
  * @param {keyof T} key 사용하는 부분에서 선언하는 state의 key값
  *
  * @example
- *    const toggleCondition = toggleCheckBox<LoginInfo>({setState: setLoginInfo, key: 'condition'});
+ *    const toggleCondition = changeInfo.toggle<LoginInfo>({setState: setLoginInfo, key: 'condition'});
  *    return (
  *     <input type="checkbox" onChange={toggleCondition} />
  *    )

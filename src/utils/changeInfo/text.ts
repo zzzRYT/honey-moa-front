@@ -13,7 +13,7 @@ interface onChangeTextInfoParams<T> {
  * @example
  *      const [loginInfo, setLoginInfo] = useState<LoginRequest>({
  *       email: '', password: '', isAutoLogin: false, });
- *      const onChangeLoginInfo = onChangeTextInfo<LoginRequest>(setLoginInfo);
+ *      const onChangeLoginInfo = changeInfo.text<LoginRequest>(setLoginInfo);
  *      return (
  *         <form onSubmit={onSubmit}>
  *            <input type="text" id="email" onChange={onChangeLoginInfo} />
