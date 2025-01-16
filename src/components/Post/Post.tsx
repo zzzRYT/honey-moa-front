@@ -15,6 +15,8 @@ export default function Post() {
     location: '',
   });
   const theme = useTheme();
+  //build가 안돼서 대충 적어놓은 글 나중에 지울거임
+  contents.date = new Date(contents.date);
 
   const contentsStateChangeHandler: React.ChangeEventHandler<
     HTMLTextAreaElement | HTMLInputElement
