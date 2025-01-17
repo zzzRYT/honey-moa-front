@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AuthQueries } from '@/apis/auth';
 import { Loading } from '..';
 import { ChangePasswordErrorHandler } from '@/apis/auth/error';
-import { useToastStore } from '@/store/toastStore/useToastStore';
+import { toast } from 'react-toastify';
 
 interface ChangeInfo {
   password: string;
@@ -22,7 +22,6 @@ export default function ChangePassword() {
   });
   const params = useParams();
   const navigate = useNavigate();
-  const showToast = useToastStore(state => state.showToast);
 
   const onChangeNewPasswordInfo = passwordChange.text({
     setState: setChangeInfo,
@@ -47,7 +46,7 @@ export default function ChangePassword() {
           navigate('/root');
         },
         onError: error => {
-          showToast(ChangePasswordErrorHandler(error) as string);
+          toast.error(ChangePasswordErrorHandler(error));
         },
       }
     );
