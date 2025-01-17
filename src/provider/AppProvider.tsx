@@ -19,18 +19,7 @@ export default function AppProvider({ children }: AppProviderProps) {
         <Suspense fallback={<Loading.Spinner />}>
           <BrowserRouter>
             <ScrollToTop>
-              <ToastContainer
-                position="bottom-left"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-              />
+              <ToastContainer position="bottom-left" />
               <Routes>{children}</Routes>
             </ScrollToTop>
           </BrowserRouter>
