@@ -22,11 +22,20 @@ export default function Tooltip({
   message,
   direction = 'top',
 }: TooltipProps) {
+  const RegexMessage = message.replace(/\n/g, '<br />');
+
   return (
     <S.TooltipWrapper>
       {children}
       <S.TooltipTextDiv $direction={direction} className="tooltipText">
-        {message}
+        {RegexMessage.split('<br />').map((text, index) => {
+          return (
+            <p key={index}>
+              {text}
+              <br />
+            </p>
+          );
+        })}
       </S.TooltipTextDiv>
     </S.TooltipWrapper>
   );

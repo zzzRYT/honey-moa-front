@@ -6,6 +6,8 @@ import ChangePassword from './components/Auth/ChangePassword';
 import { Main } from './components/Main';
 import { useState } from 'react';
 import ConnectionModal from './components/Connection';
+import { Post } from './components/Post';
+import { Honey } from './components/Main/Contents';
 
 function App() {
   const [isTestOpen, setIsTestOpen] = useState<boolean>(false);
@@ -19,6 +21,8 @@ function App() {
             path="/account/change-password/:token/:id"
             element={<ChangePassword />}
           />
+          <Route path="/post" element={<Post />} />
+          <Route path="/honey/:id" element={<Honey />} />
         </AppProvider>
         <button onClick={() => setIsTestOpen(prev => !prev)}>
           연결 모달 test

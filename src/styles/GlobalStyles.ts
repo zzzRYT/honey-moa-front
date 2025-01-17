@@ -15,7 +15,6 @@ export const GlobalStyles = createGlobalStyle`
   body {
     width: 100%;
     max-width: 100dvw;
-    height: 100dvh;
     overflow-x: hidden;
   }
 

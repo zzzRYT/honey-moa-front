@@ -3,6 +3,7 @@ import { BrowserRouter, Routes } from 'react-router-dom';
 import { AppProviderProps } from './type';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toast } from '@/components/PopUp';
+import ScrollToTop from '@/components/common/ScrollToTop';
 
 const queryClient = new QueryClient();
 
@@ -13,8 +14,10 @@ export default function AppProvider({ children }: AppProviderProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Toast />
-        <Routes>{children}</Routes>
+        <ScrollToTop>
+          <Toast />
+          <Routes>{children}</Routes>
+        </ScrollToTop>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

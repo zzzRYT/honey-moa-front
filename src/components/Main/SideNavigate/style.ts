@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const NavWrapper = styled.div`
   width: 120px;
-  height: 100dvh;
   border-right: 1px solid ${({ theme }) => theme.border.primary};
   display: flex;
   justify-content: center;

@@ -4,16 +4,13 @@ import { ModalProps, RegisterInfo } from './type';
 import { useEffect, useState } from 'react';
 import { Svg } from '../Svg';
 import { AuthQueries } from '@/apis/auth';
-import {
-  onChangeTextInfo,
-  toggleCheckBox,
-  validationRegisterInfo,
-} from './utils';
+import { validationRegisterInfo } from './utils';
 import { useStore } from 'zustand';
 import { useUserInfoStore } from '@/store/authStore/userInfoStore';
 import { Loading, PopUp } from '@/components';
 import { useToastStore } from '@/store/toastStore/useToastStore';
 import { RegisterErrorHandler } from '@/apis/auth/error';
+import { changeInfo } from '@/utils';
 
 export default function RegisterModal({ setStep }: ModalProps) {
   const [registerInfo, setRegisterInfo] = useState<RegisterInfo>({
@@ -27,11 +24,11 @@ export default function RegisterModal({ setStep }: ModalProps) {
 
   const userInfo = useStore(useUserInfoStore);
 
-  const onChangeRegisterInfo = onChangeTextInfo<RegisterInfo>({
+  const onChangeRegisterInfo = changeInfo.text<RegisterInfo>({
     setState: setRegisterInfo,
   });
 
-  const toggleConditions = toggleCheckBox<RegisterInfo>({
+  const toggleConditions = changeInfo.toggle<RegisterInfo>({
     setState: setRegisterInfo,
     key: 'conditions',
   });
