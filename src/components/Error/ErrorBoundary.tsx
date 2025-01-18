@@ -2,14 +2,14 @@
 import React from 'react';
 import Fallback from './Fallback';
 
-interface IErrorBoundaryState {
+interface ErrorBoundaryState {
   hasError: boolean;
   key: number;
 }
 
 export default class ErrorBoundary extends React.Component<
   any,
-  IErrorBoundaryState
+  ErrorBoundaryState
 > {
   constructor(props: any) {
     super(props);
