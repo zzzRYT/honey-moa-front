@@ -1,4 +1,4 @@
-import { BlockNoteSchema, defaultBlockSpecs } from '@blocknote/core';
+import { BlockNoteSchema, defaultBlockSpecs, locales } from '@blocknote/core';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { video, audio, file, codeBlock, ...remainingBlockSpecs } =
   defaultBlockSpecs;
@@ -14,9 +14,14 @@ const schema = BlockNoteSchema.create({
   },
 });
 
+const locale = locales['ko'];
+
 export const Editor = ({ setContents }: EditorProps) => {
   const editor = useCreateBlockNote({
     schema,
+    dictionary: {
+      ...locale,
+    },
   });
 
   const onChangeBlockNoteHandler = () => {
