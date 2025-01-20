@@ -7,3 +7,10 @@ export function SearchErrorHandler(error: AxiosError) {
   console.log(code);
   return '추후 추가';
 }
+
+export function PostConnectionErrorHandler(error: AxiosError) {
+  const responseData = error.response?.data as ErrorResponse;
+  const code = responseData?.code;
+  console.log(code);
+  return '추후 추가';
+}

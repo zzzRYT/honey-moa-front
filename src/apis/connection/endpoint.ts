@@ -1,4 +1,4 @@
-import { GetAllUsersReturn } from './type';
+import { GetAllUsersReturn, PostConnectionReturn } from './type';
 import axios from 'axios';
 
 const instance = axios.create({
@@ -13,6 +13,16 @@ const instance = axios.create({
 export async function getUserEmail(email: string): Promise<GetAllUsersReturn> {
   const url = !email ? '/users' : `/users?email=${email}`;
   const response = await instance.get(url);
+
+  return response.data;
+}
+
+export async function postConnection(
+  requestedId: string
+): Promise<PostConnectionReturn> {
+  const response = await instance.post('/users/me/connections', {
+    requestedId,
+  });
 
   return response.data;
 }

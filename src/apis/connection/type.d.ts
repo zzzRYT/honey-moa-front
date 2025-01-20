@@ -9,6 +9,10 @@ export interface GetAllUsersReturn {
   //   };
 }
 
+export interface PostConnectionReturn {
+  id: string;
+}
+
 export interface EachUserInfo {
   id: string;
   createdAt: string;
