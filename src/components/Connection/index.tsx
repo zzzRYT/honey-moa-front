@@ -6,14 +6,14 @@ import { mainThemeColor } from '@/styles/theme';
 import { useRef, useState } from 'react';
 import { ConnectionQueries } from '@/apis/connection';
 import { EachUserInfo } from '@/apis/connection/type';
-import { useToastStore } from '@/store/toastStore/useToastStore';
 import { SearchErrorHandler } from '@/apis/connection/error';
+import { toast } from 'react-toastify';
+import UserInfo from './UserInfo';
 
 export default function ConnectionModal({ isOpen }: ConnectionModalProps) {
   const emailRef = useRef<HTMLInputElement>(null);
   const mutationSearch = ConnectionQueries.SearchQuery();
   const [userList, setUserList] = useState<Array<EachUserInfo>>([]);
-  const showToast = useToastStore(state => state.showToast);
 
   function submitSearch() {
     if (!emailRef.current) return;
@@ -22,8 +22,8 @@ export default function ConnectionModal({ isOpen }: ConnectionModalProps) {
         setUserList(users.contents);
       },
       onError: error => {
-        showToast(SearchErrorHandler(error) as string);
-        // error 코드 분리작업, toast 방식 변경(todo)
+        toast.error(SearchErrorHandler(error));
+        // error 코드 분리작업
       },
     });
   }
@@ -43,23 +43,8 @@ export default function ConnectionModal({ isOpen }: ConnectionModalProps) {
         </S.InputWrapper>
         <S.ListContainer>
           {userList.length ? (
-            userList.map(userInfo => {
-              return (
-                // 컴포넌트 분리(todo)
-                <S.EachUserInfo key={userInfo.id}>
-                  <S.InfoBox>
-                    <S.ProfileImg>사진</S.ProfileImg>
-                    <S.NameContainer>
-                      <S.NickName>{userInfo.nickname}</S.NickName>
-                      <S.Email>{userInfo.email}</S.Email>
-                    </S.NameContainer>
-                  </S.InfoBox>
-                  <S.ConnectButton>
-                    <Svg.ConnectedIcon size={15} />
-                    <p>Connect</p>
-                  </S.ConnectButton>
-                </S.EachUserInfo>
-              );
+            userList.map((userInfo: EachUserInfo) => {
+              return <UserInfo userInfo={userInfo} />;
             })
           ) : (
             <div>이메일로 유저를 검색해보세요</div>
