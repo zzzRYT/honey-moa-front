@@ -9,12 +9,3 @@ export interface TooltipProps {
 export interface TooltipDirectionProps {
   $direction: Direction;
 }
-
-export interface ToastProps {
-  message: string;
-  direction?: Direction;
-}
-
-export interface ToastInvisibleProps {
-  $isAnimating: boolean;
-}

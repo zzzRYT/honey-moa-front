@@ -8,9 +8,9 @@ import { validationRegisterInfo } from './utils';
 import { useStore } from 'zustand';
 import { useUserInfoStore } from '@/store/authStore/userInfoStore';
 import { Loading, PopUp } from '@/components';
-import { useToastStore } from '@/store/toastStore/useToastStore';
 import { RegisterErrorHandler } from '@/apis/auth/error';
 import { changeInfo } from '@/utils';
+import { toast } from 'react-toastify';
 
 export default function RegisterModal({ setStep }: ModalProps) {
   const [registerInfo, setRegisterInfo] = useState<RegisterInfo>({
@@ -20,7 +20,6 @@ export default function RegisterModal({ setStep }: ModalProps) {
     nickname: '',
     conditions: false,
   });
-  const showToast = useToastStore(state => state.showToast);
 
   const userInfo = useStore(useUserInfoStore);
 
@@ -50,12 +49,12 @@ export default function RegisterModal({ setStep }: ModalProps) {
             mutationLogin.mutate({ email, password });
           },
           onError: error => {
-            showToast(RegisterErrorHandler(error) as string);
+            toast.error(RegisterErrorHandler(error));
           },
         }
       );
     } else {
-      showToast(isValid.message as string);
+      toast.error(isValid.message);
     }
   };
 

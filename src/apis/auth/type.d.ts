@@ -19,7 +19,7 @@ export interface LoginReturn {
 }
 
 export interface ErrorResponse {
-  code: number;
+  code: string;
 }
 
 export interface ChangePasswordRequest {

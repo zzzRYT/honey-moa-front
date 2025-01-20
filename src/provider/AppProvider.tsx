@@ -2,8 +2,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Routes } from 'react-router-dom';
 import { AppProviderProps } from './type';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Toast } from '@/components/PopUp';
 import ScrollToTop from '@/components/common/ScrollToTop';
+import { Error, Loading } from '@/components';
+import { Suspense } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 const queryClient = new QueryClient();
 
@@ -13,13 +15,17 @@ const queryClient = new QueryClient();
 export default function AppProvider({ children }: AppProviderProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ScrollToTop>
-          <Toast />
-          <Routes>{children}</Routes>
-        </ScrollToTop>
-      </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <Error.ErrorBoundary>
+        <Suspense fallback={<Loading.Spinner />}>
+          <BrowserRouter>
+            <ScrollToTop>
+              <ToastContainer position="bottom-left" />
+              <Routes>{children}</Routes>
+            </ScrollToTop>
+          </BrowserRouter>
+        </Suspense>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </Error.ErrorBoundary>
     </QueryClientProvider>
   );
 }
