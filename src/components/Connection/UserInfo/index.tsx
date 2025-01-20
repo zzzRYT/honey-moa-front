@@ -4,20 +4,20 @@ import { UserInfoProps } from '../type';
 import { ConnectionQueries } from '@/apis/connection';
 import { toast } from 'react-toastify';
 import { PostConnectionErrorHandler } from '@/apis/connection/error';
+import { useState } from 'react';
 
 export default function UserInfo({ userInfo }: UserInfoProps) {
   const mutationConnection = ConnectionQueries.PostConnectionQuery();
+  const [requestedUsers, setRequestedUsers] = useState<string[]>([]);
   function connectionHandler(id: string) {
     mutationConnection.mutate(id, {
       onSuccess: () => {
-        console.log('ok');
+        setRequestedUsers([...requestedUsers, id]);
       },
       onError: error => {
         toast.error(PostConnectionErrorHandler(error));
       },
     });
-
-    console.log(1);
   }
 
   return (
@@ -29,17 +29,30 @@ export default function UserInfo({ userInfo }: UserInfoProps) {
           <S.Email>{userInfo.email}</S.Email>
         </S.NameContainer>
       </S.InfoBox>
-      <S.ConnectButton>
-        <Svg.ConnectedIcon size={15} />
 
-        <p
-          onClick={() => {
-            connectionHandler(userInfo.id);
-          }}
-        >
-          Connect
-        </p>
-      </S.ConnectButton>
+      {requestedUsers.includes(userInfo.id) ? (
+        <S.ConnectButton>
+          <Svg.ConnectedIcon size={15} />
+          <p
+            onClick={() => {
+              toast.error('이미 요청한 유저입니다.');
+            }}
+          >
+            connected
+          </p>
+        </S.ConnectButton>
+      ) : (
+        <S.ConnectButton>
+          <Svg.ConnectedIcon size={15} />
+          <p
+            onClick={() => {
+              connectionHandler(userInfo.id);
+            }}
+          >
+            Connect
+          </p>
+        </S.ConnectButton>
+      )}
     </S.EachUserInfo>
   );
 }
