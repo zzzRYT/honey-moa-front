@@ -25,5 +25,5 @@ export interface EachUserInfo {
 }
 
 export interface ErrorResponse {
-  code: number;
+  code: string;
 }
