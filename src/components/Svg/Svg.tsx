@@ -189,7 +189,7 @@ export function SearchIcon({ color, size = '24' }: SvgProps) {
       strokeLinejoin="round"
       className="lucide lucide-search absolute left-3 top-2.5 text-gray-400"
       data-id="element-8"
-      style={{ color: color, cursor: 'pointer' }}
+      style={{ color: color }}
     >
       <circle cx="11" cy="11" r="8"></circle>
 
@@ -205,7 +205,6 @@ export function ConnectedIcon({ size = '24' }: SvgProps) {
       height={size}
       viewBox="0 0 17 17"
       fill="none"
-      style={{ cursor: 'pointer' }}
     >
       <g clip-path="url(#clip0_348_477)">
         <path

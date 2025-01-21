@@ -37,7 +37,7 @@ export default function ConnectionModal({ isOpen }: ConnectionModalProps) {
         </S.ModalHeader>
         <S.InputWrapper>
           <S.SearchInput ref={emailRef} placeholder="이름으로 검색하기" />
-          <div onClick={() => submitSearch()}>
+          <div onClick={() => submitSearch()} style={{ cursor: 'pointer' }}>
             <Svg.SearchIcon color={mainThemeColor.border.primary} />
           </div>
         </S.InputWrapper>

@@ -33,6 +33,7 @@ export const Email = styled.span`
 
 export const ConnectButton = styled.div`
   display: flex;
+  cursor: pointer;
   align-items: center;
   * {
     margin-right: 10px;
