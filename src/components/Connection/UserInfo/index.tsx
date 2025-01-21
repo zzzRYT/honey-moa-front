@@ -19,7 +19,7 @@ export default function UserInfo({ userInfo }: UserInfoProps) {
   }
 
   return (
-    <S.EachUserInfo key={userInfo.id}>
+    <S.EachUserInfoWrapper key={userInfo.id}>
       <S.InfoBox>
         <S.ProfileImg>사진</S.ProfileImg>
         <S.NameContainer>
@@ -37,6 +37,6 @@ export default function UserInfo({ userInfo }: UserInfoProps) {
           Connect
         </p>
       </S.ConnectButton>
-    </S.EachUserInfo>
+    </S.EachUserInfoWrapper>
   );
 }

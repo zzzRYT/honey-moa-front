@@ -13,7 +13,7 @@ import UserInfo from './UserInfo';
 export default function ConnectionModal({ isOpen }: ConnectionModalProps) {
   const emailRef = useRef<HTMLInputElement>(null);
   const mutationSearch = ConnectionQueries.SearchQuery();
-  const [userList, setUserList] = useState<Array<EachUserInfo>>([]);
+  const [userList, setUserList] = useState<EachUserInfo[]>([]);
 
   function submitSearch() {
     if (!emailRef.current) return;

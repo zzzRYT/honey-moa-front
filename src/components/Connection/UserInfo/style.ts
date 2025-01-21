@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const EachUserInfo = styled.div`
+export const EachUserInfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
