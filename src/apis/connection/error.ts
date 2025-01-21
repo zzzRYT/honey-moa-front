@@ -9,7 +9,6 @@ export function SearchErrorHandler(error: AxiosError) {
     return '이메일을 다시 확인해 주세요.';
   if (code === 'INVALID_TOKEN')
     return '유효하지 않은 토큰입니다. 다시 시도해주세요.';
-  if (code === 'SERVER_ERROR') return '개발자에게 문의 해 주세요.';
 }
 
 export function PostConnectionErrorHandler(error: AxiosError) {
@@ -22,6 +21,10 @@ export function PostConnectionErrorHandler(error: AxiosError) {
     return '해당 사용자의 이메일이 인증되지 않았습니다.';
   if (code === 'RESOURCE_NOT_FOUND') return '존재하지 않는 유저입니다.';
   if (code === 'REQUESTER_ALREADY_HAVE_CONNECTION')
-    return '이미 연결 된 사용자 입니다.';
-  if (code === 'SERVER_ERROR') return '개발자에게 문의 해 주세요.';
+    return '여러명과 연결 할 수 없습니다.';
+  if (code === 'EMAIL_NOT_VERIFIED') return '이메일 인증 후 시도해주세요';
+  if (code === 'REQUESTED_USER_ALREADY_HAVE_CONNECTION')
+    return '이미 연결 된 사용자입니다.';
+  if (code === 'REQUESTER_ALREADY_SENT_PENDING_CONNECTION')
+    return '해당 사용자는 요청 대기중에 있습니다.';
 }
