@@ -11,7 +11,7 @@ export const HoneyContainer = styled.div`
   width: 100%;
 `;
 
-export const leftSideFloatingNavWrapper = styled.div`
+export const LeftSideFloatingNavWrapper = styled.div`
   position: fixed;
   left: 7rem;
   top: 12rem;

@@ -167,7 +167,7 @@ export default function BlogContents() {
 
   return (
     <S.HoneyWrapper>
-      <S.leftSideFloatingNavWrapper>
+      <S.LeftSideFloatingNavWrapper>
         <div>
           <S.LikeWrapper>
             <Svg.LikeIcon color={theme.button.primary.base} fill={false} />
@@ -177,7 +177,7 @@ export default function BlogContents() {
             <Svg.ShareIcon color={theme.button.primary.base} />
           </div>
         </div>
-      </S.leftSideFloatingNavWrapper>
+      </S.LeftSideFloatingNavWrapper>
       <S.HoneyContainer>
         <S.HoneyHeader>
           <S.TagsWrapper>
