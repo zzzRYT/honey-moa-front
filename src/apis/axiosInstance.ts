@@ -5,6 +5,21 @@ import {
   ErrorInterceptor,
 } from './interceptors';
 
+export const commonInstance = axios.create({
+  baseURL: `${import.meta.env.VITE_BASE_URL}/api/v1`,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export const commonInstanceWithToken = axios.create({
+  baseURL: `${import.meta.env.VITE_BASE_URL}/api/v1`,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+  },
+});
+
 export const BeforeAuthInstance = axios.create({
   baseURL: `${import.meta.env.VITE_BASE_URL}/api/v1`,
   headers: {
