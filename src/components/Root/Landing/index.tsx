@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import * as S from './style';
-import ConnectionModal from '@/components/Connection';
 
 export default function Landing() {
-  const [test, setTest] = useState<boolean>(false);
   return (
     <>
       <S.IntroWrapper>
@@ -23,8 +20,6 @@ export default function Landing() {
         <S.IntroRight>
           <img src="images/introImage.jpg" />
         </S.IntroRight>
-        <button onClick={() => setTest(prev => !prev)}>연결 모달 테스트</button>
-        <ConnectionModal isOpen={test} />
       </S.IntroWrapper>
     </>
   );

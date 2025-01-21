@@ -3,7 +3,7 @@ import SideNavigate from './SideNavigate';
 import * as S from './style';
 import { Contents, Profile } from '.';
 
-const connected = true;
+const connected = false;
 const connectedContents = connected ? (
   <>
     <Profile.CoupleProfile />
