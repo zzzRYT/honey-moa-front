@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
-  BeforeAuthRequestInterceptor,
-  BeforeAuthResponseInterceptor,
+  CommonRequestInterceptor,
+  CommonResponseInterceptor,
   ErrorInterceptor,
 } from './interceptors';
 
@@ -12,30 +12,14 @@ export const commonInstance = axios.create({
   },
 });
 
-export const commonInstanceWithToken = axios.create({
-  baseURL: `${import.meta.env.VITE_BASE_URL}/api/v1`,
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-  },
-});
-
-export const BeforeAuthInstance = axios.create({
-  baseURL: `${import.meta.env.VITE_BASE_URL}/api/v1`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  timeout: 5000,
-});
-
 // 요청 인터셉터 추가하기
-BeforeAuthInstance.interceptors.request.use(
-  BeforeAuthRequestInterceptor,
+commonInstance.interceptors.request.use(
+  CommonRequestInterceptor,
   ErrorInterceptor
 );
 
 // 응답 인터셉터 추가하기
-BeforeAuthInstance.interceptors.response.use(
-  BeforeAuthResponseInterceptor,
+commonInstance.interceptors.response.use(
+  CommonResponseInterceptor,
   ErrorInterceptor
 );

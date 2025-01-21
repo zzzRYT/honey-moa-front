@@ -1,5 +1,5 @@
 import { EmailForChangePwType } from '@/components/Auth/type';
-import { BeforeAuthInstance } from '../axiosInstance';
+import { commonInstance } from '../axiosInstance';
 import {
   ChangePasswordRequest,
   LoginRequest,
@@ -13,13 +13,14 @@ export async function postToken(loginInfo: LoginRequest): Promise<LoginReturn> {
   //email, password encoding
   const combined = `${loginInfo.email}:${loginInfo.password}`;
   const encodeCombined = btoa(combined);
-  const response = await BeforeAuthInstance.post(
+  const response = await commonInstance.post(
     '/auth/sign-in',
     {},
     {
       headers: {
         Authorization: `Basic ${encodeCombined}`,
       },
+      timeout: 5000,
     }
   );
   return response.data;
@@ -29,7 +30,9 @@ export async function postToken(loginInfo: LoginRequest): Promise<LoginReturn> {
 export async function postUserRegister(
   registerInfo: RegisterRequest
 ): Promise<RegisterReturn> {
-  const response = await BeforeAuthInstance.post('/auth/sign-up', registerInfo);
+  const response = await commonInstance.post('/auth/sign-up', registerInfo, {
+    timeout: 5000,
+  });
   return response.data;
 }
 
@@ -37,10 +40,13 @@ export async function postUserRegister(
 export async function postEmailForChangePw({
   email,
 }: EmailForChangePwType): Promise<void> {
-  const response = await BeforeAuthInstance.post(
+  const response = await commonInstance.post(
     `/users/${email}/user-verify-tokens/password-change`,
     {
       connectUrl: `${import.meta.env.VITE_CHANGE_PW_URL}`,
+    },
+    {
+      timeout: 5000,
     }
   );
   return response.data;
@@ -52,7 +58,7 @@ export async function putChangePassword({
   token,
   newPassword,
 }: ChangePasswordRequest): Promise<void> {
-  const response = await BeforeAuthInstance.put(
+  const response = await commonInstance.put(
     `/users/${id}/password`,
     {
       newPassword,
@@ -61,6 +67,7 @@ export async function putChangePassword({
       params: {
         token,
       },
+      timeout: 5000,
     }
   );
   return response.data;

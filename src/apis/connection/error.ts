@@ -18,7 +18,7 @@ export function PostConnectionErrorHandler(error: AxiosError) {
 
   if (code === 'CANNOT_CREATE_CONNECTION_MYSELF')
     return '본인의 아이디에 연결 요청 할 수 없습니다.';
-  if (code === 'EMAIL_NOT_VERIFIED')
+  if (code === 'CANNOT_CREATE_CONNECTION_TARGET_EMAIL_NOT_VERIFIED')
     return '해당 사용자의 이메일이 인증되지 않았습니다.';
   if (code === 'RESOURCE_NOT_FOUND') return '존재하지 않는 유저입니다.';
   if (code === 'REQUESTER_ALREADY_HAVE_CONNECTION')

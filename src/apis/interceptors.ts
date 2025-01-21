@@ -2,7 +2,7 @@
 import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { toast } from 'react-toastify';
 
-export function BeforeAuthRequestInterceptor(
+export function CommonRequestInterceptor(
   config: InternalAxiosRequestConfig
 ): InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig> {
   // Do something before request is sent
@@ -10,7 +10,7 @@ export function BeforeAuthRequestInterceptor(
 }
 
 //응답 인터셉터
-export function BeforeAuthResponseInterceptor(
+export function CommonResponseInterceptor(
   response: AxiosResponse
 ): AxiosResponse {
   // Do something with response data
