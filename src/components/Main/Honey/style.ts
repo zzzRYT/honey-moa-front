@@ -11,6 +11,31 @@ export const HoneyContainer = styled.div`
   width: 100%;
 `;
 
+export const LeftSideFloatingNavWrapper = styled.div`
+  position: fixed;
+  left: 7rem;
+  top: 12rem;
+  & > :nth-child(1) {
+    width: 4rem;
+    background: ${({ theme }) => theme.bg.secondary};
+    border: 1px solid ${({ theme }) => theme.border.primary};
+    border-radius: 2rem;
+    padding: 0.5rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+  }
+`;
+
+export const LikeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+`;
+
 export const HoneyHeader = styled.div`
   display: flex;
   flex-direction: column;
@@ -86,13 +111,6 @@ export const BlogComment = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
-  //이미지
-  & > :nth-child(1) {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: bisque;
-  }
   //이름, 날짜, 댓글
   & > :nth-child(2) {
     & > :nth-child(1) {
@@ -102,5 +120,37 @@ export const BlogComment = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
+  }
+`;
+
+export const NewCommentWrapper = styled.form`
+  width: 100%;
+  margin-top: 48px;
+  display: flex;
+  gap: 10px;
+`;
+
+export const CommentInput = styled.input`
+  border: none;
+  outline: none;
+  padding-left: 12px;
+  font-size: 1rem;
+  border-radius: 25px;
+  background-color: ${({ theme }) => theme.bg.tertiary};
+  width: 100%;
+`;
+
+export const SendButton = styled.button`
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: ${({ theme }) => theme.button.tertiary.hover};
   }
 `;

@@ -3,6 +3,7 @@ import * as S from './style';
 import { BlockNoteView } from '@blocknote/mantine';
 import { HoneyType } from './type';
 import { Svg } from '@/components/Svg';
+import { useTheme } from 'styled-components';
 
 const honeyData: HoneyType = {
   couple: {
@@ -159,12 +160,24 @@ const honeyData: HoneyType = {
 };
 
 export default function BlogContents() {
+  const theme = useTheme();
   const editor = useCreateBlockNote({
     initialContent: honeyData.content,
   });
 
   return (
     <S.HoneyWrapper>
+      <S.LeftSideFloatingNavWrapper>
+        <div>
+          <S.LikeWrapper>
+            <Svg.LikeIcon color={theme.button.primary.base} fill={false} />
+            {999}
+          </S.LikeWrapper>
+          <div>
+            <Svg.ShareIcon color={theme.button.primary.base} />
+          </div>
+        </div>
+      </S.LeftSideFloatingNavWrapper>
       <S.HoneyContainer>
         <S.HoneyHeader>
           <S.TagsWrapper>
