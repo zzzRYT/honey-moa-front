@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ModalWrapper = styled.div`
-  width: 350px;
+  width: 400px;
   padding: 24px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.bg.primary};
@@ -32,4 +32,9 @@ export const InputWrapper = styled.div`
 export const SearchInput = styled.input`
   border: 0px;
   outline: none;
+`;
+
+export const ListContainer = styled.div`
+  padding: 12px;
+  width: 100%;
 `;
