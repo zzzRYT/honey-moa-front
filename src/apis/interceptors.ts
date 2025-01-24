@@ -2,10 +2,11 @@
 import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { toast } from 'react-toastify';
 
+//요청 인터셉터
 export function CommonRequestInterceptor(
   config: InternalAxiosRequestConfig
 ): InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig> {
-  // Do something before request is sent
+  config.headers['X-Api-Key'] = import.meta.env.VITE_API_KEY;
   return config;
 }
 
