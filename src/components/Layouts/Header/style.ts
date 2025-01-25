@@ -61,8 +61,10 @@ export const SettingContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin: 20px 24px;
-  & > button {
+  button {
     background-color: inherit;
+    border: none;
+    cursor: pointer;
   }
   //공개글 보러가기 버튼
   & > button:nth-child(1) {
@@ -78,12 +80,11 @@ export const SettingContainer = styled.div`
     margin-right: 25px;
   }
   //설정 버튼
-  & > button:nth-child(2) {
+  & > :nth-child(2) {
     border: none;
     border-radius: 50%;
     padding: 12px;
     margin: 0px 12px;
-    cursor: pointer;
     &:hover {
       background-color: ${({ theme }) => theme.button.tertiary.hover};
     }

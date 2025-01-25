@@ -10,8 +10,9 @@ export interface SelectModalButton {
 }
 
 //모달 Props
-export interface ModalProps {
-  setStep: (step: AuthFunnelStep) => void;
+export interface ModalProps<T> {
+  setStep: (step: T) => void;
+  redirect?: string;
 }
 
 //회원가입 status

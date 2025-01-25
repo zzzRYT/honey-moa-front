@@ -9,9 +9,10 @@ import { AxiosError } from 'axios';
 import { SendEmailForChangePwErrorHandler } from '@/apis/auth/error';
 import { toast } from 'react-toastify';
 
-export default function SendEmailForChangePasswordModal({
+export default function SendEmailForChangePasswordModal<T>({
   setStep,
-}: ModalProps) {
+  redirect,
+}: ModalProps<T>) {
   const [forChangePw, setForChangePw] = useState<EmailForChangePwType>({
     email: '',
   });
@@ -74,9 +75,11 @@ export default function SendEmailForChangePasswordModal({
               <>비밀번호 변경 이메일 받기</>
             )}
           </button>
-          <button type="button" onClick={() => setStep('로그인')}>
-            취소
-          </button>
+          {redirect && (
+            <button type="button" onClick={() => setStep(redirect as T)}>
+              취소
+            </button>
+          )}
         </S.SendEmailBottom>
       </form>
     </S.ModalWrapper>

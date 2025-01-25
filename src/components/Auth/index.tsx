@@ -40,7 +40,10 @@ export default function Auth() {
             <RegisterModal setStep={setStep} />
           </Funnel.Step>
           <Funnel.Step name="비밀번호 찾기">
-            <SendEmailForChangePasswordModal setStep={setStep} />
+            <SendEmailForChangePasswordModal
+              setStep={setStep}
+              redirect="로그인"
+            />
           </Funnel.Step>
           <Funnel.Step name="이메일 인증">
             <VerificationEmailModal />

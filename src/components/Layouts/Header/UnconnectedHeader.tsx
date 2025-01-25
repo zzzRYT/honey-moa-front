@@ -1,5 +1,6 @@
 import { Svg } from '@/components/Svg';
 import * as S from './style';
+import { Link } from 'react-router-dom';
 
 export default function UnConnectedHeader() {
   return (
@@ -10,9 +11,11 @@ export default function UnConnectedHeader() {
       </S.UnConnectedTitleContainer>
       <S.SettingContainer>
         <button>공개글 보기</button>
-        <button>
-          <Svg.SettingIcon size={36} />
-        </button>
+        <Link to="/setting">
+          <button>
+            <Svg.SettingIcon size={36} />
+          </button>
+        </Link>
       </S.SettingContainer>
     </S.HeaderWrapper>
   );
