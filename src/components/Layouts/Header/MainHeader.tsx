@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Svg } from '../../Svg';
 import * as S from './style';
 
@@ -10,9 +11,11 @@ export default function MainHeader() {
       </S.TitleContainer>
       <S.SettingContainer>
         <button>공개글 보기</button>
-        <button>
-          <Svg.SettingIcon size={36} />
-        </button>
+        <Link to="/setting">
+          <button>
+            <Svg.SettingIcon size={36} />
+          </button>
+        </Link>
       </S.SettingContainer>
     </S.HeaderWrapper>
   );

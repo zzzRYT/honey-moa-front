@@ -1,6 +1,6 @@
 import * as S from './style';
 import Image from '../Image';
-import { ModalProps, RegisterInfo } from './type';
+import { AuthFunnelStep, ModalProps, RegisterInfo } from './type';
 import { useEffect, useState } from 'react';
 import { Svg } from '../Svg';
 import { AuthQueries } from '@/apis/auth';
@@ -12,7 +12,7 @@ import { RegisterErrorHandler } from '@/apis/auth/error';
 import { changeInfo } from '@/utils';
 import { toast } from 'react-toastify';
 
-export default function RegisterModal({ setStep }: ModalProps) {
+export default function RegisterModal({ setStep }: ModalProps<AuthFunnelStep>) {
   const [registerInfo, setRegisterInfo] = useState<RegisterInfo>({
     email: '',
     password: '',

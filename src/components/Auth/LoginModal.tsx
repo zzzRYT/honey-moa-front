@@ -1,6 +1,6 @@
 import * as S from './style';
 import Image from '../Image';
-import { LoginInfo, ModalProps } from './type';
+import { AuthFunnelStep, LoginInfo, ModalProps } from './type';
 import { useState } from 'react';
 import { AuthQueries } from '@/apis/auth';
 import { validationLoginInfo } from './utils';
@@ -10,7 +10,7 @@ import { LoginErrorHandler } from '@/apis/auth/error';
 import { changeInfo } from '@/utils';
 import { toast } from 'react-toastify';
 
-export default function LoginModal({ setStep }: ModalProps) {
+export default function LoginModal({ setStep }: ModalProps<AuthFunnelStep>) {
   const [loginInfo, setLoginInfo] = useState<LoginInfo>({
     email: '',
     password: '',

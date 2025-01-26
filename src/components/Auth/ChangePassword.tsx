@@ -54,7 +54,7 @@ export default function ChangePassword() {
 
   return (
     <>
-      <Header.SettingHeader titleText="비밀번호 변경" redirect="/root" />
+      <Header.SettingHeader titleText="비밀번호 변경" />
       <S.ChangePasswordWrapper>
         <S.ChangePasswordContainer>
           <S.KeyIconContainer>
