@@ -1,6 +1,6 @@
 import * as S from './style';
 import { Svg } from '@/components/Svg';
-import { UserInfoProps } from '../type';
+import { UserInfoProps } from '../../type';
 import { ConnectionQueries } from '@/apis/connection';
 import { toast } from 'react-toastify';
 import { PostConnectionErrorHandler } from '@/apis/connection/error';

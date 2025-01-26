@@ -23,7 +23,17 @@ export interface EachUserInfo {
   mbti: string;
   isEmailVerified: boolean;
 }
+export interface GetConnectionReturn {
+  totalCount: number;
+  limit: number;
+  currentPage: number1;
+  nextPage: number;
+  hasNext: boolean;
+  lastPage: number;
+  contents: [];
+}
 
+export interface putConnectionReturn {}
 export interface ErrorResponse {
   code: string;
 }
