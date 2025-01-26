@@ -8,13 +8,14 @@ import useFunnel from '@/hook/useFunnel';
 import VerificationEmailModal from '../Auth/VerificationEmailModal';
 import Modal from '../Modal';
 import SendEmailForChangePasswordModal from '../Auth/SendEmailForChnagePasswordModal';
+import ChangeThemeModal from './Modals/ChangeThemeModal';
 
 export default function Setting() {
   const theme = useTheme();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { Funnel, setStep } = useFunnel<'이메일 인증' | '비밀번호 변경'>(
-    '이메일 인증'
-  );
+  const { Funnel, setStep } = useFunnel<
+    '이메일 인증' | '비밀번호 변경' | '테마 설정'
+  >('이메일 인증');
 
   const settingList: settingListType[] = [
     {
@@ -59,6 +60,10 @@ export default function Setting() {
       contents: [
         {
           name: '테마 설정',
+          event: () => {
+            setStep('테마 설정');
+            setIsOpenModal(prev => !prev);
+          },
         },
       ],
     },
@@ -80,6 +85,9 @@ export default function Setting() {
           </Funnel.Step>
           <Funnel.Step name="비밀번호 변경">
             <SendEmailForChangePasswordModal setStep={setStep} />
+          </Funnel.Step>
+          <Funnel.Step name="테마 설정">
+            <ChangeThemeModal />
           </Funnel.Step>
         </Funnel>
       </Modal>

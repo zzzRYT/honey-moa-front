@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyles = createGlobalStyle`  
+interface GlobalStylesProps {
+  color: boolean;
+}
+
+export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`  
   * {
     margin: 0;
     padding: 0;
@@ -13,6 +17,7 @@ export const GlobalStyles = createGlobalStyle`
 
   html,
   body {
+    background-color: ${({ color }) => (color ? '#212121' : '#FFFFFF')};
     width: 100%;
     max-width: 100dvw;
     overflow-x: hidden;
