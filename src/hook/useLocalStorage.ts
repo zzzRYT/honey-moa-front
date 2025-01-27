@@ -2,19 +2,26 @@ import { useCallback, useSyncExternalStore } from 'react';
 
 /**
  *
- * @param key | localStorage에 저장될 key값
- * @param initialValue | localStorage에 저장될 초기값
- * @returns | [storedValue, setValue]을 반환
+ * @param key 스토리지에 저장될 키 값
  *
- * @example |
- * const [themeColor, setThemeColor] = useLocalStorage('theme', 'light');
+ * @returns value: 스토리지에 저장된 값
+ * @returns set: 스토리지에 값을 저장하는 함수
+ * @returns remove: 스토리지에 값을 삭제하는 함수
  *
- * const toggleHandler = () => {
- *  setThemeColor(prev => (prev === 'dark' ? 'light' : 'dark'));
- * };
+ * @example
+ * //별명 지정 가능
+ * //const { value: theme, set: setTheme, remove: removeTheme } = useLocalStorage('theme');
+ * const { value, set, remove } = useLocalStorage('key');
+ *
+ * const onClick = () => {
+ *    set('value');
+ * }
  *
  * return (
- *  <button onClick={toggleHandler}>테마 변경</button>
+ * <>
+ *  <div>{value}</div>
+ *  <button onClick={onClick}>버튼</button>
+ * </>
  * )
  */
 export default function useLocalStorage(key: string) {
