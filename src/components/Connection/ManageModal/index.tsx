@@ -7,17 +7,36 @@ import { getConnectionList } from '@/apis/connection/endpoint';
 import { GetConnectionListErrorHandler } from '@/apis/connection/error';
 import { ConnectionInfo } from './ConnectionInfo';
 import { toast } from 'react-toastify';
+import { ConnectionListContent } from '@/apis/connection/type';
 
 export default function ManageModal({ isOpen }: ManageModalProps) {
-  const [requestList, setRequestList] = useState<any>();
-  const [requestedList, setRequestedList] = useState<any>();
+  const [requestList, setRequestList] = useState<ConnectionListContent[]>();
+  const [requestedList, setRequestedList] = useState<ConnectionListContent[]>();
 
   useEffect(() => {
     getConnectionList('request')
-      .then(res => setRequestList(res.contents))
+      .then(res => {
+        const contents = res.contents.filter(
+          content => content.status === 'PENDING'
+        );
+        if (contents.length) {
+          setRequestList(
+            res.contents.filter(content => content.status === 'PENDING')
+          );
+        }
+      })
       .catch(error => toast.error(GetConnectionListErrorHandler(error)));
     getConnectionList('requested')
-      .then(res => setRequestedList(res.contents))
+      .then(res => {
+        const contents = res.contents.filter(
+          content => content.status === 'PENDING'
+        );
+        if (contents.length) {
+          setRequestedList(
+            res.contents.filter(content => content.status === 'PENDING')
+          );
+        }
+      })
       .catch(error => toast.error(GetConnectionListErrorHandler(error)));
   }, []);
 

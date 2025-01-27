@@ -30,7 +30,40 @@ export interface GetConnectionReturn {
   nextPage: number;
   hasNext: boolean;
   lastPage: number;
-  contents: [];
+  contents: ConnectionListContent[];
+}
+
+export interface ConnectionListContent {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  requester: {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    nickname: string;
+  };
+  requesterId: string;
+  requested: {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    nickname: string;
+  };
+  requestedId: string;
+  status: 'PENDING' | 'ACCEPTED' | 'REJECTED' | 'DISCONNECTED' | 'CANCELED';
+  blog: {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    name: string;
+  };
+  chatRoom: {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    name: string;
+  };
 }
 
 export interface putConnectionReturn {}
