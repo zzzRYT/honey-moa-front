@@ -36,7 +36,7 @@ export const ToggleContainer = styled.div`
   //.toggle--checked 클래스가 활성화 되었을 경우의 CSS를 구현
   > .toggle--checked {
     background-color: rgb(0, 200, 102);
-    transition: 0.5s;
+    transition: all 0.5s ease-in-out;
   }
 
   > .toggle-circle {
@@ -47,13 +47,38 @@ export const ToggleContainer = styled.div`
     height: 22px;
     border-radius: 50%;
     background-color: rgb(255, 254, 255);
-    transition: 0.5s;
+    transition: all 0.5s ease-in-out;
     //.toggle--checked 클래스가 활성화 되었을 경우의 CSS를 구현
   }
   > .toggle--checked {
     left: 27px;
-    transition: 0.5s;
+    transition: all 0.5s ease-in-out;
   }
+`;
+interface ToggleProps {
+  $checked: boolean;
+  $transition: boolean;
+}
+
+export const ToggleBackground = styled.div<ToggleProps>`
+  width: 50px;
+  height: 24px;
+  border-radius: 30px;
+  background-color: ${({ $checked }) =>
+    $checked ? 'rgb(0, 200, 102)' : 'rgb(233, 233, 234)'};
+  transition: ${({ $transition }) =>
+    $transition ? 'all 0.5s ease-in-out' : 'none'};
+`;
+
+export const ToggleCircle = styled.div<ToggleProps>`
+  position: absolute;
+  top: 1px;
+  left: ${({ $checked }) => ($checked ? '27px' : '1px')};
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: rgb(255, 254, 255);
+  transition: all 0.5s ease-in-out;
 `;
 
 export const Desc = styled.div`

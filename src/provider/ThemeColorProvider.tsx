@@ -2,9 +2,6 @@ import { ThemeProvider } from 'styled-components';
 import { darkThemeColor, mainThemeColor } from '../styles/theme';
 import { ThemeColorProviderProps } from './type';
 import { GlobalStyles } from '../styles/GlobalStyles';
-import { useStore } from 'zustand';
-import { useThemeStore } from '@/store/themeStore/useThemeStore';
-import { useEffect } from 'react';
 import useLocalStorage from '@/hook/useLocalStorage';
 
 /**
@@ -27,16 +24,11 @@ import useLocalStorage from '@/hook/useLocalStorage';
 export default function ThemeColorProvider({
   children,
 }: ThemeColorProviderProps) {
-  const [localTheme] = useLocalStorage('theme');
-  const { theme, setTheme } = useStore(useThemeStore);
-
-  useEffect(() => {
-    setTheme(localTheme as string);
-  }, [localTheme]);
+  const { value } = useLocalStorage('theme');
 
   return (
-    <ThemeProvider theme={theme === 'dark' ? darkThemeColor : mainThemeColor}>
-      <GlobalStyles color={theme === 'dark' ? true : false} />
+    <ThemeProvider theme={value === 'dark' ? darkThemeColor : mainThemeColor}>
+      <GlobalStyles color={value === 'dark' ? true : false} />
       {children}
     </ThemeProvider>
   );

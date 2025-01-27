@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
 /**
  *
@@ -18,16 +18,27 @@ import { useState } from 'react';
  * )
  */
 export default function useLocalStorage(key: string) {
-  const [storedValue, setStoredValue] = useState(() => {
-    const item = window.localStorage.getItem(key);
-    return item;
-  });
+  const setStorage = useCallback(
+    (newValue: string) => {
+      localStorage.setItem(key, newValue);
+      dispatchEvent(new StorageEvent('storage', { key: key, newValue }));
+    },
+    [key]
+  );
 
-  const setValue = (value: string) => {
-    const valueToStore = value;
-    setStoredValue(valueToStore);
-    window.localStorage.setItem(key, valueToStore);
+  const removeStorage = useCallback(() => {
+    localStorage.removeItem(key);
+    dispatchEvent(new StorageEvent('storage', { key: key }));
+  }, [key]);
+
+  const getSnapshot = () => localStorage.getItem(key);
+
+  const subscribe = (listener: () => void) => {
+    window.addEventListener('storage', listener);
+    return () => window.removeEventListener('storage', listener);
   };
 
-  return [storedValue, setValue] as const;
+  const store = useSyncExternalStore(subscribe, getSnapshot);
+
+  return { value: store, set: setStorage, remove: removeStorage };
 }
