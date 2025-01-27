@@ -66,7 +66,6 @@ export interface ConnectionListContent {
   };
 }
 
-export interface putConnectionReturn {}
 export interface ErrorResponse {
   code: string;
 }
