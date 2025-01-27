@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 
 /**
  *
@@ -25,13 +24,9 @@ export default function useLocalStorage(key: string) {
   });
 
   const setValue = (value: string) => {
-    try {
-      const valueToStore = value;
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      toast.error(`상태를 변경시키는데 ${error}가 발생했습니다.`);
-    }
+    const valueToStore = value;
+    setStoredValue(valueToStore);
+    window.localStorage.setItem(key, valueToStore);
   };
 
   return [storedValue, setValue] as const;

@@ -27,12 +27,12 @@ import useLocalStorage from '@/hook/useLocalStorage';
 export default function ThemeColorProvider({
   children,
 }: ThemeColorProviderProps) {
+  const [localTheme] = useLocalStorage('theme');
   const { theme, setTheme } = useStore(useThemeStore);
-  const [themeColor] = useLocalStorage('theme');
 
   useEffect(() => {
-    setTheme(themeColor === 'dark' ? 'light' : 'dark');
-  }, []);
+    setTheme(localTheme as string);
+  }, [localTheme]);
 
   return (
     <ThemeProvider theme={theme === 'dark' ? darkThemeColor : mainThemeColor}>

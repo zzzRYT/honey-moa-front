@@ -4,11 +4,11 @@ import { useStore } from 'zustand';
 import { useThemeStore } from '@/store/themeStore/useThemeStore';
 
 export default function ChangeThemeModal() {
-  const [themeColor, setThemeColor] = useLocalStorage('theme');
+  const [themeToggle, setThemeToggle] = useLocalStorage('theme');
   const { setTheme } = useStore(useThemeStore);
   const toggleHandler = () => {
-    setThemeColor(themeColor === 'dark' ? 'light' : 'dark');
-    setTheme(themeColor === 'dark' ? 'light' : 'dark');
+    setThemeToggle(themeToggle === 'dark' ? 'light' : 'dark');
+    setTheme(themeToggle === 'dark' ? 'light' : 'dark');
   };
 
   return (
@@ -16,7 +16,7 @@ export default function ChangeThemeModal() {
       <S.ModalHeader>
         <h2>테마 설정</h2>
       </S.ModalHeader>
-      {themeColor === 'dark' ? (
+      {themeToggle === 'dark' ? (
         <S.Desc>다크 모드</S.Desc>
       ) : (
         <S.Desc>라이트 모드</S.Desc>
@@ -25,12 +25,12 @@ export default function ChangeThemeModal() {
         <S.ToggleContainer onClick={toggleHandler}>
           <div
             className={`toggle-container ${
-              themeColor === 'dark' ? 'toggle--checked' : null
+              themeToggle === 'dark' ? 'toggle--checked' : null
             }`}
           />
           <div
             className={`toggle-circle ${
-              themeColor === 'dark' ? 'toggle--checked' : null
+              themeToggle === 'dark' ? 'toggle--checked' : null
             }`}
           />
         </S.ToggleContainer>
