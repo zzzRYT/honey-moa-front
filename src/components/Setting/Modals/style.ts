@@ -87,3 +87,71 @@ export const Desc = styled.div`
   margin: 20px;
   color: ${({ theme }) => theme.text.primary};
 `;
+
+export const EditProfileWrapper = styled.div`
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+`;
+
+export const EditProfileImageOverlay = styled.div`
+  position: relative;
+  //이미지 오버레이
+  label,
+  svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    background-color: ${({ theme }) => theme.button.tertiary.base};
+    border-radius: 50%;
+    cursor: pointer;
+    &:hover {
+      background-color: ${({ theme }) => theme.button.tertiary.hover};
+    }
+  }
+`;
+
+export const EditInputContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 12px;
+  //이름 입력 창 라벨
+  label {
+    font-size: 14px;
+    color: ${({ theme }) => theme.text.primary};
+    font-weight: 700;
+  }
+  //이름 입력 창
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid ${({ theme }) => theme.border.secondary};
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.bg.tertiary};
+    color: ${({ theme }) => theme.text.primary};
+    outline: none;
+  }
+  //저장 버튼
+  button {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.button.primary.base};
+    color: ${({ theme }) => theme.text.secondary};
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: ${({ theme }) => theme.button.primary.hover};
+    }
+  }
+`;

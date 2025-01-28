@@ -39,7 +39,7 @@ export default function Image({
   useEffect(() => {
     if (preload && src) {
       const img = new window.Image();
-      img.src = `images/${src}`;
+      img.src = src;
       img.onload = () => setIsLoaded(true);
     }
   }, [preload, src]);
@@ -67,7 +67,7 @@ export default function Image({
 
   return showImage || preload ? (
     <S.StyledImage
-      src={`images/${src}`}
+      src={src}
       alt={alt}
       $width={width}
       $height={height}
