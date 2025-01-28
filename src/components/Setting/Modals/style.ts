@@ -1,7 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const ModalWrapper = styled.div`
-  width: 350px;
+interface ModalWrapperProps {
+  $width?: string;
+}
+export const ModalWrapper = styled.div<ModalWrapperProps>`
+  width: ${({ $width }) => $width || '350px'};
   padding: 24px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.bg.primary};
@@ -152,6 +155,67 @@ export const EditInputContainer = styled.div`
     transition: all 0.2s ease-in-out;
     &:hover {
       background-color: ${({ theme }) => theme.button.primary.hover};
+    }
+  }
+`;
+
+export const CoupleProfileWrapper = styled.div`
+  margin-top: 24px;
+`;
+
+export const CoupleProfileInfoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  gap: 16px;
+`;
+
+export const CoupleInfoGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: end;
+`;
+
+export const DuringRelationshipDateWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+`;
+
+const descriptionStyle = css`
+  padding: 8px 16px;
+  border-radius: 8px;
+  width: 100%;
+  border: none;
+  background-color: ${({ theme }) => theme.bg.secondary};
+  color: ${({ theme }) => theme.text.primary};
+`;
+
+export const EditProfileDescription = styled.div`
+  margin-top: 12px;
+  grid-column: 1 / 4;
+  grid-row: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  .read-only--description {
+    ${descriptionStyle}
+    outline: none;
+  }
+  .edit--description {
+    ${descriptionStyle}
+  }
+  label {
+    cursor: pointer;
+    padding: 8px;
+    background-color: ${({ theme }) => theme.button.tertiary.base};
+    border-radius: 50%;
+    &:hover {
+      background-color: ${({ theme }) => theme.button.tertiary.hover};
     }
   }
 `;

@@ -3,3 +3,11 @@ export interface currentProfileInfoType {
   editImage: File;
   blobImage: string;
 }
+
+export interface CheckIsEdit {
+  bgImage: boolean;
+  myProfile: boolean;
+  partnerProfile: boolean;
+  startDate: boolean;
+  description: boolean;
+}

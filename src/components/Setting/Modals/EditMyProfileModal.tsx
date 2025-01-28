@@ -3,7 +3,7 @@ import * as S from './style';
 import { Svg } from '@/components/Svg';
 import { useState } from 'react';
 import { currentProfileInfoType } from './type';
-import onChangeTextInfo from '@/utils/changeInfo/text';
+import { changeInfo } from '@/utils';
 
 export default function EditMyProfileModal() {
   const [currentProfileInfo, setCurrentProfileInfo] =
@@ -31,7 +31,7 @@ export default function EditMyProfileModal() {
     }
   };
 
-  const onChangeName = onChangeTextInfo<currentProfileInfoType>({
+  const onChangeName = changeInfo.text<currentProfileInfoType>({
     setState: setCurrentProfileInfo,
   });
 
