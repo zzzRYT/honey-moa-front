@@ -42,26 +42,37 @@ export const mainThemeColor: DefaultTheme = {
 
 export const darkThemeColor: DefaultTheme = {
   bg: {
-    primary: '#1A1A1A',
-    secondary: '#2D2D2D',
+    primary: '#121212', // 어두운 배경색
+    secondary: '#1E1E1E', // 어두운 배경색
+    tertiary: '#2C2C2C', // 어두운 배경색
   },
   button: {
     primary: {
-      base: '#FFD54F',
-      hover: '#FFB300',
+      base: '#FFB300', // 밝은 버튼 색상 유지
+      hover: '#FF9800', // 밝은 버튼 색상 유지
     },
     secondary: {
-      base: '#FFA726',
-      hover: '#FF9800',
+      base: '#FF7043', // 밝은 버튼 색상 유지
+      hover: '#FF5722', // 밝은 버튼 색상 유지
     },
+    // 흰 바탕 버튼
     tertiary: {
-      base: '#FF7043',
-      hover: '#FF5722',
+      base: '#2C2C2C', // 어두운 배경색
+      hover: '#3C3C3C', // 어두운 배경색
     },
+  },
+  border: {
+    primary: '#424242', // 어두운 테두리 색상
+    secondary: '#2C2C2C', // 어두운 테두리 색상
   },
   text: {
-    primary: '#FFFFFF',
-    secondary: '#757575',
+    primary: '#E0E0E0', // 밝은 텍스트 색상
+    secondary: '#FFFFFF', // 밝은 텍스트 색상
+    tertiary: '#B0B0B0', // 밝은 텍스트 색상
+    quaternary: '#FFB300', // 강조 텍스트 색상
   },
-  accent: '#FF4081',
+  shadow: {
+    primary: '#000000', // 어두운 그림자 색상
+  },
+  accent: '#FF4081', // 강조 색상
 };

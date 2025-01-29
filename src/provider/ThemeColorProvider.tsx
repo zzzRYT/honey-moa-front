@@ -1,7 +1,8 @@
 import { ThemeProvider } from 'styled-components';
-import { mainThemeColor } from '../styles/theme';
+import { darkThemeColor, mainThemeColor } from '../styles/theme';
 import { ThemeColorProviderProps } from './type';
 import { GlobalStyles } from '../styles/GlobalStyles';
+import useLocalStorage from '@/hook/useLocalStorage';
 
 /**
  * 테마지정을 위한 Provider
@@ -23,9 +24,11 @@ import { GlobalStyles } from '../styles/GlobalStyles';
 export default function ThemeColorProvider({
   children,
 }: ThemeColorProviderProps) {
+  const { value } = useLocalStorage('theme');
+
   return (
-    <ThemeProvider theme={mainThemeColor}>
-      <GlobalStyles />
+    <ThemeProvider theme={value === 'dark' ? darkThemeColor : mainThemeColor}>
+      <GlobalStyles color={value === 'dark' ? true : false} />
       {children}
     </ThemeProvider>
   );
