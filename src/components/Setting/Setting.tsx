@@ -9,12 +9,18 @@ import VerificationEmailModal from '../Auth/VerificationEmailModal';
 import Modal from '../Modal';
 import SendEmailForChangePasswordModal from '../Auth/SendEmailForChnagePasswordModal';
 import ChangeThemeModal from './Modals/ChangeThemeModal';
+import EditCoupleProfileModal from './Modals/EditCoupleProfileModal';
+import EditMyProfileModal from './Modals/EditMyProfileModal';
 
 export default function Setting() {
   const theme = useTheme();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { Funnel, setStep } = useFunnel<
-    '이메일 인증' | '비밀번호 변경' | '테마 설정'
+    | '이메일 인증'
+    | '비밀번호 변경'
+    | '테마 설정'
+    | '마이 프로필'
+    | '블로그 프로필'
   >('이메일 인증');
 
   const settingList: settingListType[] = [
@@ -22,12 +28,18 @@ export default function Setting() {
       title: '계정',
       contents: [
         {
-          name: '계정 정보',
-          event: () => console.log('이메일 변경'),
+          name: '계정 관리',
+          event: () => {
+            setStep('마이 프로필');
+            setIsOpenModal(prev => !prev);
+          },
         },
         {
           name: '커플 프로필 관리',
-          event: () => console.log('비밀번호 변경'),
+          event: () => {
+            setStep('블로그 프로필');
+            setIsOpenModal(prev => !prev);
+          },
         },
         {
           name: '이메일 인증',
@@ -89,6 +101,12 @@ export default function Setting() {
           <Funnel.Step name="테마 설정">
             <ChangeThemeModal />
           </Funnel.Step>
+          <Funnel.Step name="마이 프로필">
+            <EditMyProfileModal />
+          </Funnel.Step>
+          <Funnel.Step name="블로그 프로필">
+            <EditCoupleProfileModal />
+          </Funnel.Step>
         </Funnel>
       </Modal>
       <Header.SettingHeader titleText="설정" />
@@ -96,16 +114,16 @@ export default function Setting() {
         <S.SettingListWrapper>
           {settingList.map(item => {
             return (
-              <S.SettingItem key={item.title}>
+              <S.SettingItem key={`${item.title}--setting-item`}>
                 <S.SettingItemTitle>{item.title}</S.SettingItemTitle>
                 <S.SettingItemContents>
                   {item.contents.map(content => {
                     return (
-                      <S.SettingItemContentWrapper onClick={content.event}>
-                        <S.SettingItemContent
-                          key={content.name}
-                          color={content.color}
-                        >
+                      <S.SettingItemContentWrapper
+                        onClick={content.event}
+                        key={`${content.name}--setting-item-content`}
+                      >
+                        <S.SettingItemContent color={content.color}>
                           {content.name}
                         </S.SettingItemContent>
                         <Svg.NextIcon />

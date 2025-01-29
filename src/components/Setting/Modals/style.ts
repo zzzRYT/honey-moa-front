@@ -1,7 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const ModalWrapper = styled.div`
-  width: 350px;
+interface ModalWrapperProps {
+  $width?: string;
+}
+export const ModalWrapper = styled.div<ModalWrapperProps>`
+  width: ${({ $width }) => $width || '350px'};
   padding: 24px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.bg.primary};
@@ -86,4 +89,133 @@ export const Desc = styled.div`
   text-align: center;
   margin: 20px;
   color: ${({ theme }) => theme.text.primary};
+`;
+
+export const EditProfileWrapper = styled.div`
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+`;
+
+export const EditProfileImageOverlay = styled.div`
+  position: relative;
+  //이미지 오버레이
+  label,
+  svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    background-color: ${({ theme }) => theme.button.tertiary.base};
+    border-radius: 50%;
+    cursor: pointer;
+    &:hover {
+      background-color: ${({ theme }) => theme.button.tertiary.hover};
+    }
+  }
+`;
+
+export const EditInputContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 12px;
+  //이름 입력 창 라벨
+  label {
+    font-size: 14px;
+    color: ${({ theme }) => theme.text.primary};
+    font-weight: 700;
+  }
+  //이름 입력 창
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid ${({ theme }) => theme.border.secondary};
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.bg.tertiary};
+    color: ${({ theme }) => theme.text.primary};
+    outline: none;
+  }
+  //저장 버튼
+  button {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.button.primary.base};
+    color: ${({ theme }) => theme.text.secondary};
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: ${({ theme }) => theme.button.primary.hover};
+    }
+  }
+`;
+
+export const CoupleProfileWrapper = styled.div`
+  margin-top: 24px;
+`;
+
+export const CoupleProfileInfoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  gap: 16px;
+`;
+
+export const CoupleInfoGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: end;
+`;
+
+export const DuringRelationshipDateWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+`;
+
+const descriptionStyle = css`
+  padding: 8px 16px;
+  border-radius: 8px;
+  width: 100%;
+  border: none;
+  background-color: ${({ theme }) => theme.bg.secondary};
+  color: ${({ theme }) => theme.text.primary};
+`;
+
+export const EditProfileDescription = styled.div`
+  margin-top: 12px;
+  grid-column: 1 / 4;
+  grid-row: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  .read-only--description {
+    ${descriptionStyle}
+    outline: none;
+  }
+  .edit--description {
+    ${descriptionStyle}
+  }
+  label {
+    cursor: pointer;
+    padding: 8px;
+    background-color: ${({ theme }) => theme.button.tertiary.base};
+    border-radius: 50%;
+    &:hover {
+      background-color: ${({ theme }) => theme.button.tertiary.hover};
+    }
+  }
 `;
