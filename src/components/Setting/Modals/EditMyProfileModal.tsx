@@ -2,12 +2,12 @@ import Image from '@/components/Image';
 import * as S from './style';
 import { Svg } from '@/components/Svg';
 import { useState } from 'react';
-import { currentProfileInfoType } from './type';
+import { CurrentProfileInfoType } from './type';
 import { changeInfo } from '@/utils';
 
 export default function EditMyProfileModal() {
   const [currentProfileInfo, setCurrentProfileInfo] =
-    useState<currentProfileInfoType>({
+    useState<CurrentProfileInfoType>({
       editName: '이재진',
       editImage: {} as File,
       blobImage: 'images/introImage.jpg',
@@ -31,7 +31,7 @@ export default function EditMyProfileModal() {
     }
   };
 
-  const onChangeName = changeInfo.text<currentProfileInfoType>({
+  const onChangeName = changeInfo.text<CurrentProfileInfoType>({
     setState: setCurrentProfileInfo,
   });
 

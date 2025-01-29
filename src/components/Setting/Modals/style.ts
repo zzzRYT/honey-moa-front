@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 interface ModalWrapperProps {
   $width?: string;
@@ -163,6 +163,30 @@ export const CoupleProfileWrapper = styled.div`
   margin-top: 24px;
 `;
 
+export const EditCoupleProfileTitleNameWrapper = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 16px;
+  //커플 프로필 이름 수정
+  input {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: ${({ theme }) => theme.bg.secondary};
+    color: ${({ theme }) => theme.text.primary};
+  }
+  label {
+    cursor: pointer;
+    padding: 8px;
+    background-color: ${({ theme }) => theme.button.tertiary.base};
+    border-radius: 50%;
+    &:hover {
+      background-color: ${({ theme }) => theme.button.tertiary.hover};
+    }
+  }
+`;
+
 export const CoupleProfileInfoWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -185,15 +209,6 @@ export const DuringRelationshipDateWrapper = styled.div`
   justify-content: end;
 `;
 
-const descriptionStyle = css`
-  padding: 8px 16px;
-  border-radius: 8px;
-  width: 100%;
-  border: none;
-  background-color: ${({ theme }) => theme.bg.secondary};
-  color: ${({ theme }) => theme.text.primary};
-`;
-
 export const EditProfileDescription = styled.div`
   margin-top: 12px;
   grid-column: 1 / 4;
@@ -202,12 +217,13 @@ export const EditProfileDescription = styled.div`
   justify-content: center;
   align-items: center;
   gap: 16px;
-  .read-only--description {
-    ${descriptionStyle}
-    outline: none;
-  }
-  .edit--description {
-    ${descriptionStyle}
+  input {
+    padding: 8px 16px;
+    border-radius: 8px;
+    width: 100%;
+    border: none;
+    background-color: ${({ theme }) => theme.bg.secondary};
+    color: ${({ theme }) => theme.text.primary};
   }
   label {
     cursor: pointer;
@@ -217,5 +233,51 @@ export const EditProfileDescription = styled.div`
     &:hover {
       background-color: ${({ theme }) => theme.button.tertiary.hover};
     }
+  }
+`;
+
+export const SubmitEditProfileButtonWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  margin-top: 24px;
+  //edit profile 버튼
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.button.primary.base};
+    color: ${({ theme }) => theme.text.secondary};
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: ${({ theme }) => theme.button.primary.hover};
+    }
+  }
+`;
+
+export const DisConnectedCoupleButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  //커플 연결 해제 버튼
+`;
+
+export const DisConnectedCoupleButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.accent};
+  gap: 12px;
+  padding: 8px 16px;
+  border: none;
+  background-color: inherit;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: ${({ theme }) => theme.button.secondary.hover};
+    color: ${({ theme }) => theme.text.secondary};
   }
 `;

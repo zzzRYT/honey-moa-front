@@ -3,38 +3,26 @@ import * as S from './style';
 import Image from '@/components/Image';
 import { Svg } from '@/components/Svg';
 import { useTheme } from 'styled-components';
-import { CheckIsEdit } from './type';
+import { CoupleProfileInfoType, EditProfileInputOnFocusType } from './type';
 import { changeInfo } from '@/utils';
 
 export default function EditCoupleProfileModal() {
   const theme = useTheme();
-  const infoRef = useRef<HTMLInputElement[] | null[] | Array<string>>([
-    'bgImage',
-    'myProfile',
-    'partnerProfile',
-    'startDate',
-    'description',
-  ]);
-  const [coupleInfo, setCoupleInfo] = useState({
+  const coupleNameRef = useRef<HTMLInputElement>(null);
+  const coupleDescriptionRef = useRef<HTMLInputElement>(null);
+  const [coupleInfo, setCoupleInfo] = useState<CoupleProfileInfoType>({
     name: '우리의 이야기 저장소',
     description: '우리의 이야기를 저장하는 곳',
-    bgImage: '/images/introImage.jpg',
+    bgImage: 'images/introImage.jpg',
     myProfile: {
       name: '이재진',
-      image: '/images/introImage.jpg',
+      image: 'images/introImage.jpg',
     },
     partnerProfile: {
       name: '이재진',
-      image: '/images/introImage.jpg',
+      image: 'images/introImage.jpg',
     },
     startDate: '2016-04-21',
-  });
-  const [isEdits, setIsEdits] = useState<CheckIsEdit>({
-    bgImage: false,
-    myProfile: false,
-    partnerProfile: false,
-    startDate: false,
-    description: false,
   });
 
   const EditProfileImageOverlayComponent = ({
@@ -65,31 +53,42 @@ export default function EditCoupleProfileModal() {
     return Math.floor(days + 1);
   };
 
-  const editProfileDescription = changeInfo.text({
+  const onChangeProfileDescription = changeInfo.text<CoupleProfileInfoType>({
     setState: setCoupleInfo,
   });
-  const isEditDescription = () => {
-    changeInfo.toggle({
-      setState: setIsEdits,
-      key: 'description',
-    });
-    if (isEdits.description) {
-      if (infoRef.current[4] instanceof HTMLInputElement) {
-        infoRef.current[4].focus();
-      }
+  const onChangeProfileName = changeInfo.text<CoupleProfileInfoType>({
+    setState: setCoupleInfo,
+  });
+
+  const onEditProfileDescription = (ref: EditProfileInputOnFocusType) => {
+    if (ref.current) {
+      ref.current.disabled = false;
+      ref.current.focus();
     }
   };
 
-  console.log(infoRef);
+  const onSubmitEditProfile = () => {};
+  const onClickDisConnectedCouple = () => {};
+
   return (
     <S.ModalWrapper $width="650px">
-      <S.ModalHeader>
-        <h2>{coupleInfo.name}</h2>
-        <label>
+      <S.EditCoupleProfileTitleNameWrapper>
+        <input
+          id="name"
+          type="text"
+          value={coupleInfo.name}
+          disabled={true}
+          ref={coupleNameRef}
+          onChange={onChangeProfileName}
+        />
+        <label
+          htmlFor="name"
+          onClick={() => onEditProfileDescription(coupleNameRef)}
+        >
           <Svg.WriteIcon size={24} />
         </label>
-      </S.ModalHeader>
-      <form>
+      </S.EditCoupleProfileTitleNameWrapper>
+      <form onSubmit={onSubmitEditProfile}>
         <S.CoupleProfileWrapper>
           <EditProfileImageOverlayComponent htmlForId="previewCoupleBgImage">
             <Image
@@ -133,22 +132,28 @@ export default function EditCoupleProfileModal() {
                 type="text"
                 value={coupleInfo.description}
                 id="description"
-                className={
-                  isEdits.description
-                    ? 'read-only--description'
-                    : 'edit--description'
-                }
-                readOnly={!isEdits.description}
-                onChange={editProfileDescription}
-                ref={el => (infoRef.current[4] = el)}
+                disabled={false}
+                onChange={onChangeProfileDescription}
+                ref={coupleDescriptionRef}
               />
-              <label onFocus={isEditDescription}>
+              <label
+                onClick={() => onEditProfileDescription(coupleDescriptionRef)}
+              >
                 <Svg.WriteIcon size={16} />
               </label>
             </S.EditProfileDescription>
           </S.CoupleInfoGrid>
         </S.CoupleProfileInfoWrapper>
+        <S.SubmitEditProfileButtonWrapper>
+          <button type="submit">변경내용 저장</button>
+        </S.SubmitEditProfileButtonWrapper>
       </form>
+      <S.DisConnectedCoupleButtonWrapper>
+        <S.DisConnectedCoupleButton>
+          <Svg.DisConnectedCoupleIcon onClick={onClickDisConnectedCouple} />
+          커플 연결 해제
+        </S.DisConnectedCoupleButton>
+      </S.DisConnectedCoupleButtonWrapper>
     </S.ModalWrapper>
   );
 }
