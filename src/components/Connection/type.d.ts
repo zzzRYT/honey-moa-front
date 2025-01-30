@@ -7,3 +7,7 @@ export interface ConnectionModalProps {
 export interface UserInfoProps {
   userInfo: EachUserInfo;
 }
+
+export interface ManageModalProps {
+  isOpen: boolean;
+}

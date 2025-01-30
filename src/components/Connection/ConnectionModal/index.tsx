@@ -1,6 +1,6 @@
 import Modal from '@/components/Modal';
-import { ConnectionModalProps } from './type';
-import * as S from './style';
+import { ConnectionModalProps } from '../type';
+import * as S from '../style';
 import { Svg } from '@/components/Svg';
 import { mainThemeColor } from '@/styles/theme';
 import { useRef, useState } from 'react';

@@ -28,3 +28,15 @@ export function PostConnectionErrorHandler(error: AxiosError) {
   if (code === 'REQUESTER_ALREADY_SENT_PENDING_CONNECTION')
     return '해당 사용자는 요청 대기중에 있습니다.';
 }
+
+export function GetConnectionListErrorHandler(error: AxiosError) {
+  interface ErrorResponseExtend extends ErrorResponse {
+    status: number;
+  }
+  const responseData = error.response?.data as ErrorResponseExtend;
+  const code = responseData?.code;
+  const status = responseData?.status;
+
+  if (status === 400) return '다시 시도해주세요';
+  if (code === 'INVALID_TOKEN') return '다시 로그인 후 시도해주세요';
+}

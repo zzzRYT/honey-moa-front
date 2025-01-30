@@ -1,5 +1,9 @@
 import { commonInstance } from '../axiosInstance';
-import { GetAllUsersReturn, PostConnectionReturn } from './type';
+import {
+  GetAllUsersReturn,
+  GetConnectionReturn,
+  PostConnectionReturn,
+} from './type';
 
 //email을 통한 유저 검색 api
 export async function getUserEmail(email: string): Promise<GetAllUsersReturn> {
@@ -12,7 +16,7 @@ export async function getUserEmail(email: string): Promise<GetAllUsersReturn> {
 
   return response.data;
 }
-
+//연결 요청 api
 export async function postConnection(
   requestedId: string
 ): Promise<PostConnectionReturn> {
@@ -20,6 +24,42 @@ export async function postConnection(
     '/users/me/connections',
     {
       requestedId,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    }
+  );
+
+  return response.data;
+}
+//연결 요청 리스트 조회
+export async function getConnectionList(
+  direction: 'request' | 'requested'
+): Promise<GetConnectionReturn> {
+  const response = await commonInstance.get(
+    direction === 'request'
+      ? '/users/me/connections?showRequest=true'
+      : '/users/me/connections?showRequested=true',
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    }
+  );
+  return response.data;
+}
+
+//연결 수락 거절 취소
+export async function putConnection(
+  status: 'ACCEPTED' | 'REJECTED' | 'CANCELED',
+  id: string
+): Promise<unknown> {
+  const response = await commonInstance.put(
+    `/users/me/connections/${id}`,
+    {
+      status,
     },
     {
       headers: {
