@@ -9,7 +9,7 @@ export function ConnectionInfo({ info, direction }: any) {
     <S.InfoWrapper>
       <S.UserInfoBox>
         <div>사진?</div>
-        {/* 닉네임 이외의 정보가 필요한지 기획회의 필요 */}
+        {/* 이미지 추가 백엔드에 건의 */}
         <h3>
           {direction === 'request'
             ? info.requested.nickname

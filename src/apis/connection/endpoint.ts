@@ -55,7 +55,7 @@ export async function getConnectionList(
 export async function putConnection(
   status: 'ACCEPTED' | 'REJECTED' | 'CANCELED',
   id: string
-): Promise<any> {
+): Promise<unknown> {
   const response = await commonInstance.put(
     `/users/me/connections/${id}`,
     {

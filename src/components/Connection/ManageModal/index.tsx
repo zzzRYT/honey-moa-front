@@ -50,7 +50,7 @@ export default function ManageModal({ isOpen }: ManageModalProps) {
         <S.ListContainer>
           <h2>보낸 요청</h2>
           {requestList ? (
-            requestList.map((info: any) => {
+            requestList.map((info: ConnectionListContent) => {
               return (
                 <ConnectionInfo
                   key={info.id}
