@@ -1,6 +1,6 @@
 import LoginModal from '@/components/Auth/LoginModal';
 import RegisterModal from '@/components/Auth/RegisterModal';
-import SendEmailForChangePasswordModal from '@/components/Auth/SendEmailForChnagePasswordModal';
+import SendEmailForChangePasswordModal from '@/components/Auth/SendEmailForChangePasswordModal';
 import { AuthFunnelStep } from '@/components/Auth/type';
 import useFunnel from '@/hook/useFunnel';
 import { render } from '@/provider/TestProvider';

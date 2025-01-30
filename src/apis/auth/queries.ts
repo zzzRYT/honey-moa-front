@@ -1,17 +1,21 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AuthEndPoint } from '.';
 import { AxiosError } from 'axios';
+import useLocalStorage from '@/hook/useLocalStorage';
+import { toast } from 'react-toastify';
 
 /** 로그인 쿼리 */
 export const LoginQuery = () => {
+  const { set: setToken } = useLocalStorage('accessToken');
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: AuthEndPoint.postToken,
     onSuccess: data => {
       queryClient.invalidateQueries({
-        queryKey: ['tokens'],
+        queryKey: ['auth', 'sign-in'],
       });
-      localStorage.setItem('accessToken', data.accessToken);
+      setToken(data.accessToken);
+      toast.success('로그인 성공');
     },
     onError: (error: AxiosError) => error,
   });
@@ -24,7 +28,7 @@ export const RegisterQuery = () => {
     mutationFn: AuthEndPoint.postUserRegister,
     onSuccess: () => {
       return queryClient.invalidateQueries({
-        queryKey: ['users'],
+        queryKey: ['auth', 'sign-up'],
       });
     },
     onError: (error: AxiosError) => error,

@@ -1,4 +1,5 @@
-import { useCallback, useSyncExternalStore } from 'react';
+import { useCallback, useMemo, useSyncExternalStore } from 'react';
+import { toast } from 'react-toastify';
 
 /**
  *
@@ -24,11 +25,31 @@ import { useCallback, useSyncExternalStore } from 'react';
  * </>
  * )
  */
-export default function useLocalStorage(key: string) {
+export default function useLocalStorage(
+  key: string,
+  initialValue?: string | null
+) {
+  const getSnapshot = () => localStorage.getItem(key);
+
+  const subscribe = (listener: () => void) => {
+    window.addEventListener('storage', listener);
+    return () => window.removeEventListener('storage', listener);
+  };
+
+  const externalStoreState = useSyncExternalStore(subscribe, getSnapshot);
+
+  const store = useMemo(() => {
+    return externalStoreState ? externalStoreState : initialValue;
+  }, [externalStoreState, initialValue]);
+
   const setStorage = useCallback(
     (newValue: string) => {
-      localStorage.setItem(key, newValue);
-      dispatchEvent(new StorageEvent('storage', { key: key, newValue }));
+      try {
+        localStorage.setItem(key, newValue);
+        dispatchEvent(new StorageEvent('storage', { key: key, newValue }));
+      } catch (error) {
+        toast.error(`스토리지에 저장하는데 문제가 발생했습니다: ${error}`);
+      }
     },
     [key]
   );
@@ -37,15 +58,6 @@ export default function useLocalStorage(key: string) {
     localStorage.removeItem(key);
     dispatchEvent(new StorageEvent('storage', { key: key }));
   }, [key]);
-
-  const getSnapshot = () => localStorage.getItem(key);
-
-  const subscribe = (listener: () => void) => {
-    window.addEventListener('storage', listener);
-    return () => window.removeEventListener('storage', listener);
-  };
-
-  const store = useSyncExternalStore(subscribe, getSnapshot);
 
   return { value: store, set: setStorage, remove: removeStorage };
 }
