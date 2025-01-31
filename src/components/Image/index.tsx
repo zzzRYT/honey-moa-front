@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { ImageComponentProps } from './type';
 import * as S from './style';
 /**
@@ -45,7 +45,7 @@ export default function Image({
   }, [preload, src]);
 
   // lazy 로딩
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!lazy || isLoaded) return;
 
     const handleScroll = () => {
