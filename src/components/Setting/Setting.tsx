@@ -7,7 +7,7 @@ import { useState } from 'react';
 import useFunnel from '@/hook/useFunnel';
 import VerificationEmailModal from '../Auth/VerificationEmailModal';
 import Modal from '../Modal';
-import SendEmailForChangePasswordModal from '../Auth/SendEmailForChnagePasswordModal';
+import SendEmailForChangePasswordModal from '../Auth/SendEmailForChangePasswordModal';
 import ChangeThemeModal from './Modals/ChangeThemeModal';
 import EditCoupleProfileModal from './Modals/EditCoupleProfileModal';
 import EditMyProfileModal from './Modals/EditMyProfileModal';

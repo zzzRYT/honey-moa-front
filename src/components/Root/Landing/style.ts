@@ -29,7 +29,7 @@ export const IntroLeft = styled.div`
     margin-top: 24px;
   }
   //시작하기 버튼
-  & > button {
+  button {
     margin-top: 36px;
     width: 180px;
     height: 60px;

@@ -1,7 +1,9 @@
+type ChildrenReactType = React.ReactNode;
+
 export interface AppProviderProps {
-  children: React.ReactNode;
+  children: ChildrenReactType;
 }
 
 export interface ThemeColorProviderProps {
-  children: React.ReactNode;
+  children: ChildrenReactType;
 }
