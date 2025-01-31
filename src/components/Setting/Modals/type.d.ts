@@ -4,19 +4,26 @@ export interface CurrentProfileInfoType {
   blobImage: string;
 }
 
+type ProfileInfo = {
+  name: string;
+  image: File;
+  blobImage: string;
+};
+
 export interface CoupleProfileInfoType {
   name: string;
   description: string;
-  bgImage: string;
-  myProfile: {
-    name: string;
-    image: string;
-  };
-  partnerProfile: {
-    name: string;
-    image: string;
-  };
+  bgImage: File;
+  blobImage: string;
+  myProfile: ProfileInfo;
+  partnerProfile: ProfileInfo;
   startDate: string;
 }
 
 export type EditProfileInputOnFocusType = React.RefObject<HTMLInputElement>;
+
+export interface EditProfileImageOverlayComponentProps {
+  children: React.ReactNode;
+  htmlForId: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+}

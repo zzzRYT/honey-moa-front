@@ -13,23 +13,9 @@ export default function EditMyProfileModal() {
       blobImage: 'images/introImage.jpg',
     });
 
-  const profileImageToUploadFile: React.ChangeEventHandler<
-    HTMLInputElement
-  > = e => {
-    if (!e.target.files) {
-      return;
-    }
-    const file = e.target.files;
-    if (file) {
-      setCurrentProfileInfo(prev => {
-        return {
-          ...prev,
-          editImage: file[0],
-          blobImage: URL.createObjectURL(file[0]),
-        };
-      });
-    }
-  };
+  const profileImageToUploadFile = changeInfo.image<CurrentProfileInfoType>({
+    setState: setCurrentProfileInfo,
+  });
 
   const onChangeName = changeInfo.text<CurrentProfileInfoType>({
     setState: setCurrentProfileInfo,
@@ -59,13 +45,13 @@ export default function EditMyProfileModal() {
                 height="80px"
                 borderRadius="50%"
               />
-              <label htmlFor="previewProfileImage">
+              <label htmlFor="editImage">
                 <Svg.CameraIcon />
               </label>
               <input
                 type="file"
                 accept="image/*"
-                id="previewProfileImage"
+                id="editImage"
                 onChange={profileImageToUploadFile}
                 hidden
               />
