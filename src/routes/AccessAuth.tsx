@@ -18,7 +18,6 @@ export default function AccessAuth({ children, isPrivate }: AccessAuthProps) {
           setStep={setStep}
           isOpen={true}
           outSideClick={false}
-          blur={true}
         />
       )}
       {children}
