@@ -1,9 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 
 export default function Landing() {
-  const navigate = useNavigate();
-
   return (
     <>
       <S.IntroWrapper>
@@ -18,7 +16,9 @@ export default function Landing() {
             <br />
             당신의 이야기가 시작되는 곳 입니다.
           </p>
-          <button onClick={() => navigate('/honeyJar')}>시작하기</button>
+          <Link to="/honeyJar">
+            <button>시작하기</button>
+          </Link>
         </S.IntroLeft>
         <S.IntroRight>
           <img src="images/introImage.jpg" />

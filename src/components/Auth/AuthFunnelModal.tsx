@@ -10,9 +10,10 @@ export function AuthFunnelModal({
   setStep,
   isOpen,
   outSideClick = true,
+  blur = false,
 }: UseFunnelReturn<AuthFunnelStep>) {
   return (
-    <Modal isOpen={isOpen} shouldCloseToClickOutside={outSideClick}>
+    <Modal blur={blur} isOpen={isOpen} shouldCloseToClickOutside={outSideClick}>
       <Funnel>
         <Funnel.Step name="로그인">
           <LoginModal setStep={setStep} />

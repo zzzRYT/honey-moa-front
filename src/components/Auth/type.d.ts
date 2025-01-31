@@ -57,4 +57,5 @@ type UseFunnelReturn<T> = {
   Funnel: React.FunnelComponent;
   isOpen?: boolean;
   outSideClick?: boolean;
+  blur?: boolean;
 };

@@ -9,6 +9,7 @@ export default function Modal({
   isOpen = false,
   shouldCloseToClickOutside = true,
   focusTrap = false,
+  blur = false,
   ...rest
 }: ModalProps) {
   const [show, setShow] = useState<boolean>(isOpen);
@@ -43,7 +44,11 @@ export default function Modal({
     <>
       {createPortal(
         <FocusTrap>
-          <S.ModalWrapper onClick={handleClose} className="modal-dimmed">
+          <S.ModalWrapper
+            blur={blur}
+            onClick={handleClose}
+            className="modal-dimmed"
+          >
             {children}
           </S.ModalWrapper>
         </FocusTrap>,

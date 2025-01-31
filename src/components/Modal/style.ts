@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { ModalWrapperProps } from './type';
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div<ModalWrapperProps>`
   display: flex;
   position: fixed;
   top: 0;
@@ -12,4 +13,5 @@ export const ModalWrapper = styled.div`
   border: none;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(${({ blur }) => (blur ? '10px' : '0')});
 `;
