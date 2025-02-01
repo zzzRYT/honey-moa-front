@@ -1,4 +1,4 @@
-import { commonInstance, instanceToken } from '../axiosInstance';
+import { instanceToken } from '../axiosInstance';
 import {
   GetAllUsersReturn,
   GetConnectionReturn,
