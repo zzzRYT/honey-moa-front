@@ -5,6 +5,7 @@ import { Honey } from '@/components/Main/Contents';
 import { Post } from '@/components/Post';
 import Root from '@/components/Root';
 import { Setting } from '@/components/Setting';
+import * as Chat from '@/components/Chat';
 import { Route, Routes } from 'react-router-dom';
 import AccessAuth from './AccessAuth';
 import { RouteListType } from './type';
@@ -45,6 +46,12 @@ const routesList: RouteListType[] = [
     path: '/setting',
     private: true,
     element: <Setting />,
+  },
+  {
+    id: 'route--chat',
+    path: '/chat',
+    private: true,
+    element: <Chat.ChatPage />,
   },
   {
     id: 'route--notFound',
