@@ -38,7 +38,7 @@ export async function getConnectionList(
 export async function putConnection(
   status: 'ACCEPTED' | 'REJECTED' | 'CANCELED',
   id: string
-): Promise<unknown> {
+): Promise<void> {
   const response = await instanceToken.put(`/users/me/connections/${id}`, {
     status,
   });

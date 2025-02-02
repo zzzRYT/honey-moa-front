@@ -19,13 +19,13 @@ export default function ChatBox({ isOpen, setIsOpen }: ChatBoxProps) {
                   <Svg.FullIcon />
                 </Link>
               </S.IconWrapper>
-              <S.IconWrapper>
+              <S.IconWrapper onClick={() => setIsOpen(false)}>
                 <Svg.CloseIcon />
               </S.IconWrapper>
             </S.ChatControl>
           </S.ChatHeader>
           <S.ChatBody></S.ChatBody>
-          <S.ChatOper>
+          <S.ChatOperate>
             <S.FormAttachBox>
               <S.IconWrapper>
                 <Svg.FileIcon />
@@ -40,7 +40,7 @@ export default function ChatBox({ isOpen, setIsOpen }: ChatBoxProps) {
                 <Svg.SendIcon />
               </S.IconWrapper>
             </S.ChatForm>
-          </S.ChatOper>
+          </S.ChatOperate>
         </S.ChatBox>
       )}
     </>

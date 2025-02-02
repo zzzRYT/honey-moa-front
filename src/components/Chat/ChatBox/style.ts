@@ -26,13 +26,6 @@ export const ChatInfo = styled.div`
   display: flex;
 `;
 
-export const ChatProfileImg = styled.div`
-  border: 1px solid black;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-`;
-
 export const ChatControl = styled.div`
   display: flex;
   align-items: center;
@@ -44,7 +37,7 @@ export const ChatBody = styled.div`
   height: 80%;
 `;
 
-export const ChatOper = styled.div`
+export const ChatOperate = styled.div`
   background-color: ${({ theme }) => theme.bg.primary};
   width: 100%;
   height: 9%;
@@ -57,7 +50,7 @@ export const FormAttachBox = styled.div`
   display: flex;
 `;
 
-export const ChatForm = styled.div`
+export const ChatForm = styled.form`
   display: flex;
   margin: 3px;
 `;
