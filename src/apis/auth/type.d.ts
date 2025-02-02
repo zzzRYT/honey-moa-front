@@ -18,10 +18,6 @@ export interface LoginReturn {
   accessToken: string;
 }
 
-export interface ErrorResponse {
-  code: string;
-}
-
 export interface ChangePasswordRequest {
   id: string;
   token: string;
