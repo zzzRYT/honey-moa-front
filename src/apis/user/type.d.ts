@@ -7,7 +7,7 @@ export interface GetMyInfoReturn {
   loginType: string;
   mbti: string;
   isEmailVerified: false;
-  acceptedConnection: ConnectionInfo?;
+  acceptedConnection: ConnectionInfo;
 }
 
 export interface ConnectionInfo {

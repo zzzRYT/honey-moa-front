@@ -9,26 +9,31 @@ import { useConnectionInfoStore } from '@/store/connectionStore/connectionInfoSt
 import { toast } from 'react-toastify';
 import { MyInfoErrorHandler } from '@/apis/user/error';
 import useLocalStorage from '@/hook/useLocalStorage';
+import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
 export default function ChatBox({ isOpen, setIsOpen }: ChatBoxProps) {
   const { connectionInfo, setConnectionInfo } = useConnectionInfoStore();
   const { value: token } = useLocalStorage('accessToken');
 
+  const { data, error, isError } = useQuery({
+    queryKey: ['my-info'],
+    queryFn: UserEndPoint.getMyInfo,
+  });
+
   async function getMyInfo() {
-    await UserEndPoint.getMyInfo()
-      .then(res => {
-        if (res.acceptedConnection) {
-          setConnectionInfo(res.acceptedConnection);
-        }
-      })
-      .catch(err => toast.error(MyInfoErrorHandler(err)));
+    if (isError) {
+      toast.error(MyInfoErrorHandler(error as AxiosError));
+    } else {
+      if (data?.acceptedConnection) setConnectionInfo(data?.acceptedConnection);
+    }
   }
 
   useEffect(() => {
-    if (token) {
-      getMyInfo();
-    }
+    getMyInfo();
   }, [token]);
+
+  if (!token) return;
 
   return (
     <>
