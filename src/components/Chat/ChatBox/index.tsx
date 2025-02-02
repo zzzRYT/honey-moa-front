@@ -3,10 +3,41 @@ import * as S from './style';
 import { Svg } from '@/components/Svg';
 import { Link } from 'react-router-dom';
 import Image from '@/components/Image';
+import { UserEndPoint } from '@/apis/user';
+import { useEffect, useState } from 'react';
+import { useConnectionInfoStore } from '@/store/connectionStore/connectionInfoStore';
+import { toast } from 'react-toastify';
+import { MyInfoErrorHandler } from '@/apis/user/error';
+import useLocalStorage from '@/hook/useLocalStorage';
 
 export default function ChatBox({ isOpen, setIsOpen }: ChatBoxProps) {
+  const { connectionInfo, setConnectionInfo } = useConnectionInfoStore();
+  const { value: token } = useLocalStorage('accessToken');
+
+  async function getMyInfo() {
+    await UserEndPoint.getMyInfo()
+      .then(res => {
+        if (res.acceptedConnection) {
+          setConnectionInfo(res.acceptedConnection);
+        }
+      })
+      .catch(err => toast.error(MyInfoErrorHandler(err)));
+  }
+
+  useEffect(() => {
+    if (token) {
+      getMyInfo();
+    }
+  }, [token]);
+
   return (
     <>
+      {connectionInfo && (
+        <S.ButtonWrapper onClick={() => setIsOpen(prev => !prev)}>
+          <Svg.ChatIcon size={39} />
+        </S.ButtonWrapper>
+      )}
+
       {isOpen && (
         <S.ChatBox>
           <S.ChatHeader>
