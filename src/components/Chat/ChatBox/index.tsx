@@ -4,7 +4,7 @@ import { Svg } from '@/components/Svg';
 import { Link } from 'react-router-dom';
 import Image from '@/components/Image';
 import { UserEndPoint } from '@/apis/user';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useConnectionInfoStore } from '@/store/connectionStore/connectionInfoStore';
 import { toast } from 'react-toastify';
 import { MyInfoErrorHandler } from '@/apis/user/error';
