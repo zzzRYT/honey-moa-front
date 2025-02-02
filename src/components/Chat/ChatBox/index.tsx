@@ -24,14 +24,14 @@ export default function ChatBox({ isOpen, setIsOpen }: ChatBoxProps) {
   async function getMyInfo() {
     if (isError) {
       toast.error(MyInfoErrorHandler(error as AxiosError));
-    } else {
-      if (data?.acceptedConnection) setConnectionInfo(data?.acceptedConnection);
+    } else if (data) {
+      if (data.acceptedConnection) setConnectionInfo(data.acceptedConnection);
     }
   }
 
   useEffect(() => {
     getMyInfo();
-  }, [token]);
+  }, []);
 
   if (!token) return;
 
