@@ -24,7 +24,7 @@ export const TooltipTextDiv = styled.div<TooltipDirectionProps>`
   z-index: 5;
   padding: 5px;
   background-color: ${({ theme }) => theme.bg.primary};
-  border: 1px solid ${({ theme }) => theme.border.tertiary};
+  border: 1px solid ${({ theme }) => theme.border.primary};
   border-radius: 5px;
   font-size: 12px;
   white-space: nowrap;
