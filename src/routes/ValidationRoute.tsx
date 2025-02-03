@@ -6,7 +6,7 @@ import { Post } from '@/components/Post';
 import Root from '@/components/Root';
 import { Setting } from '@/components/Setting';
 import * as Chat from '@/components/Chat';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import AccessAuth from './AccessAuth';
 import { RouteListType } from './type';
 
@@ -62,20 +62,38 @@ const routesList: RouteListType[] = [
 ] as const;
 
 export default function ValidationRoute() {
+  const { pathname } = useLocation();
+
   return (
     <Routes>
-      {routesList.map(route => (
-        <Route
-          key={route.id}
-          path={route.path}
-          element={
-            <>
-              <AccessAuth isPrivate={route.private}>{route.element}</AccessAuth>
-              <Navigate replace to="/root" />
-            </>
-          }
-        />
-      ))}
+      {routesList.map(route =>
+        pathname === '/' ? (
+          <Route
+            key={route.id}
+            path={route.path}
+            element={
+              <>
+                <AccessAuth isPrivate={route.private}>
+                  {route.element}
+                </AccessAuth>
+                <Navigate replace to="/root" />
+              </>
+            }
+          />
+        ) : (
+          <Route
+            key={route.id}
+            path={route.path}
+            element={
+              <>
+                <AccessAuth isPrivate={route.private}>
+                  {route.element}
+                </AccessAuth>
+              </>
+            }
+          />
+        )
+      )}
     </Routes>
   );
 }
