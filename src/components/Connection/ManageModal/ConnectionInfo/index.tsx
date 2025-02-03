@@ -1,19 +1,26 @@
-import { putConnection } from '@/apis/connection/endpoint';
 import * as S from './style';
+import Image from '@/components/Image';
+import { ConnectionQueries } from '@/apis/connection';
+import { ConnectionInfoProps } from './type';
+import { ConnectionStatus } from '@/apis/connection/type';
 
-export function ConnectionInfo({ info, direction }: any) {
-  function buttonHandler(type: 'ACCEPTED' | 'REJECTED' | 'CANCELED') {
-    putConnection(type, info.id).then(res => console.log(res));
+export function ConnectionInfo({ info, direction }: ConnectionInfoProps) {
+  function buttonHandler(type: ConnectionStatus) {
+    const params = {
+      id: info.id,
+      status: type,
+    };
+    ConnectionQueries.PutConnectionQuery(params);
   }
   return (
     <S.InfoWrapper>
       <S.UserInfoBox>
-        <div>사진?</div>
+        <Image src="/images/profile.png" alt="프로필사진" />
         {/* 이미지 추가 백엔드에 건의 */}
         <h3>
           {direction === 'request'
-            ? info.requested.nickname
-            : info.requester.nickname}
+            ? info.requested?.nickname
+            : info.requester?.nickname}
         </h3>
       </S.UserInfoBox>
 

@@ -40,3 +40,13 @@ export function GetConnectionListErrorHandler(error: AxiosError) {
   if (status === 400) return '다시 시도해주세요';
   if (code === 'INVALID_TOKEN') return '다시 로그인 후 시도해주세요';
 }
+
+export function GetConnectionDetailErrorHandler(error: AxiosError) {
+  const responseData = error.response?.data as ErrorResponse;
+  const code = responseData?.code;
+
+  if (code === 'INVALID_REQUEST_PARAMETER')
+    return '연결 조회 중 요류가 발생했습니다';
+  if (code === 'INVALID_TOKEN') return '다시 로그인 후 시도해 주세요';
+  if (code === 'RESOURCE_NOT_FOUND') return '연인과 연결이 필요합니다';
+}

@@ -3,12 +3,13 @@ import SideNavigate from './SideNavigate';
 import * as S from './style';
 import { Contents, Profile } from '.';
 import { useConnectionInfoStore } from '@/store/connectionStore/connectionInfoStore';
+import { useStore } from 'zustand';
 
 export default function Main() {
-  const { connectionInfo } = useConnectionInfoStore();
+  const { connectionInfo } = useStore(useConnectionInfoStore);
 
   // 유저정보에 연결정보 포함된 후 수정
-  const connectedContents = connectionInfo ? (
+  const connectedContents = connectionInfo?.acceptedConnection ? (
     <>
       <Profile.CoupleProfile />
       <Contents.HoneyList />
@@ -22,7 +23,11 @@ export default function Main() {
 
   return (
     <>
-      {connectionInfo ? <Header.MainHeader /> : <Header.UnConnectedHeader />}
+      {connectionInfo?.acceptedConnection ? (
+        <Header.MainHeader />
+      ) : (
+        <Header.UnConnectedHeader />
+      )}
       <S.ContentsWrapper>
         <SideNavigate />
         <div>{connectedContents}</div>

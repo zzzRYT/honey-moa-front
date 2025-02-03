@@ -13,5 +13,5 @@ export const ModalWrapper = styled.div<ModalWrapperProps>`
   border: none;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(${({ blur }) => (blur ? '10px' : '0')});
+  backdrop-filter: blur(${({ $blur }) => ($blur ? '10px' : '0')});
 `;

@@ -1,6 +1,6 @@
-import { ConnectionInfo } from '@/apis/user/type';
+import { GetMyInfoReturn } from '@/apis/user/type';
 
 export interface ConnectionInfoStoreType {
-  connectionInfo: ConnectionInfo | null;
-  setConnectionInfo: (connectionInfo: ConnectionInfo) => void;
+  connectionInfo: GetMyInfoReturn | null;
+  setConnectionInfo: (connectionInfo: GetMyInfoReturn) => void;
 }

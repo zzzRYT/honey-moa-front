@@ -33,35 +33,45 @@ export interface GetConnectionReturn {
   contents: ConnectionListContent[];
 }
 
+export type ConnectionUserType = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  nickname: string;
+};
+
+export type ConnectionFeature = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+};
+
+export type ConnectionStatus =
+  | 'PENDING'
+  | 'ACCEPTED'
+  | 'REJECTED'
+  | 'DISCONNECTED'
+  | 'CANCELED';
+
+type PaginationOrderBy = `${string}: ${'ASC' | 'DESC'}`;
+export interface ConnectionPaginationParams {
+  page: number;
+  limit: number;
+  showRequest: boolean;
+  showRequested: boolean;
+  status: Pick<'PENDING' | 'ACCEPTED', ConnectionStatus>;
+  orderBy: PaginationOrderBy[];
+}
 export interface ConnectionListContent {
   id: string;
   createdAt: string;
   updatedAt: string;
-  requester: {
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    nickname: string;
-  };
+  requester?: ConnectionUserType;
   requesterId: string;
-  requested: {
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    nickname: string;
-  };
+  requested?: ConnectionUserType;
   requestedId: string;
-  status: 'PENDING' | 'ACCEPTED' | 'REJECTED' | 'DISCONNECTED' | 'CANCELED';
-  blog: {
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    name: string;
-  };
-  chatRoom: {
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    name: string;
-  };
+  status: ConnectionStatus;
+  blog?: ConnectionFeature;
+  chatRoom?: ConnectionFeature;
 }
