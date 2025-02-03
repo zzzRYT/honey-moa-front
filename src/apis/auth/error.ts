@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { ErrorResponse } from './type';
+import { ErrorResponse } from '../type';
 
 export function LoginErrorHandler(error: AxiosError) {
   const responseData = error.response?.data as ErrorResponse;

@@ -24,10 +24,7 @@ export default function AppProvider({ children }: AppProviderProps) {
             <ScrollToTop>
               <ToastContainer position="bottom-left" />
               <>{children}</>
-              {/* Todo 로그인 & 연결 여부 분기처리 */}
-              <Chat.ChatButton setIsOpen={setIsOpen} />
               <Chat.ChatBox setIsOpen={setIsOpen} isOpen={isOpen} />
-              {/*  */}
             </ScrollToTop>
           </BrowserRouter>
         </Suspense>

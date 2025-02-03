@@ -65,7 +65,3 @@ export interface ConnectionListContent {
     name: string;
   };
 }
-
-export interface ErrorResponse {
-  code: string;
-}
