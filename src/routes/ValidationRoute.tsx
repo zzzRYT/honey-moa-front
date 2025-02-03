@@ -6,7 +6,7 @@ import { Post } from '@/components/Post';
 import Root from '@/components/Root';
 import { Setting } from '@/components/Setting';
 import * as Chat from '@/components/Chat';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import AccessAuth from './AccessAuth';
 import { RouteListType } from './type';
 
@@ -69,7 +69,10 @@ export default function ValidationRoute() {
           key={route.id}
           path={route.path}
           element={
-            <AccessAuth isPrivate={route.private}>{route.element}</AccessAuth>
+            <>
+              <AccessAuth isPrivate={route.private}>{route.element}</AccessAuth>
+              <Navigate replace to="/root" />
+            </>
           }
         />
       ))}
