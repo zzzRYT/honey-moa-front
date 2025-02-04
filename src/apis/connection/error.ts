@@ -26,7 +26,7 @@ export function PostConnectionErrorHandler(error: AxiosError) {
   if (code === 'REQUESTED_USER_ALREADY_HAVE_CONNECTION')
     return '이미 연결 된 사용자입니다.';
   if (code === 'REQUESTER_ALREADY_SENT_PENDING_CONNECTION')
-    return '해당 사용자는 요청 대기중에 있습니다.';
+    return '이미 대기중인 요청이 있습니다. 이전 요청을 취소하고 다시 시도해 주세요.';
 }
 
 export function GetConnectionListErrorHandler(error: AxiosError) {

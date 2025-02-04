@@ -7,9 +7,8 @@ import {
   GetConnectionListErrorHandler,
 } from './error';
 import {
+  ConnectionListContent,
   ConnectionPaginationParams,
-  ConnectionStatus,
-  ConnectionUserType,
   GetConnectionReturn,
 } from './type';
 
@@ -43,23 +42,27 @@ export function PostConnectionQuery() {
 
 // 연결 리스트 페이지네이션
 export function GetConnectionListPaginationQuery(
-  params: Partial<ConnectionPaginationParams> & { isOpen?: boolean }
+  params: Partial<ConnectionPaginationParams> & {
+    isOpen?: boolean;
+    type: 'requester' | 'requested';
+  }
 ) {
   const { data, isError, error } = useQuery({
-    queryKey: ['me', 'connections', params],
+    queryKey: ['connection-list-pagination', params.type],
     queryFn: () => ConnectionEndPoint.getConnectionListPagination(params),
+    refetchOnWindowFocus: false,
   });
   if (isError && axios.isAxiosError(error)) {
     toast.error(GetConnectionListErrorHandler(error));
     return;
   }
-  return data as GetConnectionReturn;
+  return data;
 }
 
 // 연결 상세 조회 쿼리
 export function GetConnectionDetailQuery(id: string) {
   const { isError, error } = useQuery({
-    queryKey: ['me', 'connections', id],
+    queryKey: ['connection-detail', id],
     queryFn: () => ConnectionEndPoint.getConnectionDetail(id),
   });
   if (isError && axios.isAxiosError(error)) {
@@ -69,17 +72,41 @@ export function GetConnectionDetailQuery(id: string) {
 }
 
 //연결 수락 / 거절 / 취소
-export function PutConnectionQuery(
-  params: Pick<ConnectionUserType, 'id'> & { status: ConnectionStatus }
-) {
+export function PutConnectionQuery() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => ConnectionEndPoint.putConnection(params),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['me', 'connections'],
+    mutationFn: ConnectionEndPoint.putConnection,
+    onMutate: async params => {
+      await queryClient.cancelQueries({
+        queryKey: ['connection-list-pagination', params.type],
       });
+
+      const previousConnections = queryClient.getQueryData<
+        ConnectionListContent[]
+      >(['connection-list-pagination', params.type]);
+
+      queryClient.setQueryData(
+        ['connection-list-pagination', params.type],
+        (oldData: GetConnectionReturn) => {
+          return {
+            ...oldData,
+            contents: oldData.contents.filter(info => {
+              return info.id !== params.id;
+            }),
+          };
+        }
+      );
+      return { previousConnections, params };
     },
-    onError: (error: AxiosError) => error,
+    onError: (error: AxiosError, _, context) => {
+      queryClient.setQueryData(
+        ['connection-list-pagination', context?.params.type],
+        context?.previousConnections
+      );
+      return error;
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['put-connection'] });
+    },
   });
 }

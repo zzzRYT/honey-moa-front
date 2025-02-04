@@ -2,35 +2,32 @@ import { Header } from '../Layouts';
 import SideNavigate from './SideNavigate';
 import * as S from './style';
 import { Contents, Profile } from '.';
-import { useConnectionInfoStore } from '@/store/connectionStore/connectionInfoStore';
-import { useStore } from 'zustand';
+import { GetMyInfoQuery } from '@/apis/user/queries';
+import { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 export default function Main() {
-  const { connectionInfo } = useStore(useConnectionInfoStore);
+  const myInfo = GetMyInfoQuery();
+  const [isConnection, setIsConnection] = useState(false);
 
-  // 유저정보에 연결정보 포함된 후 수정
-  const connectedContents = connectionInfo?.acceptedConnection ? (
-    <>
-      <Profile.CoupleProfile />
-      <Contents.HoneyList />
-    </>
-  ) : (
-    <>
-      <Profile.UnConnectedProfile />
-      <Contents.UnConnectedList />
-    </>
-  );
+  useEffect(() => {
+    if (myInfo?.acceptedConnection) {
+      setIsConnection(true);
+    }
+  }, [myInfo]);
+
+  if (isConnection && myInfo?.acceptedConnection.blog)
+    return <Navigate to={`/honeyJar/${myInfo?.acceptedConnection.id}`} />;
 
   return (
     <>
-      {connectionInfo?.acceptedConnection ? (
-        <Header.MainHeader />
-      ) : (
-        <Header.UnConnectedHeader />
-      )}
+      <Header.UnConnectedHeader />
       <S.ContentsWrapper>
         <SideNavigate />
-        <div>{connectedContents}</div>
+        <div>
+          <Profile.UnConnectedProfile />
+          <Contents.UnConnectedList />
+        </div>
       </S.ContentsWrapper>
     </>
   );

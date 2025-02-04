@@ -1,2 +1,2 @@
-export { default as ConnectionModal } from './ConnectionModal';
-export { default as ManageModal } from './ManageModal';
+export { default as Connection } from './Connection';
+export * as Modal from './Modal';

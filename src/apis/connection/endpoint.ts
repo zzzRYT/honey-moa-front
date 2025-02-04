@@ -3,7 +3,6 @@ import { ConnectionInfo } from '../user/type';
 import {
   ConnectionPaginationParams,
   ConnectionStatus,
-  ConnectionUserType,
   GetAllUsersReturn,
   GetConnectionReturn,
   PostConnectionReturn,
@@ -52,13 +51,14 @@ export async function getConnectionListPagination({
 export async function putConnection({
   status,
   id,
-}: Pick<ConnectionUserType, 'id'> & {
+}: {
   status: ConnectionStatus;
+  id: string;
+  type?: 'requester' | 'requested';
 }): Promise<void> {
   const response = await instanceToken.put(`/users/me/connections/${id}`, {
     status,
   });
-
   return response.data;
 }
 

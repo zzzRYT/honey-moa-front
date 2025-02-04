@@ -3,29 +3,16 @@ import * as S from './style';
 import { Svg } from '@/components/Svg';
 import { Link } from 'react-router-dom';
 import Image from '@/components/Image';
-import { UserQueries } from '@/apis/user';
-import { useEffect } from 'react';
 import { useConnectionInfoStore } from '@/store/connectionStore/connectionInfoStore';
 import useLocalStorage from '@/hook/useLocalStorage';
 import { useStore } from 'zustand';
-import { Loading } from '@/components';
 
 export default function ChatBox({ isOpen, setIsOpen }: ChatBoxProps) {
-  const { connectionInfo, setConnectionInfo } = useStore(
-    useConnectionInfoStore
-  );
+  const { connectionInfo } = useStore(useConnectionInfoStore);
 
   const { value: token } = useLocalStorage('accessToken');
 
-  const tempData = UserQueries.GetMyInfoQuery();
-
-  useEffect(() => {
-    if (tempData) {
-      setConnectionInfo(tempData);
-    }
-  }, []);
-
-  if (!token) <Loading.Spinner />;
+  if (!token) return;
 
   return (
     <>

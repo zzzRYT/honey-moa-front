@@ -60,7 +60,7 @@ export interface ConnectionPaginationParams {
   limit: number;
   showRequest: boolean;
   showRequested: boolean;
-  status: Pick<'PENDING' | 'ACCEPTED', ConnectionStatus>;
+  status: ConnectionStatus;
   orderBy: PaginationOrderBy[];
 }
 export interface ConnectionListContent {

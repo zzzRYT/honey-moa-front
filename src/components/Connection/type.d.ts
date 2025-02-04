@@ -1,11 +1,10 @@
-import { EachUserInfo } from '@/apis/connection/type';
+export interface ConnectionStateType {
+  search: boolean;
+  manage: boolean;
+}
 
 export interface ConnectionModalProps {
   isOpen: boolean;
-}
-
-export interface UserInfoProps {
-  userInfo: EachUserInfo;
 }
 
 export interface ManageModalProps {
