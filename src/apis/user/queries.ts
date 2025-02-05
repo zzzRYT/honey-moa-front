@@ -6,7 +6,7 @@ import { AxiosError } from 'axios';
 
 export function GetMyInfoQuery() {
   const { data, isError, error } = useSuspenseQuery({
-    queryKey: ['users', 'me'],
+    queryKey: ['users-me'],
     queryFn: UserEndPoint.getMyInfo,
     refetchOnWindowFocus: false,
   });

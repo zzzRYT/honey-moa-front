@@ -31,7 +31,7 @@ export default function ConnectionModal({ isOpen }: ConnectionModalProps) {
 
   return (
     <Modal isOpen={isOpen}>
-      <S.ModalWrapper onSubmit={submitSearch}>
+      <S.SearchModalWrapper onSubmit={submitSearch}>
         <S.ModalHeader>
           <Svg.SearchIcon color={theme.button.primary.base} />
           <h2>사용자 검색</h2>
@@ -51,7 +51,7 @@ export default function ConnectionModal({ isOpen }: ConnectionModalProps) {
             <div>이메일로 유저를 검색해보세요</div>
           )}
         </S.ListContainer>
-      </S.ModalWrapper>
+      </S.SearchModalWrapper>
     </Modal>
   );
 }

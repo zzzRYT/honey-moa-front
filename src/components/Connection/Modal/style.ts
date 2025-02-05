@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const EachUserInfoWrapper = styled.div`
   display: flex;
@@ -111,13 +111,21 @@ export const CoupleConnectionButtonModalWrapper = styled.div`
   gap: 24px;
 `;
 
-export const ModalWrapper = styled.form`
+const ModalWrapperStyle = css`
   width: 500px;
   padding: 24px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.bg.primary};
   display: flex;
   flex-direction: column;
+`;
+
+export const SearchModalWrapper = styled.form`
+  ${ModalWrapperStyle}
+`;
+
+export const ManageModalWrapper = styled.div`
+  ${ModalWrapperStyle}
 `;
 export const ModalHeader = styled.div`
   display: flex;
