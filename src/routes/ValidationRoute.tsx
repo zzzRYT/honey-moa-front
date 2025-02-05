@@ -9,6 +9,7 @@ import * as Chat from '@/components/Chat';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import AccessAuth from './AccessAuth';
 import { RouteListType } from './type';
+import Blog from '@/components/Blog/Blog';
 
 const routesList: RouteListType[] = [
   {
@@ -22,6 +23,12 @@ const routesList: RouteListType[] = [
     path: '/honeyJar',
     private: true,
     element: <Main />,
+  },
+  {
+    id: 'route--honeyJar--id',
+    path: '/honeyJar/:id',
+    private: true,
+    element: <Blog />,
   },
   {
     id: 'route--changePassword',

@@ -9,5 +9,5 @@ export interface ModalProps {
 }
 
 export interface ModalWrapperProps {
-  blur: boolean;
+  $blur: boolean;
 }

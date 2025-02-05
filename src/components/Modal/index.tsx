@@ -45,7 +45,7 @@ export default function Modal({
       {createPortal(
         <FocusTrap>
           <S.ModalWrapper
-            blur={blur}
+            $blur={blur}
             onClick={handleClose}
             className="modal-dimmed"
           >

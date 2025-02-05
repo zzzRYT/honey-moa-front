@@ -7,3 +7,12 @@ export const ContentsWrapper = styled.div`
     flex: 1;
   }
 `;
+
+export const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  background-color: ${({ theme }) => theme.bg.primary};
+`;

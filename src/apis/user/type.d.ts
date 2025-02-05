@@ -10,6 +10,20 @@ export interface GetMyInfoReturn {
   acceptedConnection: ConnectionInfo;
 }
 
+type ConnectionUser = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  nickname: string;
+};
+
+type ConnectionFeature = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+};
+
 export interface ConnectionInfo {
   id: string;
   createdAt: string;
@@ -17,4 +31,8 @@ export interface ConnectionInfo {
   requesterId: string;
   requestedId: string;
   status: 'ACCEPTED';
+  blog?: ConnectionFeature;
+  chatRoom?: ConnectionFeature;
+  requester?: ConnectionUser;
+  requested?: ConnectionUser;
 }

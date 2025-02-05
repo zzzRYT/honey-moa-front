@@ -12,7 +12,7 @@ export default function AccessAuth({ children, isPrivate }: AccessAuthProps) {
 
   return (
     <>
-      {!token && isPrivate && (
+      {isPrivate && !token && (
         <AuthFunnelModal
           Funnel={Funnel}
           setStep={setStep}

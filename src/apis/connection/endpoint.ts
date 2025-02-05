@@ -1,5 +1,8 @@
 import { instanceToken } from '../axiosInstance';
+import { ConnectionInfo } from '../user/type';
 import {
+  ConnectionPaginationParams,
+  ConnectionStatus,
   GetAllUsersReturn,
   GetConnectionReturn,
   PostConnectionReturn,
@@ -23,25 +26,44 @@ export async function postConnection(
   return response.data;
 }
 //연결 요청 리스트 조회
-export async function getConnectionList(
-  direction: 'request' | 'requested'
-): Promise<GetConnectionReturn> {
-  const response = await instanceToken.get(
-    direction === 'request'
-      ? '/users/me/connections?showRequest=true'
-      : '/users/me/connections?showRequested=true'
-  );
+export async function getConnectionListPagination({
+  page,
+  limit,
+  showRequest,
+  showRequested,
+  status,
+  orderBy,
+}: Partial<ConnectionPaginationParams>): Promise<GetConnectionReturn> {
+  const response = await instanceToken.get('/users/me/connections', {
+    params: {
+      page,
+      limit,
+      showRequest,
+      showRequested,
+      status,
+      orderBy,
+    },
+  });
   return response.data;
 }
 
 //연결 수락 거절 취소
-export async function putConnection(
-  status: 'ACCEPTED' | 'REJECTED' | 'CANCELED',
-  id: string
-): Promise<void> {
+export async function putConnection({
+  status,
+  id,
+}: {
+  status: ConnectionStatus;
+  id: string;
+  type?: 'requester' | 'requested';
+}): Promise<void> {
   const response = await instanceToken.put(`/users/me/connections/${id}`, {
     status,
   });
+  return response.data;
+}
 
+//연결 상세 조회
+export async function getConnectionDetail(id: string): Promise<ConnectionInfo> {
+  const response = await instanceToken.get(`/users/me/connections/${id}`);
   return response.data;
 }
