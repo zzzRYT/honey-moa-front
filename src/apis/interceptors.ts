@@ -10,6 +10,17 @@ export function CommonRequestInterceptor(
   return config;
 }
 
+//토큰 있는 요청 인터셉터
+export function TokenRequestInterceptor(
+  config: InternalAxiosRequestConfig
+): InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig> {
+  config.headers['X-Api-Key'] = import.meta.env.VITE_API_KEY;
+  config.headers['Authorization'] = `Bearer ${window.localStorage.getItem(
+    'accessToken'
+  )}`;
+  return config;
+}
+
 //응답 인터셉터
 export function CommonResponseInterceptor(
   response: AxiosResponse

@@ -2,28 +2,38 @@ import { Header } from '../Layouts';
 import SideNavigate from './SideNavigate';
 import * as S from './style';
 import { Contents, Profile } from '.';
-import { GetMyInfoQuery } from '@/apis/user/queries';
-import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { ConnectionQueries } from '@/apis/connection';
+import Modal from '../Modal';
+import CreateBlogModal from './CreateBlogModal';
 
 export default function Main() {
-  const myInfo = GetMyInfoQuery();
-  const [isConnection, setIsConnection] = useState(false);
+  const connectionInfo = ConnectionQueries.GetConnectionListPaginationQuery({
+    status: 'ACCEPTED',
+    type: 'requester',
+  });
 
-  useEffect(() => {
-    if (myInfo?.acceptedConnection) {
-      setIsConnection(true);
+  if (connectionInfo?.contents.length !== 0) {
+    if (connectionInfo?.contents[0].blog) {
+      return (
+        <Navigate to={`/honeyJar/${connectionInfo?.contents[0].blog.id}`} />
+      );
     }
-  }, [myInfo]);
-
-  if (isConnection && myInfo?.acceptedConnection.blog)
-    return <Navigate to={`/honeyJar/${myInfo?.acceptedConnection.id}`} />;
+  }
 
   return (
     <>
       <Header.UnConnectedHeader />
       <S.ContentsWrapper>
         <SideNavigate />
+        <Modal
+          shouldCloseToClickOutside={false}
+          blur={true}
+          isOpen={connectionInfo?.contents.length !== 0}
+        >
+          <CreateBlogModal />
+        </Modal>
+
         <div>
           <Profile.UnConnectedProfile />
           <Contents.UnConnectedList />

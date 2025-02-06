@@ -12,7 +12,7 @@ export const LoginQuery = () => {
     mutationFn: AuthEndPoint.postToken,
     onSuccess: data => {
       queryClient.invalidateQueries({
-        queryKey: ['auth', 'sign-in'],
+        queryKey: ['auth-sign-in'],
       });
       setToken(data.accessToken);
       toast.success('로그인 성공');
@@ -28,7 +28,7 @@ export const RegisterQuery = () => {
     mutationFn: AuthEndPoint.postUserRegister,
     onSuccess: () => {
       return queryClient.invalidateQueries({
-        queryKey: ['auth', 'sign-up'],
+        queryKey: ['auth-sign-up'],
       });
     },
     onError: (error: AxiosError) => error,
@@ -42,7 +42,7 @@ export const SendEmailForChangePwQuery = () => {
     mutationFn: AuthEndPoint.postEmailForChangePw,
     onSuccess: () => {
       return queryClient.invalidateQueries({
-        queryKey: ['users', 'user-verify-tokens', 'password-change'],
+        queryKey: ['user-verify-tokens'],
       });
     },
     onError: (error: AxiosError) => error,
@@ -56,7 +56,7 @@ export const ChangePasswordQuery = () => {
     mutationFn: AuthEndPoint.putChangePassword,
     onSuccess: () => {
       return queryClient.invalidateQueries({
-        queryKey: ['users', 'password'],
+        queryKey: ['password-change'],
       });
     },
     onError: (error: AxiosError) => error,

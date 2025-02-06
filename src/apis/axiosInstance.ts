@@ -3,6 +3,7 @@ import {
   CommonRequestInterceptor,
   CommonResponseInterceptor,
   ErrorInterceptor,
+  TokenRequestInterceptor,
 } from './interceptors';
 
 export const commonInstance = axios.create({
@@ -16,7 +17,6 @@ export const instanceToken = axios.create({
   baseURL: `${import.meta.env.VITE_BASE_URL}/api/v1`,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
   },
 });
 
@@ -33,7 +33,7 @@ commonInstance.interceptors.response.use(
 );
 
 instanceToken.interceptors.request.use(
-  CommonRequestInterceptor,
+  TokenRequestInterceptor,
   ErrorInterceptor
 );
 
