@@ -15,3 +15,11 @@ export function createBlogErrorhandler(error: AxiosError) {
   if (code === 'YOU_ALREADY_HAVE_A_BLOG')
     return '이미 블로그가 생성된 유저 입니다.';
 }
+
+export function getSingleBlogErrorHandler(error: AxiosError) {
+  const responseData = error.response?.data as ErrorResponse;
+  const code = responseData?.code;
+  if (code === 'INVALID_REQUEST_PARAMETER')
+    return '유저 아이디가 잘못 되었습니다.';
+  if (code === 'RESOURCE_NOT_FOUND') return '블로그가 존재하지 않습니다.';
+}

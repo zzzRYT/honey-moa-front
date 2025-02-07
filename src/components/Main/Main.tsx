@@ -3,22 +3,23 @@ import SideNavigate from './SideNavigate';
 import * as S from './style';
 import { Contents, Profile } from '.';
 import { Navigate } from 'react-router-dom';
-import { ConnectionQueries } from '@/apis/connection';
 import Modal from '../Modal';
 import CreateBlogModal from './CreateBlogModal';
+import { UserQueries } from '@/apis/user';
+import { BlogQueries } from '@/apis/blog';
+import { ConnectionQueries } from '@/apis/connection';
 
 export default function Main() {
   const connectionInfo = ConnectionQueries.GetConnectionListPaginationQuery({
     status: 'ACCEPTED',
-    type: 'requester',
+    type: 'requested',
   });
+  const getMyInfo = UserQueries.GetMyInfoQuery();
+  const getBlogInfo = BlogQueries.GetSingleBlogQuery(getMyInfo?.id as string);
 
-  if (connectionInfo?.contents.length !== 0) {
-    if (connectionInfo?.contents[0].blog) {
-      return (
-        <Navigate to={`/honeyJar/${connectionInfo?.contents[0].blog.id}`} />
-      );
-    }
+  console.log(connectionInfo);
+  if (getBlogInfo) {
+    return <Navigate to={`/honeyJar/${getBlogInfo.id}`} />;
   }
 
   return (
@@ -29,7 +30,7 @@ export default function Main() {
         <Modal
           shouldCloseToClickOutside={false}
           blur={true}
-          isOpen={connectionInfo?.contents.length !== 0}
+          isOpen={connectionInfo?.contents.length !== 0 && !getBlogInfo}
         >
           <CreateBlogModal />
         </Modal>
