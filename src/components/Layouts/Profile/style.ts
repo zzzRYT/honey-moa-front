@@ -6,16 +6,6 @@ export const ProfileWrapper = styled.div`
   position: relative;
 `;
 
-export const ProfileBgImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const CoupleInfoWrapper = styled.div`
   position: absolute;
   width: 60%;
@@ -32,25 +22,34 @@ export const CoupleInfoWrapper = styled.div`
   align-items: center;
 `;
 
+export const CoupleProfileWrapper = styled.div`
+  height: 80px;
+`;
+
 export const EachImageContainer = styled.div`
   display: flex;
-  gap: 16px;
-  //각 이미지
-  & > :nth-child(n) {
-    width: 64px;
-    height: 64px;
-    border: 1px solid ${({ theme }) => theme.border_02};
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+  position: relative;
+  width: 110px;
+  img {
+    position: absolute;
+    &:nth-child(1) {
+      z-index: 2;
+      left: 0;
+    }
+    &:nth-child(2) {
+      right: 0;
+      z-index: 1;
     }
   }
+`;
+
+export const SvgContainer = styled.div`
+  padding: 20px;
+  border: 2px dashed ${({ theme }) => theme.border.primary};
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const CoupleShortIntroduction = styled.div`

@@ -1,5 +1,4 @@
-import { Header } from '../Layouts';
-import SideNavigate from './SideNavigate';
+import { Header, SideNavigate } from '../Layouts';
 import * as S from './style';
 import { Contents, Profile } from '.';
 import { Navigate } from 'react-router-dom';
@@ -17,7 +16,6 @@ export default function Main() {
   const getMyInfo = UserQueries.GetMyInfoQuery();
   const getBlogInfo = BlogQueries.GetSingleBlogQuery(getMyInfo?.id as string);
 
-  console.log(connectionInfo);
   if (getBlogInfo) {
     return <Navigate to={`/honeyJar/${getBlogInfo.id}`} />;
   }
@@ -26,7 +24,7 @@ export default function Main() {
     <>
       <Header.UnConnectedHeader />
       <S.ContentsWrapper>
-        <SideNavigate />
+        <SideNavigate.UnConnectedSideNav />
         <Modal
           shouldCloseToClickOutside={false}
           blur={true}

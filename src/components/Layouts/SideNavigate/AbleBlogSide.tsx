@@ -3,7 +3,7 @@ import { Svg } from '../../Svg';
 import * as S from './style';
 import { Link } from 'react-router-dom';
 
-export default function SideNavigate() {
+export default function AbleBlogSideNav() {
   const theme = useTheme();
   return (
     <S.NavWrapper>

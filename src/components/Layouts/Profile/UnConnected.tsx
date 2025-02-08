@@ -12,16 +12,16 @@ export default function UnConnectedProfile() {
       <S.UnConnectedProfileBgDiv>
         <S.UnConnectedInfoWrapper>
           <S.EachImageContainer>
+            <S.SvgContainer>
+              <Svg.LockIcon />
+            </S.SvgContainer>
             <Image
-              src="/images/introImage.jpg"
+              src={myInfo?.profileImageUrl as string}
               alt="프로필사진"
-              width="100px"
-              height="100px"
+              width="65px"
+              height="65px"
               borderRadius="50%"
             />
-            <div>
-              <Svg.LockIcon />
-            </div>
           </S.EachImageContainer>
           <S.CoupleShortIntroduction>
             <h4>
