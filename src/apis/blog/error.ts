@@ -21,5 +21,4 @@ export function getSingleBlogErrorHandler(error: AxiosError) {
   const code = responseData?.code;
   if (code === 'INVALID_REQUEST_PARAMETER')
     return '유저 아이디가 잘못 되었습니다.';
-  if (code === 'RESOURCE_NOT_FOUND') return '블로그가 존재하지 않습니다.';
 }
