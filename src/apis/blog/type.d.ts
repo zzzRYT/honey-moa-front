@@ -7,7 +7,7 @@ export interface CreateBlogReturn {
 }
 
 export interface BlogSingleParamsType {
-  id: string;
+  id?: string;
 }
 
 export interface BlogSingleInfoReturn {

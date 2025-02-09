@@ -3,5 +3,5 @@ export interface SettingHeaderProps {
 }
 
 export interface BlogHeaderProps {
-  blogName: string;
+  blogName?: string;
 }

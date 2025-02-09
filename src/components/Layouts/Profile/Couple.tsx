@@ -3,12 +3,15 @@ import * as S from './style';
 import { CoupleProfileProps } from './type';
 import { BlogQueries } from '@/apis/blog';
 import TogetherImage from './TogetherImage';
+import { useMemo } from 'react';
 
 export default function CoupleProfile({ myId }: CoupleProfileProps) {
   const getBlogInfo = BlogQueries.GetSingleBlogQuery(myId!);
-  const coupleName = getBlogInfo?.members
-    .map(member => member.nickname)
-    .join(' & ');
+
+  const coupleName = useMemo(() => {
+    return getBlogInfo?.members.map(member => member.nickname).join(' & ');
+  }, [getBlogInfo]);
+
   return (
     <>
       <S.ProfileWrapper>

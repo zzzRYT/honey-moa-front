@@ -10,11 +10,11 @@ export default function Blog() {
   const pathArr = pathname.split('/');
   const id = pathArr[pathArr.length - 1];
   const myInfo = UserQueries.GetMyInfoQuery();
-  const getBlogInfo = BlogQueries.GetSingleBlogQuery(myInfo?.id as string);
+  const getBlogInfo = BlogQueries.GetSingleBlogQuery(myInfo?.id);
 
   return (
     <>
-      <Header.BlogHeader blogName={getBlogInfo?.name as string} />
+      <Header.BlogHeader blogName={getBlogInfo?.name} />
       <S.ContentsWrapper>
         <SideNavigate.AbleBlogSideNav />
         <div>

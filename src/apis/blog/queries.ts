@@ -19,7 +19,7 @@ export const CreateBlogMutate = () => {
   });
 };
 
-export const GetSingleBlogQuery = (id: string) => {
+export const GetSingleBlogQuery = (id?: string) => {
   const { data, isError, error } = useQuery({
     queryKey: ['single-blog'],
     queryFn: () => BlogEndpoint.getSingleBlog({ id }),
