@@ -1,7 +1,7 @@
 import { Svg } from '@/components/Svg';
 import * as S from './style';
 import { useTheme } from 'styled-components';
-import { PostContentsType } from '@/components/Post/type';
+import { PostContentsType } from './type';
 import { useNavigate } from 'react-router-dom';
 
 export default function PostHeader(data: PostContentsType) {

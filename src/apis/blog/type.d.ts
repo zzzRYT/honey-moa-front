@@ -1,5 +1,7 @@
 export interface CreateBlogParams {
   name: string;
+  description: string;
+  dDayStartDate: string;
 }
 
 export interface CreateBlogReturn {
@@ -24,4 +26,19 @@ export interface BlogSingleInfoReturn {
     nickname: string;
     profileImageUrl: string;
   }[];
+}
+
+export interface CreateNewBLogPostParams {
+  id: string;
+  title: string;
+  contents: object[];
+  date: string;
+  location: string;
+  isPublic?: boolean;
+  tagNames?: string[];
+  fileUrls?: string[];
+}
+
+export interface CreateNewBlogPostReturn {
+  id: string;
 }

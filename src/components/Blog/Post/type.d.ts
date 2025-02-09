@@ -2,7 +2,7 @@ import { PartialBlock } from '@blocknote/core';
 
 export interface PostContentsType {
   title: string;
-  tags: string[];
+  tagNames: string[];
   date: string;
   location: string;
   contents: PartialBlock[];

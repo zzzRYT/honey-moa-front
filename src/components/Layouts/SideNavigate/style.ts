@@ -22,6 +22,7 @@ const itemButtonStyle = css`
   align-items: center;
   border-radius: 50%;
   border: none;
+  background-color: inherit;
 `;
 
 export const ItemButton = styled.button`

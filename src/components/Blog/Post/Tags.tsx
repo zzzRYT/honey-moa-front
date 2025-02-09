@@ -1,20 +1,26 @@
-import { PopUp } from '..';
-import { Svg } from '../Svg';
+import { PopUp } from '@/components';
+import { Svg } from '@/components/Svg';
 import * as S from './style';
 import { TagsProps } from './type';
+import { toast } from 'react-toastify';
 
 export default function Tags({ tags, setContents }: TagsProps) {
   const makeNewTagHandler: React.KeyboardEventHandler<HTMLInputElement> = e => {
+    //Enter시 태그 생성
     if (e.key === 'Enter') {
       const tagInput = document.querySelector('#tag') as HTMLInputElement;
       const tag = tagInput.value;
+      if (tag.length > 20) {
+        toast.error('태그는 20자 이하로 입력해주세요.');
+        return;
+      }
       if (!tag) return;
       if (tags.includes(tag)) {
         tagInput.value = '';
         return;
       }
 
-      setContents(prev => ({ ...prev, tags: [...prev.tags, tag] }));
+      setContents(prev => ({ ...prev, tagNames: [...prev.tagNames, tag] }));
 
       const newTag = document.createElement('div');
       newTag.textContent = tag;
@@ -25,10 +31,11 @@ export default function Tags({ tags, setContents }: TagsProps) {
         newTag.remove();
         setContents(prev => ({
           ...prev,
-          tags: prev.tags.filter(target => target !== tag),
+          tags: prev.tagNames.filter(target => target !== tag),
         }));
       });
     }
+    //backspace시 태그 삭제
     if (e.key === 'Backspace') {
       const tagInput = document.querySelector('#tag') as HTMLInputElement;
       if (tagInput.value === '') {
@@ -37,7 +44,7 @@ export default function Tags({ tags, setContents }: TagsProps) {
         lastTag.remove();
         setContents(prev => ({
           ...prev,
-          tags: prev.tags.slice(0, -1),
+          tags: prev.tagNames.slice(0, -1),
         }));
       }
     }

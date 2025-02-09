@@ -13,6 +13,7 @@ export const ModalHeader = styled.div`
   margin-bottom: 20px;
   h2 {
     margin-left: 10px;
+    color: ${({ theme }) => theme.text.primary};
   }
 `;
 
@@ -22,6 +23,7 @@ export const CreateBlogDescription = styled.p`
   padding: 8px 0px;
   border-radius: 15px;
   border: 1px solid ${({ theme }) => theme.button.primary.base};
+  color: ${({ theme }) => theme.text.primary};
   span {
     font-weight: bold;
     color: ${({ theme }) => theme.button.primary.base};
@@ -35,6 +37,8 @@ export const CreateBlogForm = styled.form`
   margin-top: 24px;
   label {
     font-size: 0.8em;
+    color: ${({ theme }) => theme.text.primary};
+    margin-top: 8px;
   }
   input {
     width: 100%;
@@ -43,6 +47,15 @@ export const CreateBlogForm = styled.form`
     border-radius: 5px;
     outline: none;
     border: 1px solid ${({ theme }) => theme.button.primary.base};
+  }
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.button.primary.base};
+    resize: none;
   }
   button {
     width: 100%;

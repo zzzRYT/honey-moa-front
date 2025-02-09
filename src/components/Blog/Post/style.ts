@@ -71,6 +71,7 @@ export const PostTitleWrapper = styled.div`
     outline: none;
     border: none;
     background-color: inherit;
+    color: ${({ theme }) => theme.text.primary};
     resize: none;
     overflow: hidden;
     font-weight: bold;
@@ -107,6 +108,7 @@ export const TagsWrapper = styled.div`
     outline: none;
     border: none;
     background-color: inherit;
+    color: ${({ theme }) => theme.text.primary};
     font-weight: bold;
   }
   .new-tag {

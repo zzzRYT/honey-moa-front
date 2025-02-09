@@ -1,10 +1,18 @@
 import { useTheme } from 'styled-components';
 import { Svg } from '../../Svg';
 import * as S from './style';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useMemo } from 'react';
 
 export default function AbleBlogSideNav() {
   const theme = useTheme();
+  const { pathname } = useLocation();
+
+  const blogId = useMemo(() => {
+    const pathArr = pathname.split('/');
+    return pathArr[pathArr.length - 1];
+  }, [pathname]);
+
   return (
     <S.NavWrapper>
       <S.NavItemListContainer>
@@ -14,7 +22,7 @@ export default function AbleBlogSideNav() {
           </S.ItemButton>
         </li>
         <li>
-          <Link to="/post">
+          <Link to={`/new/${blogId}/post`}>
             <S.ItemButton>
               <Svg.WriteIcon size={36} />
             </S.ItemButton>
