@@ -15,13 +15,9 @@ export const TitleContainer = styled.div`
   flex-direction: row;
   //사이트 로고
   & > :nth-child(1) {
-    border-radius: 50%;
-    width: 65px;
-    height: 65px;
     margin: 16px;
     align-content: center;
     text-align: center;
-    border: 1px solid ${({ theme }) => theme.text.primary};
   }
   //사이트 이름
   & > :nth-child(2) {

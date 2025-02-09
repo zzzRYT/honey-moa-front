@@ -3,12 +3,14 @@ import * as S from './style';
 import { Svg } from '@/components/Svg';
 import { Link } from 'react-router-dom';
 import Image from '@/components/Image';
-import { useConnectionInfoStore } from '@/store/connectionStore/connectionInfoStore';
 import useLocalStorage from '@/hook/useLocalStorage';
-import { useStore } from 'zustand';
+import { ConnectionQueries } from '@/apis/connection';
 
 export default function ChatBox({ isOpen, setIsOpen }: ChatBoxProps) {
-  const { connectionInfo } = useStore(useConnectionInfoStore);
+  const connectionInfo = ConnectionQueries.GetConnectionListPaginationQuery({
+    status: 'ACCEPTED',
+    type: 'requested',
+  });
 
   const { value: token } = useLocalStorage('accessToken');
 
@@ -16,7 +18,7 @@ export default function ChatBox({ isOpen, setIsOpen }: ChatBoxProps) {
 
   return (
     <>
-      {connectionInfo?.acceptedConnection && (
+      {connectionInfo?.contents.length !== 0 && (
         <S.ButtonWrapper onClick={() => setIsOpen(prev => !prev)}>
           <Svg.ChatIcon size={39} />
         </S.ButtonWrapper>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const NavWrapper = styled.div`
   width: 120px;
@@ -14,16 +14,25 @@ export const NavItemListContainer = styled.ul`
   gap: 24px;
 `;
 
-export const ItemButton = styled.button`
-  background-color: inherit;
-  border: none;
-  padding: 12px;
-  border-radius: 50%;
-  cursor: pointer;
+const itemButtonStyle = css`
+  width: 48px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  border: none;
+`;
+
+export const ItemButton = styled.button`
+  ${itemButtonStyle}
+  cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.button.tertiary.hover};
   }
+`;
+
+export const ItemButtonDisabled = styled.button`
+  cursor: not-allowed;
+  ${itemButtonStyle}
 `;

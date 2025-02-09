@@ -21,7 +21,6 @@ export default function UnConnectedList() {
       </S.UnConnectedHeader>
       <S.UnConnectedContentsWrapper>
         <Svg.LockIcon size={48} />
-        <span>아직 기록된 추억이 없어요</span>
         <p>연인과 열결하고 첫 번째 추억을 기록해보세요</p>
       </S.UnConnectedContentsWrapper>
     </S.UnConnectedWrapper>

@@ -7,7 +7,7 @@ export interface CreateBlogReturn {
 }
 
 export interface BlogSingleParamsType {
-  id: string;
+  id?: string;
 }
 
 export interface BlogSingleInfoReturn {
@@ -17,10 +17,11 @@ export interface BlogSingleInfoReturn {
   name: string;
   createdBy: number; //블로그 생성 유저
   connectionId: number;
-  members?: {
+  members: {
     id: string;
     createdAt: string;
     updatedAt: string;
     nickname: string;
+    profileImageUrl: string;
   }[];
 }

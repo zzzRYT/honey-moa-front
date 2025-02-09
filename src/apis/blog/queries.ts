@@ -3,7 +3,6 @@ import { BlogEndpoint } from '.';
 import { toast } from 'react-toastify';
 import { createBlogErrorhandler, getSingleBlogErrorHandler } from './error';
 import { AxiosError } from 'axios';
-import { ErrorResponse } from '../type';
 
 export const CreateBlogMutate = () => {
   const queryClient = useQueryClient();
@@ -20,7 +19,7 @@ export const CreateBlogMutate = () => {
   });
 };
 
-export const GetSingleBlogQuery = (id: string) => {
+export const GetSingleBlogQuery = (id?: string) => {
   const { data, isError, error } = useQuery({
     queryKey: ['single-blog'],
     queryFn: () => BlogEndpoint.getSingleBlog({ id }),
@@ -28,12 +27,6 @@ export const GetSingleBlogQuery = (id: string) => {
     retry: false,
   });
   if (isError) {
-    const temp = error as AxiosError;
-    const responseData = temp.response?.data as ErrorResponse;
-    const code = responseData?.code;
-    if (code === 'RESOURCE_NOT_FOUND') {
-      return null;
-    }
     toast.error(getSingleBlogErrorHandler(error as AxiosError));
     return;
   }
