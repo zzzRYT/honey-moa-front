@@ -2,7 +2,7 @@ import { Error } from '@/components';
 import ChangePassword from '@/components/Auth/ChangePassword';
 import { Main } from '@/components/Main';
 import { Honey } from '@/components/Main/Contents';
-import { Post } from '@/components/Post';
+import { Post } from '@/components/Blog/Post';
 import Root from '@/components/Root';
 import { Setting } from '@/components/Setting';
 import * as Chat from '@/components/Chat';
@@ -38,7 +38,7 @@ const routesList: RouteListType[] = [
   },
   {
     id: 'route--post',
-    path: '/post',
+    path: '/new/:id/post',
     private: true,
     element: <Post />,
   },

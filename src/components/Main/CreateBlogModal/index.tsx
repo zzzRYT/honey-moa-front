@@ -9,9 +9,17 @@ export default function CreateBlogModal() {
   const navigate = useNavigate();
   const [blogInfo, setBlogInfo] = useState<BlogInfoType>({
     name: '',
+    description: '',
+    dDayStartDate: '',
   });
 
   const onChangeBlogName = changeInfo.text<BlogInfoType>({
+    setState: setBlogInfo,
+  });
+  const onChangeDescription = changeInfo.text<BlogInfoType>({
+    setState: setBlogInfo,
+  });
+  const onChangeDDayStartDate = changeInfo.text<BlogInfoType>({
     setState: setBlogInfo,
   });
 
@@ -19,14 +27,11 @@ export default function CreateBlogModal() {
 
   const onSubmitCreateBlog: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
-    createBlogMutate.mutate(
-      { name: blogInfo.name },
-      {
-        onSuccess: data => {
-          navigate(`/honeyJar/${data.id}`);
-        },
-      }
-    );
+    createBlogMutate.mutate(blogInfo, {
+      onSuccess: data => {
+        navigate(`/honeyJar/${data.id}`);
+      },
+    });
   };
 
   return (
@@ -46,6 +51,20 @@ export default function CreateBlogModal() {
           id="name"
           onChange={onChangeBlogName}
           placeholder="블로그 이름을 입력해주세요."
+        />
+        <label>사귀기 시작한 날</label>
+        <input
+          type="date"
+          value={blogInfo.dDayStartDate}
+          id="dDayStartDate"
+          onChange={onChangeDDayStartDate}
+        />
+        <label>블로그 소개글</label>
+        <textarea
+          value={blogInfo.description}
+          id="description"
+          onChange={onChangeDescription}
+          placeholder="블로그 소개글을 입력해주세요."
         />
         <button type="submit">블로그 생성하기</button>
       </S.CreateBlogForm>

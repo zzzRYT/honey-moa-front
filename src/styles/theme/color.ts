@@ -42,7 +42,7 @@ export const mainThemeColor: DefaultTheme = {
 
 export const darkThemeColor: DefaultTheme = {
   bg: {
-    primary: '#121212', // 어두운 배경색
+    primary: '#212121', // 어두운 배경색
     secondary: '#1E1E1E', // 어두운 배경색
     tertiary: '#2C2C2C', // 어두운 배경색
   },

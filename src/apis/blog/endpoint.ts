@@ -4,20 +4,31 @@ import {
   BlogSingleParamsType,
   CreateBlogParams,
   CreateBlogReturn,
+  CreateNewBLogPostParams,
+  CreateNewBlogPostReturn,
 } from './type';
 
-export async function postCreateBlog({
-  name,
-}: CreateBlogParams): Promise<CreateBlogReturn> {
-  const response = await instanceToken.post('/blogs', {
-    name,
-  });
+//블로그 생성 api
+export async function postCreateBlog(
+  blogInfo: CreateBlogParams
+): Promise<CreateBlogReturn> {
+  const response = await instanceToken.post('/blogs', blogInfo);
   return response.data;
 }
 
+//블로그 단일 조회
 export async function getSingleBlog({
   id,
 }: BlogSingleParamsType): Promise<BlogSingleInfoReturn> {
   const response = await instanceToken.get(`/users/${id}/blog`);
+  return response.data;
+}
+
+//블로그 게시글 생성
+export async function CreateNewBlogPost({
+  id,
+  ...params
+}: CreateNewBLogPostParams): Promise<CreateNewBlogPostReturn> {
+  const response = await instanceToken.post(`/blogs/${id}/blog-posts`, params);
   return response.data;
 }
