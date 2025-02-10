@@ -10,9 +10,9 @@ import {
 
 //블로그 생성 api
 export async function postCreateBlog(
-  createBlog: CreateBlogParams
+  blogInfo: CreateBlogParams
 ): Promise<CreateBlogReturn> {
-  const response = await instanceToken.post('/blogs', createBlog);
+  const response = await instanceToken.post('/blogs', blogInfo);
   return response.data;
 }
 
