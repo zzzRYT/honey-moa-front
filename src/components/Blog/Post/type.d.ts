@@ -20,3 +20,19 @@ export interface TagsProps {
 export interface EditorProps {
   setContents: PostContentsPropsType;
 }
+
+export interface CreateBlogPostModalProps {
+  title: string;
+  contents: PartialBlock[];
+  date: string;
+  location: string;
+  isPublic?: boolean;
+  tagNames?: string[];
+  fileUrls?: string[];
+}
+
+export interface CreateBlogPostState extends CreateBlogPostModalProps {
+  id: string;
+}
+
+export type onTogglePublicHandlerParams = 'public' | 'private';

@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 export const PostWrapper = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ export const PostHeaderWrapper = styled.div`
   align-items: center;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 100;
   padding: 12px;
 `;
 
@@ -132,6 +132,7 @@ export const DateInput = styled.input`
   font-size: 1rem;
   background-color: inherit;
   outline: none;
+  color: ${({ theme }) => theme.text.primary};
 `;
 
 export const LocationInput = styled.input`
@@ -139,6 +140,7 @@ export const LocationInput = styled.input`
   font-size: 1rem;
   background-color: inherit;
   outline: none;
+  color: ${({ theme }) => theme.text.primary};
 `;
 
 export const PostContents = styled.div`
@@ -146,5 +148,161 @@ export const PostContents = styled.div`
     height: 100%;
     padding-inline: 0px;
     padding-bottom: 65%;
+  }
+`;
+
+export const CreateBlogPostModalWrapper = styled.div`
+  width: 700px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 24px;
+  border-radius: 12px;
+  background-color: ${({ theme }) => theme.bg.tertiary};
+  gap: 25px;
+  label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin: 10px 0px;
+  }
+  & > :nth-child(1) {
+    flex: 1;
+  }
+  & > :nth-child(2) {
+    flex: 1;
+  }
+`;
+
+export const ThumbnailWrapper = styled.div`
+  width: 100%;
+  height: 230px;
+  border: 1px solid ${({ theme }) => theme.button.primary.base};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  & > label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+    padding: 8px 5px;
+    border-radius: 12px;
+    border: 1px solid ${({ theme }) => theme.button.primary.base};
+    color: ${({ theme }) => theme.text.primary};
+    &:hover {
+      background-color: ${({ theme }) => theme.button.primary.hover};
+    }
+  }
+`;
+
+export const ShortDescriptionTextArea = styled.textarea`
+  width: 100%;
+  height: 100px;
+  font-size: 1rem;
+  padding: 10px;
+  outline: none;
+  border: 1px solid ${({ theme }) => theme.button.primary.base};
+  background-color: ${({ theme }) => theme.bg.primary};
+  color: ${({ theme }) => theme.text.primary};
+  resize: none;
+`;
+
+const fillColorButtonStyled = css`
+  background-color: ${({ theme }) => theme.button.primary.base};
+  color: ${({ theme }) => theme.text.secondary};
+`;
+
+const emptyColorButtonStyled = css`
+  background-color: ${({ theme }) => theme.bg.primary};
+  color: ${({ theme }) => theme.text.primary};
+`;
+
+export const PublicSelectedBoxWrapper = styled.div<{
+  $isPublic?: boolean;
+}>`
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 16px;
+  & > button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  ${({ $isPublic }) => {
+    if ($isPublic) {
+      return css`
+        & > button:nth-child(1) {
+          ${fillColorButtonStyled}
+        }
+        & > button:nth-child(2) {
+          ${emptyColorButtonStyled}
+        }
+      `;
+    } else {
+      return css`
+        & > button:nth-child(1) {
+          ${emptyColorButtonStyled}
+        }
+        & > button:nth-child(2) {
+          ${fillColorButtonStyled}
+        }
+      `;
+    }
+  }}
+`;
+export const CreateBlogPostSubmitButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  position: relative;
+  height: 100%;
+  & > button {
+    position: absolute;
+    right: 0;
+    bottom: 25%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: ${({ theme }) => theme.button.primary.base};
+    color: ${({ theme }) => theme.text.secondary};
+    &:hover {
+      background-color: ${({ theme }) => theme.button.primary.hover};
+    }
+  }
+`;
+
+export const ToastWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const ToastButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  & > button {
+    padding: 8px 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: bold;
+    border: 1px solid ${({ theme }) => theme.border.primary};
+    background-color: ${({ theme }) => theme.button.tertiary.base};
+    &:hover {
+      background-color: ${({ theme }) => theme.button.tertiary.hover};
+    }
   }
 `;

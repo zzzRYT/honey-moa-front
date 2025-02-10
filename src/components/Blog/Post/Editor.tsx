@@ -17,7 +17,7 @@ export const lightTheme = {
     },
     menu: {
       text: '#757575',
-      background: '#FFF3E0',
+      background: '#FFFFFF',
     },
     tooltip: {
       text: '#FFFFFF',
@@ -35,9 +35,9 @@ export const lightTheme = {
       text: '#B0B0B0',
       background: '#E5E3C3',
     },
-    shadow: '#D3D3D3',
+    shadow: '#B0B0B0',
     border: '#E5E3C3',
-    sideMenu: '#FFF3E0',
+    sideMenu: '#757575',
     highlights: {
       gray: {
         text: '#757575',
@@ -98,11 +98,27 @@ const locale = locales['ko'];
 export const Editor = ({ setContents }: EditorProps) => {
   const { value: theme } = useLocalStorage('theme');
 
+  const uploadFile = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    //공식문서에서 제공하는 api
+    //나중에 자체 이미지 선 업로드 로직으로 바꿔야 함
+    const ret = await fetch('https://tmpfiles.org/api/v1/upload', {
+      method: 'POST',
+      body: formData,
+    });
+    return (await ret.json()).data.url.replace(
+      'tmpfiles.org/',
+      'tmpfiles.org/dl/'
+    );
+  };
+
   const editor = useCreateBlockNote({
     schema,
     dictionary: {
       ...locale,
     },
+    uploadFile,
   });
   const onChangeBlockNoteHandler = () => {
     setContents(prev => {

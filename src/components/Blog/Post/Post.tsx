@@ -83,7 +83,7 @@ export default function Post() {
               onChange={contentsStateChangeHandler}
             />
             <div>
-              <Svg.LocationIcon size={18} />
+              <Svg.LocationIcon size={18} color={theme.button.primary.base} />
               <S.LocationInput
                 type="text"
                 placeholder="장소를 입력하세요"
