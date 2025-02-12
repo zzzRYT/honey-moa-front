@@ -14,4 +14,13 @@ export default {
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://honey-moa:8088",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      }
+    }
+  }
 };
