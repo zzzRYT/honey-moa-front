@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "http://honey-moa:8088/:path*"
+    }
+  ]
+}
